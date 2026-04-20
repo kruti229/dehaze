@@ -1,0 +1,83 @@
+name: AILD_Freq_NH_Haze
+model: aild_freq
+ 
+datasets:
+  train:
+    dataroot_GT: /teamspace/studios/this_studio/AILD-Freq_Image_Dehazing/data/real_raw/NH-Haze/train/clear
+    dataroot_LQ: /teamspace/studios/this_studio/AILD-Freq_Image_Dehazing/data/real_raw/NH-Haze/train/hazy
+    batch_size: 4
+    patch_size: 256
+    use_shuffle: true
+    n_workers: 4
+
+  val:
+    dataroot_GT: /teamspace/studios/this_studio/AILD-Freq_Image_Dehazing/data/real_raw/NH-Haze/val/clear
+    dataroot_LQ: /teamspace/studios/this_studio/AILD-Freq_Image_Dehazing/data/real_raw/NH-Haze/val/hazy
+
+  test:
+    dataroot_GT: /teamspace/studios/this_studio/AILD-Freq_Image_Dehazing/data/real_raw/NH-Haze/test/clear
+    dataroot_LQ: /teamspace/studios/this_studio/AILD-Freq_Image_Dehazing/data/real_raw/NH-Haze/test/hazy
+ 
+# ── Encoder (frozen) ─────────────────────────────────
+network_encoder:
+  backbone: convnext_small      # ImageNet pretrained
+  out_stage: 1                  # Stage 2 output: C=192
+  pretrained: true              # MUST be true for training
+ 
+# ── DCU / DDU / CEE ──────────────────────────────────
+network_L:
+  implicit_channels: 192
+  latent_channels: 16           # z0 dimension for diffusion
+  cee_channels: 64
+  pretrained: null              # set after stage1 training
+ 
+# ── Diffusion backbone ───────────────────────────────
+network_G:
+  which_model: ConditionalNAFNet
+  setting:
+    img_channel: 16             # must match latent_channels
+    width: 64
+    middle_blk_num: 12
+    enc_blk_nums: [1,1,1,1]
+    dec_blk_nums: [1,1,1,1]
+ 
+# ── FDAA (NEW) ───────────────────────────────────────
+fdaa:
+  channels: 16                  # must match latent_channels
+  num_heads: 8
+  low_freq_ratio: 0.25
+ 
+# ── HAG (NEW) ────────────────────────────────────────
+hag:
+  t_max: 100
+  min_steps: 20
+ 
+# ── SDE ──────────────────────────────────────────────
+sde:
+  max_sigma: 50
+  T: 100
+  schedule: cosine
+  eps: 0.005
+ 
+# ── Training ─────────────────────────────────────────
+train:
+  optimizer: Lion
+  lr_G: 3.0e-5
+  beta1: 0.9
+  beta2: 0.99
+  lr_scheme: CosineAnnealingLR
+  lr_min: 1.0e-7
+  # Stage 1
+  stage1_epochs: 1000
+  stage1_patch: 768
+  # Stage 2
+  stage2_epochs: 30000
+  stage2_patch: 1024
+  val_freq: 500                 # validate every 500 epochs
+  save_freq: 1000
+ 
+# ── Loss weights (NEW: lambda2, lambda3) ─────────────
+loss:
+  lambda1: 1.0                  # L1 latent reconstruction
+  lambda2: 0.5                  # L_freq spectral consistency
+  lambda3: 0.1                  # DP differential perception
