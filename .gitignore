@@ -7,3 +7,7 @@ checkpoints/
 *.pth/
 *.zip
 *.pth
+data/
+checkpoints/
+*.pth
+*.zip
