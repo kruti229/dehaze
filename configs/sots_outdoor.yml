@@ -1,36 +1,36 @@
-name: sots_indoor
+name: sots_outdoor
 
 datasets:
   train:
-    dataroot_LQ: data/SOTS_raw/indoor/hazy
-    dataroot_GT: data/SOTS_raw/indoor/clear
-    batch_size: 4
+    dataroot_LQ: data/real_raw/RESIDE/SOTS-outdoor/train/hazy
+    dataroot_GT: data/real_raw/RESIDE/SOTS-outdoor/train/clear
+    batch_size: 2
     patch_size: 256
     use_shuffle: true
     n_workers: 2
 
   val:
-    dataroot_LQ: data/SOTS_raw/indoor/hazy
-    dataroot_GT: data/SOTS_raw/indoor/clear
+    dataroot_LQ: data/real_raw/RESIDE/SOTS-outdoor/val/hazy
+    dataroot_GT: data/real_raw/RESIDE/SOTS-outdoor/val/clear
     batch_size: 1
     patch_size: 256
     use_shuffle: false
     n_workers: 0
 
   test:
-    dataroot_LQ: data/SOTS_raw/indoor/hazy
-    dataroot_GT: data/SOTS_raw/indoor/clear
+    dataroot_LQ: data/real_raw/RESIDE/SOTS-outdoor/test/hazy
+    dataroot_GT: data/real_raw/RESIDE/SOTS-outdoor/test/clear
     batch_size: 1
-    patch_size: 256
+    patch_size: null
     use_shuffle: false
     n_workers: 0
+
+network_pre:
+  channels: 32
 
 network_encoder:
   backbone: convnext_small
   pretrained: true
-
-network_pre:
-  channels: 32
 
 network_L:
   implicit_channels: 192
@@ -41,10 +41,10 @@ network_G:
   which_model: ConditionalNAFNet
   setting:
     img_channel: 16
-    width: 64
-    middle_blk_num: 8
-    enc_blk_nums: [1, 1, 1]
-    dec_blk_nums: [1, 1, 1]
+    width: 96
+    middle_blk_num: 12
+    enc_blk_nums: [2, 2, 4]
+    dec_blk_nums: [2, 2, 2]
 
 fdaa:
   channels: 16
@@ -54,7 +54,7 @@ fdaa:
 hag:
   t_max: 16
   min_steps: 4
-  use_hag: false
+  use_hag: true
 
 sde:
   max_sigma: 20
@@ -62,23 +62,29 @@ sde:
   schedule: cosine
 
 train:
-  pre_epochs: 100
-  stage1_epochs: 300
-  stage2_epochs: 800
-  lr_pre: 1.0e-4
+  stage1_epochs: 500
+  stage2_warmup_epochs: 800
   lr_stage1: 1.0e-4
   lr_stage2: 3.0e-5
   beta1: 0.9
   beta2: 0.99
   latent_clip: 3.0
-  fixed_t: 8
-  val_freq: 100
-  save_freq: 200
-  use_perceptual: false
+  val_freq: 50
+  save_freq: 100
+  merged_checkpoint_name: final_best.pth
+  alpha_schedule:
+    boundaries: [500, 700]
+    values: [1.0, 0.75, 0.5]
+  scheduler:
+    type: cosine
+    min_lr: 5.0e-6
 
 loss:
   lambda_img: 1.0
-  lambda_lat: 0.1
+  lambda_lat: 0.5
   lambda_freq: 0.2
   lambda_freq_prior: 0.01
   lambda_perc: 0.0
+  lambda_ssim: 0.15
+  lambda_edge: 0.05
+  lambda_ctx: 0.05

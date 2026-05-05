@@ -5,9 +5,10 @@ datasets:
     dataroot_LQ: data/real_raw/RESIDE/SOTS-indoor/train/hazy
     dataroot_GT: data/real_raw/RESIDE/SOTS-indoor/train/clear
     batch_size: 2
-    patch_size: 320
+    patch_size: 256
     use_shuffle: true
     n_workers: 2
+
   val:
     dataroot_LQ: data/real_raw/RESIDE/SOTS-indoor/val/hazy
     dataroot_GT: data/real_raw/RESIDE/SOTS-indoor/val/clear
@@ -15,6 +16,7 @@ datasets:
     patch_size: 256
     use_shuffle: false
     n_workers: 0
+
   test:
     dataroot_LQ: data/real_raw/RESIDE/SOTS-indoor/test/hazy
     dataroot_GT: data/real_raw/RESIDE/SOTS-indoor/test/clear
@@ -39,10 +41,10 @@ network_G:
   which_model: ConditionalNAFNet
   setting:
     img_channel: 16
-    width: 64
-    middle_blk_num: 8
-    enc_blk_nums: [1, 1, 1]
-    dec_blk_nums: [1, 1, 1]
+    width: 96
+    middle_blk_num: 12
+    enc_blk_nums: [2, 2, 4]
+    dec_blk_nums: [2, 2, 2]
 
 fdaa:
   channels: 16
@@ -60,24 +62,22 @@ sde:
   schedule: cosine
 
 train:
-  predehazer_epochs: 200
   stage1_epochs: 500
-  stage2_warmup_epochs: 600
-  stage2_finetune_epochs: 0
-  lr_predehazer: 1.0e-4
+  stage2_warmup_epochs: 800
   lr_stage1: 1.0e-4
   lr_stage2: 3.0e-5
-  stage2_hag_start_epoch: 200
-  stage2_hazy_only_epoch: 500
-  stage2_codec_unfreeze_epoch: 540
-  stage2_codec_lr: 1.0e-5
-  merged_checkpoint_name: final_best.pth
   beta1: 0.9
   beta2: 0.99
   latent_clip: 3.0
-  fixed_t: 8
   val_freq: 50
   save_freq: 100
+  merged_checkpoint_name: final_best.pth
+  alpha_schedule:
+    boundaries: [500, 700]
+    values: [1.0, 0.75, 0.5]
+  scheduler:
+    type: cosine
+    min_lr: 5.0e-6
 
 loss:
   lambda_img: 1.0
@@ -85,5 +85,6 @@ loss:
   lambda_freq: 0.2
   lambda_freq_prior: 0.01
   lambda_perc: 0.0
-  lambda_ssim: 0.1
+  lambda_ssim: 0.15
+  lambda_edge: 0.05
   lambda_ctx: 0.05

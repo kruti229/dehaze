@@ -84,7 +84,11 @@ def train_stage1(config_path):
     ckpt_dir = os.path.join("checkpoints", opt["name"])
     os.makedirs(ckpt_dir, exist_ok=True)
 
-    encoder = ConvNextEncoder(pretrained=opt["network_encoder"]["pretrained"]).to(device)
+    # encoder = ConvNextEncoder(pretrained=opt["network_encoder"]["pretrained"]).to(device)
+    encoder = ConvNextEncoder(
+        pretrained=opt["network_encoder"]["pretrained"],
+        backbone=opt["network_encoder"].get("backbone", "convnext_small"),
+    ).to(device)
     for p in encoder.parameters():
         p.requires_grad = False
     encoder.eval()
