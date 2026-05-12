@@ -1,0 +1,26 @@
+[Stage2-Calib] Loaded Stage1 checkpoint: checkpoints/dense_haze/stage1_best.pth
+[Stage2-Calib] Stage1 metrics | selection=dehaze_score dehaze_psnr=16.00519807021998 dehaze_ssim=0.42365161180496214 dehaze_score=20.2417141882696 cross_psnr=19.841409194826646 cross_ssim=0.5160558164119721
+[Dataset] val: 5 matched pairs
+[Stage2-Calib] ETA candidates: [0.0, 0.03, 0.05, 0.08, 0.1, 0.15, 0.2, 0.3, 0.5, 0.75, 1.0]
+[Stage2-Calib] No training. Validation calibration only.
+[ETA=0.000] val=16.005/0.4237 score=20.242 | base=16.005/0.4237 base_score=20.242 improve=0.0000 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.22602 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.030] val=16.007/0.4236 score=20.244 | base=16.005/0.4237 base_score=20.242 improve=0.0019 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.22676 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.050] val=16.009/0.4236 score=20.245 | base=16.005/0.4237 base_score=20.242 improve=0.0031 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.22731 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.080] val=16.011/0.4236 score=20.247 | base=16.005/0.4237 base_score=20.242 improve=0.0049 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.22824 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.100] val=16.012/0.4235 score=20.248 | base=16.005/0.4237 base_score=20.242 improve=0.0060 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.22891 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.150] val=16.016/0.4235 score=20.250 | base=16.005/0.4237 base_score=20.242 improve=0.0087 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.23082 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.200] val=16.019/0.4234 score=20.253 | base=16.005/0.4237 base_score=20.242 improve=0.0112 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.23301 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.300] val=16.024/0.4233 score=20.257 | base=16.005/0.4237 base_score=20.242 improve=0.0156 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.23821 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.500] val=16.034/0.4230 score=20.264 | base=16.005/0.4237 base_score=20.242 improve=0.0226 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.25167 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.750] val=16.043/0.4227 score=20.270 | base=16.005/0.4237 base_score=20.242 improve=0.0286 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.27354 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=1.000] val=16.051/0.4223 score=20.274 | base=16.005/0.4237 base_score=20.242 improve=0.0324 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.30007 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+
+========== Stage2 Calibration Result ==========
+Best eta       : 1.0
+Best val PSNR  : 16.051
+Best val SSIM  : 0.4223
+Best score     : 20.274
+Stage1 score   : 20.242
+Improvement    : 0.0324
+===============================================
+Saved Stage2 calibrated FDAA checkpoint (eta=1.0, improvement=0.0324)

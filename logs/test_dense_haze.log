@@ -1,0 +1,18 @@
+[Dataset] test: 5 matched pairs
+Loaded checkpoint: checkpoints/dense_haze/final_best.pth
+Loaded phase: AILD_FREQ_STAGE2_FDAA_CALIBRATED
+Checkpoint metrics: {'psnr': 16.050917745058513, 'ssim': 0.4223242461681366, 'score': 20.27416020673988, 'baseline_psnr': 16.00519807021998, 'baseline_ssim': 0.42365161180496214, 'baseline_score': 20.2417141882696, 'improvement': 0.03244601847027795, 'raw_fdaa_psnr': 16.086322609988137, 'raw_fdaa_ssim': 0.42317748069763184, 'cross_psnr': 19.841409194826646, 'cross_ssim': 0.5160558164119721, 'zgap': 0.30006652474403384, 'target_gap': 0.22602034211158753, 'fdaa_gap': 0.18607523739337922, 'alpha': 0.47563859820365906, 'eta': 1.0, 'mode': 'fdaa_eta_calibration'}
+Using full-resolution inference path: Stage1 direct dehaze z_h + c_h
+  0%|          | 0/5 [00:00<?, ?it/s][001/005] dh51_hazy.png | PSNR=14.735 SSIM=0.4588 Score=19.323 DeltaAbs=0.00000 FullRes=1200x1600
+ 20%|██        | 1/5 [00:02<00:10,  2.54s/it][002/005] dh52_hazy.png | PSNR=14.937 SSIM=0.2721 Score=17.658 DeltaAbs=0.00000 FullRes=1200x1600
+ 40%|████      | 2/5 [00:03<00:04,  1.66s/it][003/005] dh53_hazy.png | PSNR=17.991 SSIM=0.4900 Score=22.892 DeltaAbs=0.00000 FullRes=1200x1600
+ 60%|██████    | 3/5 [00:04<00:02,  1.35s/it][004/005] dh54_hazy.png | PSNR=12.188 SSIM=0.5587 Score=17.775 DeltaAbs=0.00000 FullRes=1200x1600
+ 80%|████████  | 4/5 [00:05<00:01,  1.19s/it][005/005] dh55_hazy.png | PSNR=14.655 SSIM=0.7331 Score=21.985 DeltaAbs=0.00000 FullRes=1200x1600
+100%|██████████| 5/5 [00:06<00:00,  1.14s/it]100%|██████████| 5/5 [00:06<00:00,  1.31s/it]
+
+Full-resolution results on dense_haze:
+  PSNR  : 14.901 dB
+  SSIM  : 0.5025
+  Score : 19.927
+  Dehazed images : results_fullres/dense_haze/dehazed/
+  Compare panels : results_fullres/dense_haze/compare/

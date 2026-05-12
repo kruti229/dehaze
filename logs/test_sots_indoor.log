@@ -1,0 +1,64 @@
+[Dataset] test: 50 matched pairs
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loaded checkpoint: checkpoints/sots_indoor/final_best.pth
+Loaded phase: AILD_FREQ_STAGE2_FDAA_CALIBRATED
+Checkpoint metrics: {'psnr': 24.64132204486303, 'ssim': 0.8640071105957031, 'score': 33.281393150820065, 'baseline_psnr': 24.64132204486303, 'baseline_ssim': 0.8640071105957031, 'baseline_score': 33.281393150820065, 'improvement': 0.0, 'raw_fdaa_psnr': 24.18624235210764, 'raw_fdaa_ssim': 0.8589150106906891, 'cross_psnr': 27.045939286842955, 'cross_ssim': 0.8793508231639862, 'zgap': 0.02702869588509202, 'target_gap': 0.02702869588509202, 'fdaa_gap': 0.19533732801675796, 'alpha': 0.47563859820365906, 'eta': 0.0, 'mode': 'fdaa_eta_calibration'}
+Using full-resolution inference path: Stage1 direct dehaze z_h + c_h
+  0%|          | 0/50 [00:00<?, ?it/s][001/050] 1401_1.png | PSNR=30.573 SSIM=0.8930 Score=39.503 DeltaAbs=0.00000 FullRes=460x620
+  2%|▏         | 1/50 [00:01<01:12,  1.49s/it][002/050] 1401_10.png | PSNR=28.880 SSIM=0.8825 Score=37.705 DeltaAbs=0.00000 FullRes=460x620
+  4%|▍         | 2/50 [00:01<00:33,  1.43it/s][003/050] 1401_2.png | PSNR=30.303 SSIM=0.8919 Score=39.222 DeltaAbs=0.00000 FullRes=460x620
+  6%|▌         | 3/50 [00:01<00:20,  2.27it/s][004/050] 1401_3.png | PSNR=29.997 SSIM=0.8905 Score=38.901 DeltaAbs=0.00000 FullRes=460x620
+  8%|▊         | 4/50 [00:01<00:14,  3.12it/s][005/050] 1401_4.png | PSNR=29.738 SSIM=0.8893 Score=38.631 DeltaAbs=0.00000 FullRes=460x620
+ 10%|█         | 5/50 [00:02<00:11,  3.94it/s][006/050] 1401_5.png | PSNR=29.545 SSIM=0.8881 Score=38.426 DeltaAbs=0.00000 FullRes=460x620
+ 12%|█▏        | 6/50 [00:02<00:09,  4.67it/s][007/050] 1401_6.png | PSNR=29.442 SSIM=0.8871 Score=38.313 DeltaAbs=0.00000 FullRes=460x620
+ 14%|█▍        | 7/50 [00:02<00:08,  5.26it/s][008/050] 1401_7.png | PSNR=29.325 SSIM=0.8861 Score=38.185 DeltaAbs=0.00000 FullRes=460x620
+ 16%|█▌        | 8/50 [00:02<00:07,  5.79it/s][009/050] 1401_8.png | PSNR=29.098 SSIM=0.8846 Score=37.944 DeltaAbs=0.00000 FullRes=460x620
+ 18%|█▊        | 9/50 [00:02<00:06,  6.20it/s][010/050] 1401_9.png | PSNR=28.977 SSIM=0.8835 Score=37.811 DeltaAbs=0.00000 FullRes=460x620
+ 20%|██        | 10/50 [00:02<00:06,  6.52it/s][011/050] 1407_1.png | PSNR=27.563 SSIM=0.9041 Score=36.604 DeltaAbs=0.00000 FullRes=460x620
+ 22%|██▏       | 11/50 [00:02<00:05,  6.70it/s][012/050] 1407_10.png | PSNR=26.027 SSIM=0.8931 Score=34.958 DeltaAbs=0.00000 FullRes=460x620
+ 24%|██▍       | 12/50 [00:03<00:05,  6.83it/s][013/050] 1407_2.png | PSNR=27.416 SSIM=0.9031 Score=36.447 DeltaAbs=0.00000 FullRes=460x620
+ 26%|██▌       | 13/50 [00:03<00:05,  6.92it/s][014/050] 1407_3.png | PSNR=27.270 SSIM=0.9020 Score=36.291 DeltaAbs=0.00000 FullRes=460x620
+ 28%|██▊       | 14/50 [00:03<00:05,  7.00it/s][015/050] 1407_4.png | PSNR=27.055 SSIM=0.9011 Score=36.066 DeltaAbs=0.00000 FullRes=460x620
+ 30%|███       | 15/50 [00:03<00:04,  7.04it/s][016/050] 1407_5.png | PSNR=26.906 SSIM=0.8998 Score=35.904 DeltaAbs=0.00000 FullRes=460x620
+ 32%|███▏      | 16/50 [00:03<00:04,  7.08it/s][017/050] 1407_6.png | PSNR=26.756 SSIM=0.8984 Score=35.740 DeltaAbs=0.00000 FullRes=460x620
+ 34%|███▍      | 17/50 [00:03<00:04,  7.09it/s][018/050] 1407_7.png | PSNR=26.525 SSIM=0.8970 Score=35.495 DeltaAbs=0.00000 FullRes=460x620
+ 36%|███▌      | 18/50 [00:03<00:04,  7.11it/s][019/050] 1407_8.png | PSNR=26.376 SSIM=0.8960 Score=35.337 DeltaAbs=0.00000 FullRes=460x620
+ 38%|███▊      | 19/50 [00:03<00:04,  7.02it/s][020/050] 1407_9.png | PSNR=26.209 SSIM=0.8944 Score=35.153 DeltaAbs=0.00000 FullRes=460x620
+ 40%|████      | 20/50 [00:04<00:04,  6.78it/s][021/050] 1415_1.png | PSNR=29.915 SSIM=0.9409 Score=39.325 DeltaAbs=0.00000 FullRes=460x620
+ 42%|████▏     | 21/50 [00:04<00:04,  6.60it/s][022/050] 1415_10.png | PSNR=27.966 SSIM=0.9276 Score=37.241 DeltaAbs=0.00000 FullRes=460x620
+ 44%|████▍     | 22/50 [00:04<00:04,  6.71it/s][023/050] 1415_2.png | PSNR=29.673 SSIM=0.9394 Score=39.067 DeltaAbs=0.00000 FullRes=460x620
+ 46%|████▌     | 23/50 [00:04<00:04,  6.59it/s][024/050] 1415_3.png | PSNR=29.485 SSIM=0.9381 Score=38.866 DeltaAbs=0.00000 FullRes=460x620
+ 48%|████▊     | 24/50 [00:04<00:03,  6.54it/s][025/050] 1415_4.png | PSNR=29.306 SSIM=0.9368 Score=38.674 DeltaAbs=0.00000 FullRes=460x620
+ 50%|█████     | 25/50 [00:04<00:03,  6.50it/s][026/050] 1415_5.png | PSNR=28.946 SSIM=0.9350 Score=38.296 DeltaAbs=0.00000 FullRes=460x620
+ 52%|█████▏    | 26/50 [00:05<00:03,  6.55it/s][027/050] 1415_6.png | PSNR=28.910 SSIM=0.9341 Score=38.250 DeltaAbs=0.00000 FullRes=460x620
+ 54%|█████▍    | 27/50 [00:05<00:03,  6.34it/s][028/050] 1415_7.png | PSNR=28.484 SSIM=0.9319 Score=37.803 DeltaAbs=0.00000 FullRes=460x620
+ 56%|█████▌    | 28/50 [00:05<00:03,  6.57it/s][029/050] 1415_8.png | PSNR=28.126 SSIM=0.9305 Score=37.431 DeltaAbs=0.00000 FullRes=460x620
+ 58%|█████▊    | 29/50 [00:05<00:03,  6.88it/s][030/050] 1415_9.png | PSNR=27.897 SSIM=0.9291 Score=37.188 DeltaAbs=0.00000 FullRes=460x620
+ 60%|██████    | 30/50 [00:05<00:02,  7.14it/s][031/050] 1417_1.png | PSNR=26.255 SSIM=0.8596 Score=34.852 DeltaAbs=0.00000 FullRes=460x620
+ 62%|██████▏   | 31/50 [00:05<00:02,  7.13it/s][032/050] 1417_10.png | PSNR=25.097 SSIM=0.8481 Score=33.577 DeltaAbs=0.00000 FullRes=460x620
+ 64%|██████▍   | 32/50 [00:05<00:02,  7.15it/s][033/050] 1417_2.png | PSNR=26.059 SSIM=0.8586 Score=34.645 DeltaAbs=0.00000 FullRes=460x620
+ 66%|██████▌   | 33/50 [00:06<00:02,  7.16it/s][034/050] 1417_3.png | PSNR=25.892 SSIM=0.8577 Score=34.469 DeltaAbs=0.00000 FullRes=460x620
+ 68%|██████▊   | 34/50 [00:06<00:02,  7.18it/s][035/050] 1417_4.png | PSNR=25.711 SSIM=0.8564 Score=34.275 DeltaAbs=0.00000 FullRes=460x620
+ 70%|███████   | 35/50 [00:06<00:02,  7.19it/s][036/050] 1417_5.png | PSNR=25.539 SSIM=0.8552 Score=34.091 DeltaAbs=0.00000 FullRes=460x620
+ 72%|███████▏  | 36/50 [00:06<00:01,  7.08it/s][037/050] 1417_6.png | PSNR=25.462 SSIM=0.8541 Score=34.003 DeltaAbs=0.00000 FullRes=460x620
+ 74%|███████▍  | 37/50 [00:06<00:01,  7.10it/s][038/050] 1417_7.png | PSNR=25.343 SSIM=0.8526 Score=33.869 DeltaAbs=0.00000 FullRes=460x620
+ 76%|███████▌  | 38/50 [00:06<00:01,  7.12it/s][039/050] 1417_8.png | PSNR=25.167 SSIM=0.8510 Score=33.677 DeltaAbs=0.00000 FullRes=460x620
+ 78%|███████▊  | 39/50 [00:06<00:01,  7.13it/s][040/050] 1417_9.png | PSNR=25.110 SSIM=0.8494 Score=33.604 DeltaAbs=0.00000 FullRes=460x620
+ 80%|████████  | 40/50 [00:07<00:01,  7.13it/s][041/050] 1440_1.png | PSNR=29.270 SSIM=0.9401 Score=38.671 DeltaAbs=0.00000 FullRes=460x620
+ 82%|████████▏ | 41/50 [00:07<00:01,  7.37it/s][042/050] 1440_10.png | PSNR=26.787 SSIM=0.9226 Score=36.014 DeltaAbs=0.00000 FullRes=460x620
+ 84%|████████▍ | 42/50 [00:07<00:01,  7.58it/s][043/050] 1440_2.png | PSNR=29.016 SSIM=0.9389 Score=38.406 DeltaAbs=0.00000 FullRes=460x620
+ 86%|████████▌ | 43/50 [00:07<00:00,  7.67it/s][044/050] 1440_3.png | PSNR=28.783 SSIM=0.9371 Score=38.154 DeltaAbs=0.00000 FullRes=460x620
+ 88%|████████▊ | 44/50 [00:07<00:00,  7.75it/s][045/050] 1440_4.png | PSNR=28.449 SSIM=0.9354 Score=37.802 DeltaAbs=0.00000 FullRes=460x620
+ 90%|█████████ | 45/50 [00:07<00:00,  7.78it/s][046/050] 1440_5.png | PSNR=28.004 SSIM=0.9331 Score=37.335 DeltaAbs=0.00000 FullRes=460x620
+ 92%|█████████▏| 46/50 [00:07<00:00,  7.83it/s][047/050] 1440_6.png | PSNR=27.827 SSIM=0.9310 Score=37.138 DeltaAbs=0.00000 FullRes=460x620
+ 94%|█████████▍| 47/50 [00:07<00:00,  7.89it/s][048/050] 1440_7.png | PSNR=27.693 SSIM=0.9296 Score=36.989 DeltaAbs=0.00000 FullRes=460x620
+ 96%|█████████▌| 48/50 [00:08<00:00,  7.89it/s][049/050] 1440_8.png | PSNR=27.369 SSIM=0.9276 Score=36.645 DeltaAbs=0.00000 FullRes=460x620
+ 98%|█████████▊| 49/50 [00:08<00:00,  7.95it/s][050/050] 1440_9.png | PSNR=27.106 SSIM=0.9251 Score=36.357 DeltaAbs=0.00000 FullRes=460x620
+100%|██████████| 50/50 [00:08<00:00,  7.97it/s]100%|██████████| 50/50 [00:08<00:00,  6.03it/s]
+
+Full-resolution results on sots_indoor:
+  PSNR  : 27.773 dB
+  SSIM  : 0.9014
+  Score : 36.787
+  Dehazed images : results_fullres/sots_indoor/dehazed/
+  Compare panels : results_fullres/sots_indoor/compare/

@@ -1,0 +1,21 @@
+Loaded Stage1 checkpoint: checkpoints/dense_haze/stage1_best.pth
+Checkpoint epoch: 375
+Selection metric: dehaze_score
+Checkpoint dehaze PSNR: 16.00519807021998
+Checkpoint dehaze SSIM: 0.42365161180496214
+Checkpoint clean PSNR: 19.80318256226971
+Checkpoint cross PSNR: 19.841409194826646
+[Dataset] test: 5 matched pairs
+  0%|          | 0/5 [00:00<?, ?it/s][001/005] dh51_hazy.png | dehaze=14.735/0.4588 | clean=20.521/0.6343 | cross_oracle=20.482/0.6169 | fullres=1200x1600
+ 20%|██        | 1/5 [00:02<00:11,  3.00s/it][002/005] dh52_hazy.png | dehaze=14.937/0.2721 | clean=20.875/0.4687 | cross_oracle=20.876/0.4527 | fullres=1200x1600
+ 40%|████      | 2/5 [00:04<00:06,  2.21s/it][003/005] dh53_hazy.png | dehaze=17.991/0.4900 | clean=21.794/0.5649 | cross_oracle=22.029/0.5730 | fullres=1200x1600
+ 60%|██████    | 3/5 [00:06<00:03,  1.98s/it][004/005] dh54_hazy.png | dehaze=12.188/0.5587 | clean=20.151/0.8708 | cross_oracle=19.577/0.8640 | fullres=1200x1600
+ 80%|████████  | 4/5 [00:07<00:01,  1.83s/it][005/005] dh55_hazy.png | dehaze=14.655/0.7331 | clean=22.311/0.8361 | cross_oracle=22.489/0.8480 | fullres=1200x1600
+100%|██████████| 5/5 [00:09<00:00,  1.72s/it]100%|██████████| 5/5 [00:09<00:00,  1.90s/it]
+
+Stage1 Full-Resolution Test Results on dense_haze:
+  Deployable dehaze PSNR / SSIM : 14.901 / 0.5025
+  Clean recon PSNR / SSIM       : 21.130 / 0.6749
+  Cross/oracle PSNR / SSIM      : 21.090 / 0.6709
+  Dehazed images : results_stage1/dense_haze/dehaze_direct/
+  Compare panels : results_stage1/dense_haze/compare/

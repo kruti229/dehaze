@@ -1,0 +1,578 @@
+nohup: ignoring input
+
+==========================================
+Running dataset: nh_haze
+Config: configs/nh_haze.yml
+==========================================
+
+[1/4] Training Stage 1: nh_haze
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[Dataset] train: 40 matched pairs
+[Dataset] val: 5 matched pairs
+[Stage1-Dehaze-ASM] Training nh_haze | epochs=1000 | lambda_dehaze=3.0 | lambda_hazy=0.0 | lambda_clean=0.4 | lambda_cross=1.2 | lambda_z=0.03 | lambda_cee=0.0 | lambda_asm=0.0
+[S1-Dehaze-ASM][0001/1000] lr=1.00e-04 train_loss=2.9129 dehaze=0.6329 hazy=0.2556 clean=0.6329 cross=0.6329 z=0.05152 cee=0.10489 asm=0.09284 train_psnr=11.402 train_ssim=0.1957 | val_dehaze=12.957/0.2479 val_score=15.436 val_clean=12.956/0.2479 val_cross=12.957/0.2479 val_hazy_diag=15.939/0.6437 val_z=0.02790 val_cee=0.10427 val_asm=0.09706
+Saved best Stage1-Dehaze-ASM checkpoint (score=15.436, PSNR=12.957, SSIM=0.2479)
+[S1-Dehaze-ASM][0025/1000] lr=9.99e-05 train_loss=2.3623 dehaze=0.5220 hazy=0.4465 clean=0.4967 cross=0.4953 z=0.10863 cee=0.10594 asm=0.08715 train_psnr=14.040 train_ssim=0.2362 | val_dehaze=14.449/0.2632 val_score=17.081 val_clean=15.377/0.2771 val_cross=15.426/0.2784 val_hazy_diag=10.532/0.4586 val_z=0.11248 val_cee=0.10418 val_asm=0.08668
+Saved best Stage1-Dehaze-ASM checkpoint (score=17.081, PSNR=14.449, SSIM=0.2632)
+[S1-Dehaze-ASM][0050/1000] lr=9.94e-05 train_loss=2.2347 dehaze=0.4965 hazy=0.4662 clean=0.4639 cross=0.4631 z=0.12888 cee=0.10867 asm=0.09527 train_psnr=15.078 train_ssim=0.2470 | val_dehaze=13.498/0.2625 val_score=16.123 val_clean=15.619/0.2930 val_cross=15.585/0.2946 val_hazy_diag=14.926/0.5511 val_z=0.12765 val_cee=0.10508 val_asm=0.10240
+[S1-Dehaze-ASM][0075/1000] lr=9.87e-05 train_loss=2.2290 dehaze=0.4973 hazy=0.4403 clean=0.4594 cross=0.4579 z=0.13213 cee=0.10562 asm=0.08392 train_psnr=14.852 train_ssim=0.2581 | val_dehaze=15.233/0.2831 val_score=18.064 val_clean=16.174/0.2995 val_cross=16.137/0.2996 val_hazy_diag=10.864/0.4413 val_z=0.14780 val_cee=0.10446 val_asm=0.08450
+Saved best Stage1-Dehaze-ASM checkpoint (score=18.064, PSNR=15.233, SSIM=0.2831)
+[S1-Dehaze-ASM][0100/1000] lr=9.77e-05 train_loss=2.1748 dehaze=0.4898 hazy=0.4783 clean=0.4387 cross=0.4382 z=0.14325 cee=0.10661 asm=0.09270 train_psnr=14.862 train_ssim=0.2756 | val_dehaze=14.042/0.2985 val_score=17.027 val_clean=16.163/0.3366 val_cross=16.124/0.3363 val_hazy_diag=14.635/0.5420 val_z=0.14822 val_cee=0.10406 val_asm=0.09609
+[S1-Dehaze-ASM][0125/1000] lr=9.64e-05 train_loss=1.9259 dehaze=0.4291 hazy=0.4698 clean=0.3972 cross=0.3966 z=0.12841 cee=0.10461 asm=0.09241 train_psnr=16.388 train_ssim=0.3304 | val_dehaze=15.242/0.3147 val_score=18.390 val_clean=17.287/0.3432 val_cross=17.314/0.3441 val_hazy_diag=11.851/0.4924 val_z=0.14096 val_cee=0.10430 val_asm=0.07857
+Saved best Stage1-Dehaze-ASM checkpoint (score=18.390, PSNR=15.242, SSIM=0.3147)
+[S1-Dehaze-ASM][0150/1000] lr=9.48e-05 train_loss=1.9685 dehaze=0.4402 hazy=0.4637 clean=0.4029 cross=0.4025 z=0.12952 cee=0.10470 asm=0.08667 train_psnr=16.267 train_ssim=0.3167 | val_dehaze=14.674/0.3131 val_score=17.805 val_clean=16.920/0.3584 val_cross=16.871/0.3603 val_hazy_diag=11.152/0.4177 val_z=0.13672 val_cee=0.10515 val_asm=0.09498
+[S1-Dehaze-ASM][0175/1000] lr=9.30e-05 train_loss=1.9282 dehaze=0.4310 hazy=0.4345 clean=0.3953 cross=0.3945 z=0.12652 cee=0.10347 asm=0.08399 train_psnr=16.766 train_ssim=0.3207 | val_dehaze=14.931/0.3335 val_score=18.266 val_clean=17.896/0.3880 val_cross=17.943/0.3888 val_hazy_diag=13.122/0.5085 val_z=0.14834 val_cee=0.10357 val_asm=0.08680
+[S1-Dehaze-ASM][0200/1000] lr=9.09e-05 train_loss=1.9460 dehaze=0.4399 hazy=0.4803 clean=0.3890 cross=0.3892 z=0.12100 cee=0.10291 asm=0.09429 train_psnr=16.337 train_ssim=0.3215 | val_dehaze=15.215/0.3343 val_score=18.557 val_clean=17.403/0.3821 val_cross=17.515/0.3838 val_hazy_diag=11.593/0.4525 val_z=0.13707 val_cee=0.10283 val_asm=0.08030
+Saved best Stage1-Dehaze-ASM checkpoint (score=18.557, PSNR=15.215, SSIM=0.3343)
+[S1-Dehaze-ASM][0225/1000] lr=8.86e-05 train_loss=1.8883 dehaze=0.4238 hazy=0.4826 clean=0.3833 cross=0.3832 z=0.12546 cee=0.10640 asm=0.08746 train_psnr=16.833 train_ssim=0.3355 | val_dehaze=15.010/0.3529 val_score=18.540 val_clean=18.591/0.4184 val_cross=18.595/0.4185 val_hazy_diag=13.867/0.5297 val_z=0.14111 val_cee=0.10324 val_asm=0.08252
+[S1-Dehaze-ASM][0250/1000] lr=8.61e-05 train_loss=1.8668 dehaze=0.4178 hazy=0.4616 clean=0.3811 cross=0.3812 z=0.11699 cee=0.09683 asm=0.09695 train_psnr=16.662 train_ssim=0.3576 | val_dehaze=15.620/0.3602 val_score=19.222 val_clean=18.580/0.4271 val_cross=18.642/0.4267 val_hazy_diag=14.262/0.5383 val_z=0.13342 val_cee=0.10232 val_asm=0.08322
+Saved best Stage1-Dehaze-ASM checkpoint (score=19.222, PSNR=15.620, SSIM=0.3602)
+[S1-Dehaze-ASM][0275/1000] lr=8.33e-05 train_loss=1.8631 dehaze=0.4174 hazy=0.4861 clean=0.3803 cross=0.3794 z=0.11261 cee=0.10294 asm=0.08983 train_psnr=16.905 train_ssim=0.3469 | val_dehaze=16.198/0.3711 val_score=19.909 val_clean=18.896/0.4347 val_cross=18.955/0.4338 val_hazy_diag=12.568/0.5201 val_z=0.12584 val_cee=0.10255 val_asm=0.08299
+Saved best Stage1-Dehaze-ASM checkpoint (score=19.909, PSNR=16.198, SSIM=0.3711)
+[S1-Dehaze-ASM][0300/1000] lr=8.04e-05 train_loss=1.7723 dehaze=0.3984 hazy=0.4720 clean=0.3573 cross=0.3589 z=0.11390 cee=0.10132 asm=0.09661 train_psnr=17.649 train_ssim=0.3676 | val_dehaze=15.926/0.3757 val_score=19.683 val_clean=18.731/0.4414 val_cross=18.876/0.4422 val_hazy_diag=12.951/0.5057 val_z=0.12660 val_cee=0.10230 val_asm=0.07984
+[S1-Dehaze-ASM][0325/1000] lr=7.73e-05 train_loss=1.7511 dehaze=0.3944 hazy=0.4791 clean=0.3525 cross=0.3529 z=0.12111 cee=0.10716 asm=0.08689 train_psnr=17.524 train_ssim=0.3750 | val_dehaze=15.537/0.3791 val_score=19.327 val_clean=18.460/0.4490 val_cross=18.529/0.4471 val_hazy_diag=12.732/0.5188 val_z=0.12429 val_cee=0.10200 val_asm=0.08495
+[S1-Dehaze-ASM][0350/1000] lr=7.41e-05 train_loss=1.7896 dehaze=0.4009 hazy=0.4536 clean=0.3650 cross=0.3647 z=0.10848 cee=0.09859 asm=0.09385 train_psnr=17.129 train_ssim=0.3777 | val_dehaze=13.293/0.3614 val_score=16.907 val_clean=17.073/0.4473 val_cross=17.044/0.4439 val_hazy_diag=15.092/0.5665 val_z=0.13169 val_cee=0.10179 val_asm=0.10109
+[S1-Dehaze-ASM][0375/1000] lr=7.07e-05 train_loss=1.8059 dehaze=0.4072 hazy=0.5171 clean=0.3619 cross=0.3634 z=0.11400 cee=0.10112 asm=0.09751 train_psnr=17.170 train_ssim=0.3613 | val_dehaze=15.338/0.3807 val_score=19.145 val_clean=18.595/0.4511 val_cross=18.762/0.4520 val_hazy_diag=13.298/0.5109 val_z=0.12992 val_cee=0.10104 val_asm=0.07858
+[S1-Dehaze-ASM][0400/1000] lr=6.72e-05 train_loss=1.7042 dehaze=0.3850 hazy=0.4635 clean=0.3410 cross=0.3411 z=0.11423 cee=0.09758 asm=0.09360 train_psnr=17.604 train_ssim=0.4011 | val_dehaze=16.013/0.3873 val_score=19.886 val_clean=19.164/0.4646 val_cross=19.254/0.4616 val_hazy_diag=13.615/0.5379 val_z=0.12519 val_cee=0.10020 val_asm=0.08557
+[S1-Dehaze-ASM][0425/1000] lr=6.36e-05 train_loss=1.7017 dehaze=0.3835 hazy=0.4777 clean=0.3414 cross=0.3429 z=0.10887 cee=0.09754 asm=0.09826 train_psnr=17.752 train_ssim=0.3950 | val_dehaze=16.189/0.3902 val_score=20.092 val_clean=18.625/0.4604 val_cross=18.797/0.4595 val_hazy_diag=12.317/0.5137 val_z=0.12463 val_cee=0.10045 val_asm=0.07691
+Saved best Stage1-Dehaze-ASM checkpoint (score=20.092, PSNR=16.189, SSIM=0.3902)
+[S1-Dehaze-ASM][0450/1000] lr=5.99e-05 train_loss=1.6953 dehaze=0.3818 hazy=0.4600 clean=0.3412 cross=0.3418 z=0.10776 cee=0.09928 asm=0.08533 train_psnr=17.856 train_ssim=0.3980 | val_dehaze=15.660/0.3927 val_score=19.586 val_clean=18.184/0.4556 val_cross=18.441/0.4563 val_hazy_diag=12.827/0.5316 val_z=0.12478 val_cee=0.09989 val_asm=0.07688
+[S1-Dehaze-ASM][0475/1000] lr=5.62e-05 train_loss=1.7244 dehaze=0.3887 hazy=0.4539 clean=0.3468 cross=0.3472 z=0.09907 cee=0.09517 asm=0.09355 train_psnr=17.666 train_ssim=0.3867 | val_dehaze=15.784/0.3973 val_score=19.758 val_clean=19.099/0.4763 val_cross=19.242/0.4747 val_hazy_diag=13.185/0.5308 val_z=0.12173 val_cee=0.10010 val_asm=0.07840
+[S1-Dehaze-ASM][0500/1000] lr=5.25e-05 train_loss=1.6867 dehaze=0.3796 hazy=0.4996 clean=0.3394 cross=0.3408 z=0.10940 cee=0.10144 asm=0.09555 train_psnr=17.946 train_ssim=0.3971 | val_dehaze=15.432/0.3992 val_score=19.424 val_clean=19.233/0.4872 val_cross=19.220/0.4801 val_hazy_diag=13.915/0.5677 val_z=0.12393 val_cee=0.09962 val_asm=0.08477
+[S1-Dehaze-ASM][0525/1000] lr=4.88e-05 train_loss=1.7099 dehaze=0.3809 hazy=0.4643 clean=0.3525 cross=0.3527 z=0.09599 cee=0.09350 asm=0.09296 train_psnr=17.830 train_ssim=0.4006 | val_dehaze=15.353/0.4023 val_score=19.375 val_clean=19.564/0.4895 val_cross=19.624/0.4836 val_hazy_diag=14.239/0.5777 val_z=0.12470 val_cee=0.09930 val_asm=0.08459
+[S1-Dehaze-ASM][0550/1000] lr=4.51e-05 train_loss=1.6904 dehaze=0.3795 hazy=0.4787 clean=0.3429 cross=0.3429 z=0.10634 cee=0.09715 asm=0.09238 train_psnr=17.973 train_ssim=0.3947 | val_dehaze=15.449/0.4017 val_score=19.466 val_clean=19.448/0.4885 val_cross=19.561/0.4865 val_hazy_diag=13.595/0.5487 val_z=0.12160 val_cee=0.09823 val_asm=0.08235
+[S1-Dehaze-ASM][0575/1000] lr=4.14e-05 train_loss=1.6748 dehaze=0.3766 hazy=0.4885 clean=0.3379 cross=0.3389 z=0.10449 cee=0.09684 asm=0.09864 train_psnr=18.225 train_ssim=0.3982 | val_dehaze=15.181/0.3986 val_score=19.167 val_clean=18.774/0.4800 val_cross=18.883/0.4757 val_hazy_diag=12.918/0.5349 val_z=0.12425 val_cee=0.09812 val_asm=0.08117
+[S1-Dehaze-ASM][0600/1000] lr=3.78e-05 train_loss=1.6003 dehaze=0.3599 hazy=0.4723 clean=0.3233 cross=0.3235 z=0.10203 cee=0.09535 asm=0.09452 train_psnr=18.374 train_ssim=0.4295 | val_dehaze=15.232/0.4029 val_score=19.261 val_clean=19.534/0.4956 val_cross=19.507/0.4889 val_hazy_diag=14.356/0.5759 val_z=0.11934 val_cee=0.09769 val_asm=0.08623
+[S1-Dehaze-ASM][0625/1000] lr=3.43e-05 train_loss=1.6315 dehaze=0.3651 hazy=0.4603 clean=0.3333 cross=0.3333 z=0.09313 cee=0.09012 asm=0.09475 train_psnr=18.173 train_ssim=0.4234 | val_dehaze=15.230/0.4043 val_score=19.273 val_clean=19.589/0.4981 val_cross=19.638/0.4928 val_hazy_diag=14.134/0.5631 val_z=0.11838 val_cee=0.09698 val_asm=0.08080
+[S1-Dehaze-ASM][0650/1000] lr=3.09e-05 train_loss=1.6810 dehaze=0.3774 hazy=0.4813 clean=0.3401 cross=0.3414 z=0.10294 cee=0.09458 asm=0.09604 train_psnr=18.023 train_ssim=0.3974 | val_dehaze=15.220/0.4023 val_score=19.244 val_clean=19.368/0.4971 val_cross=19.400/0.4909 val_hazy_diag=13.748/0.5563 val_z=0.12005 val_cee=0.09629 val_asm=0.08758
+[S1-Dehaze-ASM][0675/1000] lr=2.77e-05 train_loss=1.6664 dehaze=0.3746 hazy=0.4865 clean=0.3359 cross=0.3377 z=0.09854 cee=0.09518 asm=0.09169 train_psnr=18.204 train_ssim=0.4006 | val_dehaze=15.739/0.4080 val_score=19.819 val_clean=19.363/0.4962 val_cross=19.549/0.4917 val_hazy_diag=13.030/0.5496 val_z=0.11276 val_cee=0.09570 val_asm=0.08020
+[S1-Dehaze-ASM][0700/1000] lr=2.46e-05 train_loss=1.6074 dehaze=0.3605 hazy=0.4815 clean=0.3254 cross=0.3274 z=0.09863 cee=0.09428 asm=0.09396 train_psnr=18.714 train_ssim=0.4148 | val_dehaze=15.569/0.4094 val_score=19.663 val_clean=19.622/0.5021 val_cross=19.758/0.4964 val_hazy_diag=13.743/0.5741 val_z=0.11548 val_cee=0.09523 val_asm=0.08081
+[S1-Dehaze-ASM][0725/1000] lr=2.17e-05 train_loss=1.5911 dehaze=0.3582 hazy=0.4973 clean=0.3202 cross=0.3211 z=0.09964 cee=0.09465 asm=0.09991 train_psnr=18.731 train_ssim=0.4219 | val_dehaze=14.841/0.4074 val_score=18.915 val_clean=19.298/0.5071 val_cross=19.286/0.4999 val_hazy_diag=14.627/0.5861 val_z=0.11503 val_cee=0.09485 val_asm=0.08694
+[S1-Dehaze-ASM][0750/1000] lr=1.89e-05 train_loss=1.6359 dehaze=0.3666 hazy=0.4782 clean=0.3318 cross=0.3337 z=0.09383 cee=0.09232 asm=0.09247 train_psnr=18.403 train_ssim=0.4118 | val_dehaze=15.514/0.4109 val_score=19.623 val_clean=19.519/0.5046 val_cross=19.600/0.4991 val_hazy_diag=13.532/0.5516 val_z=0.11149 val_cee=0.09437 val_asm=0.08376
+[S1-Dehaze-ASM][0775/1000] lr=1.64e-05 train_loss=1.5735 dehaze=0.3528 hazy=0.4525 clean=0.3193 cross=0.3206 z=0.08920 cee=0.08971 asm=0.09277 train_psnr=18.862 train_ssim=0.4314 | val_dehaze=15.153/0.4083 val_score=19.236 val_clean=19.630/0.5069 val_cross=19.727/0.5005 val_hazy_diag=13.843/0.5739 val_z=0.11379 val_cee=0.09401 val_asm=0.08433
+[S1-Dehaze-ASM][0800/1000] lr=1.41e-05 train_loss=1.6497 dehaze=0.3701 hazy=0.4642 clean=0.3345 cross=0.3356 z=0.09463 cee=0.09072 asm=0.08918 train_psnr=18.429 train_ssim=0.4067 | val_dehaze=15.271/0.4095 val_score=19.366 val_clean=19.684/0.5089 val_cross=19.751/0.5020 val_hazy_diag=14.039/0.5794 val_z=0.11227 val_cee=0.09371 val_asm=0.08486
+[S1-Dehaze-ASM][0825/1000] lr=1.20e-05 train_loss=1.6059 dehaze=0.3623 hazy=0.4782 clean=0.3215 cross=0.3229 z=0.09619 cee=0.09147 asm=0.09330 train_psnr=18.304 train_ssim=0.4206 | val_dehaze=15.498/0.4112 val_score=19.610 val_clean=19.775/0.5082 val_cross=19.909/0.5023 val_hazy_diag=14.132/0.5827 val_z=0.11227 val_cee=0.09333 val_asm=0.08120
+[S1-Dehaze-ASM][0850/1000] lr=1.02e-05 train_loss=1.5631 dehaze=0.3525 hazy=0.4861 clean=0.3130 cross=0.3147 z=0.09686 cee=0.09343 asm=0.09639 train_psnr=19.032 train_ssim=0.4277 | val_dehaze=15.220/0.4108 val_score=19.328 val_clean=19.722/0.5094 val_cross=19.844/0.5041 val_hazy_diag=14.113/0.5792 val_z=0.11152 val_cee=0.09304 val_asm=0.08212
+[S1-Dehaze-ASM][0875/1000] lr=8.62e-06 train_loss=1.5831 dehaze=0.3543 hazy=0.4699 clean=0.3225 cross=0.3238 z=0.09061 cee=0.09043 asm=0.09532 train_psnr=18.745 train_ssim=0.4285 | val_dehaze=15.087/0.4083 val_score=19.169 val_clean=19.499/0.5078 val_cross=19.591/0.5029 val_hazy_diag=13.790/0.5583 val_z=0.11016 val_cee=0.09275 val_asm=0.08415
+[S1-Dehaze-ASM][0900/1000] lr=7.32e-06 train_loss=1.5844 dehaze=0.3562 hazy=0.4948 clean=0.3191 cross=0.3210 z=0.09390 cee=0.09202 asm=0.09989 train_psnr=18.724 train_ssim=0.4235 | val_dehaze=15.296/0.4124 val_score=19.420 val_clean=19.628/0.5113 val_cross=19.705/0.5056 val_hazy_diag=13.949/0.5662 val_z=0.10834 val_cee=0.09247 val_asm=0.08493
+[S1-Dehaze-ASM][0925/1000] lr=6.31e-06 train_loss=1.5707 dehaze=0.3529 hazy=0.4977 clean=0.3172 cross=0.3185 z=0.09307 cee=0.09129 asm=0.09320 train_psnr=18.701 train_ssim=0.4336 | val_dehaze=15.121/0.4112 val_score=19.233 val_clean=19.759/0.5123 val_cross=19.843/0.5062 val_hazy_diag=14.326/0.5824 val_z=0.10978 val_cee=0.09222 val_asm=0.08350
+[S1-Dehaze-ASM][0950/1000] lr=5.58e-06 train_loss=1.5182 dehaze=0.3414 hazy=0.4762 clean=0.3059 cross=0.3072 z=0.09335 cee=0.09107 asm=0.10036 train_psnr=18.999 train_ssim=0.4456 | val_dehaze=15.276/0.4116 val_score=19.391 val_clean=19.710/0.5130 val_cross=19.780/0.5067 val_hazy_diag=14.055/0.5725 val_z=0.10747 val_cee=0.09194 val_asm=0.08453
+[S1-Dehaze-ASM][0975/1000] lr=5.15e-06 train_loss=1.5669 dehaze=0.3524 hazy=0.4685 clean=0.3161 cross=0.3171 z=0.08963 cee=0.08942 asm=0.09284 train_psnr=18.710 train_ssim=0.4363 | val_dehaze=15.273/0.4124 val_score=19.397 val_clean=19.777/0.5128 val_cross=19.906/0.5061 val_hazy_diag=14.067/0.5838 val_z=0.10938 val_cee=0.09181 val_asm=0.08248
+[S1-Dehaze-ASM][1000/1000] lr=5.00e-06 train_loss=1.5794 dehaze=0.3548 hazy=0.4785 clean=0.3195 cross=0.3205 z=0.08802 cee=0.08744 asm=0.09720 train_psnr=18.841 train_ssim=0.4262 | val_dehaze=15.365/0.4136 val_score=19.501 val_clean=19.820/0.5140 val_cross=19.913/0.5072 val_hazy_diag=14.224/0.5825 val_z=0.10681 val_cee=0.09156 val_asm=0.08257
+Best Stage1-Dehaze-ASM: score=20.092, PSNR=16.189, SSIM=0.3902
+
+[2/4] Running calibrated Stage 2: nh_haze
+[Stage2-Calib] Loaded Stage1 checkpoint: checkpoints/nh_haze/stage1_best.pth
+[Stage2-Calib] Stage1 metrics | selection=dehaze_score dehaze_psnr=16.189077094719927 dehaze_ssim=0.39024965167045594 dehaze_score=20.091573611424487 cross_psnr=18.797430327094844 cross_ssim=0.45945037007331846
+[Dataset] val: 5 matched pairs
+[Stage2-Calib] ETA candidates: [0.0, 0.03, 0.05, 0.08, 0.1, 0.15, 0.2, 0.3, 0.5, 0.75, 1.0]
+[Stage2-Calib] No training. Validation calibration only.
+[ETA=0.000] val=16.189/0.3902 score=20.092 | base=16.189/0.3902 base_score=20.092 improve=0.0000 | raw_fdaa=16.060/0.3890 cross=18.797/0.4595 zgap=0.12463 target_gap=0.12463 fdaa_gap=0.23279 alpha=0.4756
+[ETA=0.030] val=16.187/0.3903 score=20.090 | base=16.189/0.3902 base_score=20.092 improve=-0.0016 | raw_fdaa=16.060/0.3890 cross=18.797/0.4595 zgap=0.12525 target_gap=0.12463 fdaa_gap=0.23279 alpha=0.4756
+[ETA=0.050] val=16.186/0.3903 score=20.089 | base=16.189/0.3902 base_score=20.092 improve=-0.0027 | raw_fdaa=16.060/0.3890 cross=18.797/0.4595 zgap=0.12586 target_gap=0.12463 fdaa_gap=0.23279 alpha=0.4756
+[ETA=0.080] val=16.184/0.3903 score=20.087 | base=16.189/0.3902 base_score=20.092 improve=-0.0045 | raw_fdaa=16.060/0.3890 cross=18.797/0.4595 zgap=0.12707 target_gap=0.12463 fdaa_gap=0.23279 alpha=0.4756
+[ETA=0.100] val=16.183/0.3903 score=20.086 | base=16.189/0.3902 base_score=20.092 improve=-0.0057 | raw_fdaa=16.060/0.3890 cross=18.797/0.4595 zgap=0.12806 target_gap=0.12463 fdaa_gap=0.23279 alpha=0.4756
+[ETA=0.150] val=16.180/0.3903 score=20.083 | base=16.189/0.3902 base_score=20.092 improve=-0.0089 | raw_fdaa=16.060/0.3890 cross=18.797/0.4595 zgap=0.13111 target_gap=0.12463 fdaa_gap=0.23279 alpha=0.4756
+[ETA=0.200] val=16.176/0.3903 score=20.079 | base=16.189/0.3902 base_score=20.092 improve=-0.0123 | raw_fdaa=16.060/0.3890 cross=18.797/0.4595 zgap=0.13492 target_gap=0.12463 fdaa_gap=0.23279 alpha=0.4756
+[ETA=0.300] val=16.169/0.3903 score=20.072 | base=16.189/0.3902 base_score=20.092 improve=-0.0194 | raw_fdaa=16.060/0.3890 cross=18.797/0.4595 zgap=0.14445 target_gap=0.12463 fdaa_gap=0.23279 alpha=0.4756
+[ETA=0.500] val=16.155/0.3902 score=20.057 | base=16.189/0.3902 base_score=20.092 improve=-0.0348 | raw_fdaa=16.060/0.3890 cross=18.797/0.4595 zgap=0.16955 target_gap=0.12463 fdaa_gap=0.23279 alpha=0.4756
+[ETA=0.750] val=16.137/0.3899 score=20.037 | base=16.189/0.3902 base_score=20.092 improve=-0.0547 | raw_fdaa=16.060/0.3890 cross=18.797/0.4595 zgap=0.20819 target_gap=0.12463 fdaa_gap=0.23279 alpha=0.4756
+[ETA=1.000] val=16.120/0.3897 score=20.017 | base=16.189/0.3902 base_score=20.092 improve=-0.0744 | raw_fdaa=16.060/0.3890 cross=18.797/0.4595 zgap=0.25155 target_gap=0.12463 fdaa_gap=0.23279 alpha=0.4756
+
+========== Stage2 Calibration Result ==========
+Best eta       : 0.0
+Best val PSNR  : 16.189
+Best val SSIM  : 0.3902
+Best score     : 20.092
+Stage1 score   : 20.092
+Improvement    : 0.0000
+===============================================
+Saved Stage2 calibrated FDAA checkpoint (eta=0.0, improvement=0.0000)
+
+[3/4] Testing Stage 1 full-resolution: nh_haze
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loaded Stage1 checkpoint: checkpoints/nh_haze/stage1_best.pth
+Checkpoint epoch: 425
+Selection metric: dehaze_score
+Checkpoint dehaze PSNR: 16.189077094719927
+Checkpoint dehaze SSIM: 0.39024965167045594
+Checkpoint clean PSNR: 18.624544528525313
+Checkpoint cross PSNR: 18.797430327094844
+[Dataset] test: 5 matched pairs
+  0%|          | 0/5 [00:00<?, ?it/s][001/005] nh51_hazy.png | dehaze=16.630/0.4649 | clean=17.609/0.5648 | cross_oracle=17.806/0.5617 | fullres=1200x1600
+ 20%|██        | 1/5 [00:02<00:11,  2.91s/it][002/005] nh52_hazy.png | dehaze=18.097/0.4558 | clean=19.608/0.5163 | cross_oracle=19.704/0.5107 | fullres=1200x1600
+ 40%|████      | 2/5 [00:04<00:06,  2.27s/it][003/005] nh53_hazy.png | dehaze=17.805/0.4133 | clean=18.433/0.4727 | cross_oracle=18.628/0.4696 | fullres=1200x1600
+ 60%|██████    | 3/5 [00:06<00:03,  1.99s/it][004/005] nh54_hazy.png | dehaze=15.657/0.3389 | clean=17.357/0.4024 | cross_oracle=17.578/0.3972 | fullres=1200x1600
+ 80%|████████  | 4/5 [00:08<00:01,  1.86s/it][005/005] nh55_hazy.png | dehaze=15.665/0.3812 | clean=17.722/0.4628 | cross_oracle=17.743/0.4564 | fullres=1200x1600
+100%|██████████| 5/5 [00:09<00:00,  1.83s/it]100%|██████████| 5/5 [00:09<00:00,  1.97s/it]
+
+Stage1 Full-Resolution Test Results on nh_haze:
+  Deployable dehaze PSNR / SSIM : 16.771 / 0.4108
+  Clean recon PSNR / SSIM       : 18.146 / 0.4838
+  Cross/oracle PSNR / SSIM      : 18.292 / 0.4791
+  Dehazed images : results_stage1/nh_haze/dehaze_direct/
+  Compare panels : results_stage1/nh_haze/compare/
+
+[4/4] Testing final checkpoint/full-resolution: nh_haze
+[Dataset] test: 5 matched pairs
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loaded checkpoint: checkpoints/nh_haze/final_best.pth
+Loaded phase: AILD_FREQ_STAGE2_FDAA_CALIBRATED
+Checkpoint metrics: {'psnr': 16.189077094719927, 'ssim': 0.39024965167045594, 'score': 20.091573611424487, 'baseline_psnr': 16.189077094719927, 'baseline_ssim': 0.39024965167045594, 'baseline_score': 20.091573611424487, 'improvement': 0.0, 'raw_fdaa_psnr': 16.060273345096505, 'raw_fdaa_ssim': 0.3890213489532471, 'cross_psnr': 18.797430327094844, 'cross_ssim': 0.45945037007331846, 'zgap': 0.12463330030441284, 'target_gap': 0.12463330030441284, 'fdaa_gap': 0.23279162347316742, 'alpha': 0.47563859820365906, 'eta': 0.0, 'mode': 'fdaa_eta_calibration'}
+Using full-resolution inference path: Stage1 direct dehaze z_h + c_h
+  0%|          | 0/5 [00:00<?, ?it/s][001/005] nh51_hazy.png | PSNR=16.630 SSIM=0.4649 Score=21.279 DeltaAbs=0.00000 FullRes=1200x1600
+ 20%|██        | 1/5 [00:02<00:09,  2.34s/it][002/005] nh52_hazy.png | PSNR=18.097 SSIM=0.4558 Score=22.655 DeltaAbs=0.00000 FullRes=1200x1600
+ 40%|████      | 2/5 [00:03<00:04,  1.64s/it][003/005] nh53_hazy.png | PSNR=17.805 SSIM=0.4133 Score=21.938 DeltaAbs=0.00000 FullRes=1200x1600
+ 60%|██████    | 3/5 [00:04<00:02,  1.38s/it][004/005] nh54_hazy.png | PSNR=15.657 SSIM=0.3389 Score=19.047 DeltaAbs=0.00000 FullRes=1200x1600
+ 80%|████████  | 4/5 [00:05<00:01,  1.25s/it][005/005] nh55_hazy.png | PSNR=15.665 SSIM=0.3812 Score=19.478 DeltaAbs=0.00000 FullRes=1200x1600
+100%|██████████| 5/5 [00:06<00:00,  1.17s/it]100%|██████████| 5/5 [00:06<00:00,  1.33s/it]
+
+Full-resolution results on nh_haze:
+  PSNR  : 16.771 dB
+  SSIM  : 0.4108
+  Score : 20.879
+  Dehazed images : results_fullres/nh_haze/dehazed/
+  Compare panels : results_fullres/nh_haze/compare/
+
+Finished dataset: nh_haze
+
+==========================================
+Running dataset: dense_haze
+Config: configs/dense_haze.yml
+==========================================
+
+[1/4] Training Stage 1: dense_haze
+[Dataset] train: 40 matched pairs
+[Dataset] val: 5 matched pairs
+[Stage1-Dehaze-ASM] Training dense_haze | epochs=1000 | lambda_dehaze=3.0 | lambda_hazy=0.0 | lambda_clean=0.4 | lambda_cross=1.2 | lambda_z=0.03 | lambda_cee=0.0 | lambda_asm=0.05
+[S1-Dehaze-ASM][0001/1000] lr=1.00e-04 train_loss=2.4201 dehaze=0.5252 hazy=0.2028 clean=0.5252 cross=0.5252 z=0.06440 cee=0.12622 asm=0.04734 train_psnr=12.398 train_ssim=0.3503 | val_dehaze=13.701/0.3523 val_score=17.223 val_clean=13.700/0.3522 val_cross=13.701/0.3523 val_hazy_diag=11.785/0.8952 val_z=0.03646 val_cee=0.12595 val_asm=0.04368
+Saved best Stage1-Dehaze-ASM checkpoint (score=17.223, PSNR=13.701, SSIM=0.3523)
+[S1-Dehaze-ASM][0025/1000] lr=9.99e-05 train_loss=2.0313 dehaze=0.4541 hazy=0.4452 clean=0.4145 cross=0.4124 z=0.14445 cee=0.12238 asm=0.08394 train_psnr=14.339 train_ssim=0.3731 | val_dehaze=14.535/0.3558 val_score=18.093 val_clean=16.885/0.3920 val_cross=16.891/0.3916 val_hazy_diag=9.382/0.7680 val_z=0.15913 val_cee=0.12407 val_asm=0.06386
+Saved best Stage1-Dehaze-ASM checkpoint (score=18.093, PSNR=14.535, SSIM=0.3558)
+[S1-Dehaze-ASM][0050/1000] lr=9.94e-05 train_loss=1.9192 dehaze=0.4322 hazy=0.4066 clean=0.3834 cross=0.3826 z=0.21071 cee=0.12715 asm=0.07619 train_psnr=14.865 train_ssim=0.3967 | val_dehaze=15.412/0.3639 val_score=19.051 val_clean=17.562/0.4050 val_cross=17.503/0.4023 val_hazy_diag=8.122/0.6715 val_z=0.22757 val_cee=0.12826 val_asm=0.08039
+Saved best Stage1-Dehaze-ASM checkpoint (score=19.051, PSNR=15.412, SSIM=0.3639)
+[S1-Dehaze-ASM][0075/1000] lr=9.87e-05 train_loss=1.9422 dehaze=0.4351 hazy=0.4242 clean=0.3942 cross=0.3910 z=0.21130 cee=0.13296 asm=0.07257 train_psnr=14.884 train_ssim=0.3904 | val_dehaze=15.247/0.3731 val_score=18.978 val_clean=17.698/0.4237 val_cross=17.764/0.4220 val_hazy_diag=9.763/0.7647 val_z=0.21457 val_cee=0.13316 val_asm=0.06043
+[S1-Dehaze-ASM][0100/1000] lr=9.77e-05 train_loss=1.7360 dehaze=0.3939 hazy=0.5316 clean=0.3417 cross=0.3389 z=0.20174 cee=0.13590 asm=0.09414 train_psnr=16.064 train_ssim=0.4281 | val_dehaze=15.539/0.3797 val_score=19.336 val_clean=18.192/0.4392 val_cross=18.330/0.4376 val_hazy_diag=10.055/0.7453 val_z=0.20170 val_cee=0.13630 val_asm=0.05877
+Saved best Stage1-Dehaze-ASM checkpoint (score=19.336, PSNR=15.539, SSIM=0.3797)
+[S1-Dehaze-ASM][0125/1000] lr=9.64e-05 train_loss=1.6719 dehaze=0.3813 hazy=0.4856 clean=0.3253 cross=0.3224 z=0.22232 cee=0.13827 asm=0.08646 train_psnr=16.095 train_ssim=0.4541 | val_dehaze=15.617/0.3875 val_score=19.492 val_clean=18.751/0.4535 val_cross=18.769/0.4486 val_hazy_diag=7.875/0.6485 val_z=0.21316 val_cee=0.14093 val_asm=0.08463
+Saved best Stage1-Dehaze-ASM checkpoint (score=19.492, PSNR=15.617, SSIM=0.3875)
+[S1-Dehaze-ASM][0150/1000] lr=9.48e-05 train_loss=1.6338 dehaze=0.3752 hazy=0.4425 clean=0.3132 cross=0.3103 z=0.21710 cee=0.13784 asm=0.07983 train_psnr=16.442 train_ssim=0.4577 | val_dehaze=14.913/0.3773 val_score=18.686 val_clean=18.625/0.4498 val_cross=18.630/0.4459 val_hazy_diag=8.492/0.6201 val_z=0.26376 val_cee=0.14490 val_asm=0.08222
+[S1-Dehaze-ASM][0175/1000] lr=9.30e-05 train_loss=1.6446 dehaze=0.3756 hazy=0.4923 clean=0.3181 cross=0.3163 z=0.21249 cee=0.14581 asm=0.09076 train_psnr=17.012 train_ssim=0.4420 | val_dehaze=15.737/0.3956 val_score=19.693 val_clean=19.404/0.4707 val_cross=19.486/0.4661 val_hazy_diag=8.917/0.6789 val_z=0.23520 val_cee=0.14826 val_asm=0.07055
+Saved best Stage1-Dehaze-ASM checkpoint (score=19.693, PSNR=15.737, SSIM=0.3956)
+[S1-Dehaze-ASM][0200/1000] lr=9.09e-05 train_loss=1.6364 dehaze=0.3790 hazy=0.4260 clean=0.3068 cross=0.3054 z=0.21259 cee=0.14126 asm=0.07702 train_psnr=15.932 train_ssim=0.4734 | val_dehaze=15.538/0.3943 val_score=19.481 val_clean=19.270/0.4735 val_cross=19.310/0.4689 val_hazy_diag=7.626/0.5797 val_z=0.22648 val_cee=0.14914 val_asm=0.08811
+[S1-Dehaze-ASM][0225/1000] lr=8.86e-05 train_loss=1.5889 dehaze=0.3692 hazy=0.5182 clean=0.2954 cross=0.2928 z=0.23876 cee=0.14763 asm=0.09135 train_psnr=16.724 train_ssim=0.4607 | val_dehaze=15.806/0.4072 val_score=19.878 val_clean=19.218/0.4852 val_cross=19.329/0.4826 val_hazy_diag=7.697/0.5777 val_z=0.24129 val_cee=0.15067 val_asm=0.08588
+Saved best Stage1-Dehaze-ASM checkpoint (score=19.878, PSNR=15.806, SSIM=0.4072)
+[S1-Dehaze-ASM][0250/1000] lr=8.61e-05 train_loss=1.4913 dehaze=0.3412 hazy=0.4518 clean=0.2879 cross=0.2851 z=0.20922 cee=0.14239 asm=0.08232 train_psnr=17.293 train_ssim=0.5012 | val_dehaze=15.684/0.4025 val_score=19.709 val_clean=19.709/0.4910 val_cross=19.940/0.4888 val_hazy_diag=9.047/0.6316 val_z=0.24042 val_cee=0.15395 val_asm=0.06953
+[S1-Dehaze-ASM][0275/1000] lr=8.33e-05 train_loss=1.5514 dehaze=0.3556 hazy=0.4746 clean=0.2976 cross=0.2950 z=0.24202 cee=0.14630 asm=0.08514 train_psnr=16.801 train_ssim=0.4908 | val_dehaze=15.044/0.3914 val_score=18.957 val_clean=19.435/0.4932 val_cross=19.749/0.4904 val_hazy_diag=8.430/0.5884 val_z=0.28062 val_cee=0.15411 val_asm=0.08087
+[S1-Dehaze-ASM][0300/1000] lr=8.04e-05 train_loss=1.5010 dehaze=0.3531 hazy=0.4786 clean=0.2694 cross=0.2692 z=0.21724 cee=0.14844 asm=0.08623 train_psnr=16.875 train_ssim=0.4979 | val_dehaze=15.637/0.4050 val_score=19.687 val_clean=20.339/0.5088 val_cross=20.488/0.5027 val_hazy_diag=8.628/0.6098 val_z=0.24454 val_cee=0.15571 val_asm=0.07460
+[S1-Dehaze-ASM][0325/1000] lr=7.73e-05 train_loss=1.4506 dehaze=0.3342 hazy=0.5069 clean=0.2721 cross=0.2732 z=0.21930 cee=0.14650 asm=0.09523 train_psnr=17.502 train_ssim=0.5108 | val_dehaze=15.996/0.4084 val_score=20.080 val_clean=20.440/0.5140 val_cross=20.571/0.5066 val_hazy_diag=9.024/0.6127 val_z=0.24853 val_cee=0.15564 val_asm=0.06989
+Saved best Stage1-Dehaze-ASM checkpoint (score=20.080, PSNR=15.996, SSIM=0.4084)
+[S1-Dehaze-ASM][0350/1000] lr=7.41e-05 train_loss=1.4053 dehaze=0.3257 hazy=0.4534 clean=0.2615 cross=0.2608 z=0.22054 cee=0.14968 asm=0.08154 train_psnr=18.102 train_ssim=0.5149 | val_dehaze=14.935/0.3959 val_score=18.894 val_clean=17.785/0.4829 val_cross=18.064/0.4793 val_hazy_diag=6.813/0.5158 val_z=0.25559 val_cee=0.15849 val_asm=0.09920
+[S1-Dehaze-ASM][0375/1000] lr=7.07e-05 train_loss=1.4176 dehaze=0.3281 hazy=0.5109 clean=0.2641 cross=0.2637 z=0.21947 cee=0.15057 asm=0.09122 train_psnr=18.039 train_ssim=0.5057 | val_dehaze=16.005/0.4237 val_score=20.242 val_clean=19.803/0.5221 val_cross=19.841/0.5161 val_hazy_diag=7.685/0.5706 val_z=0.22602 val_cee=0.15660 val_asm=0.08515
+Saved best Stage1-Dehaze-ASM checkpoint (score=20.242, PSNR=16.005, SSIM=0.4237)
+[S1-Dehaze-ASM][0400/1000] lr=6.72e-05 train_loss=1.4338 dehaze=0.3295 hazy=0.4931 clean=0.2704 cross=0.2719 z=0.20957 cee=0.14629 asm=0.09273 train_psnr=18.002 train_ssim=0.5030 | val_dehaze=16.027/0.4203 val_score=20.230 val_clean=19.566/0.5222 val_cross=19.637/0.5130 val_hazy_diag=8.185/0.6112 val_z=0.22313 val_cee=0.15689 val_asm=0.07935
+[S1-Dehaze-ASM][0425/1000] lr=6.36e-05 train_loss=1.4042 dehaze=0.3288 hazy=0.5011 clean=0.2523 cross=0.2548 z=0.21329 cee=0.14761 asm=0.09639 train_psnr=17.877 train_ssim=0.5215 | val_dehaze=15.957/0.4206 val_score=20.163 val_clean=20.205/0.5290 val_cross=20.116/0.5183 val_hazy_diag=8.184/0.5993 val_z=0.23342 val_cee=0.15697 val_asm=0.07940
+[S1-Dehaze-ASM][0450/1000] lr=5.99e-05 train_loss=1.4230 dehaze=0.3315 hazy=0.5370 clean=0.2593 cross=0.2613 z=0.21888 cee=0.15045 asm=0.09518 train_psnr=17.992 train_ssim=0.4994 | val_dehaze=15.280/0.4084 val_score=19.364 val_clean=19.997/0.5254 val_cross=20.243/0.5189 val_hazy_diag=7.272/0.5342 val_z=0.24389 val_cee=0.15681 val_asm=0.09371
+[S1-Dehaze-ASM][0475/1000] lr=5.62e-05 train_loss=1.4117 dehaze=0.3284 hazy=0.5178 clean=0.2601 cross=0.2594 z=0.21406 cee=0.14636 asm=0.09473 train_psnr=18.110 train_ssim=0.5083 | val_dehaze=15.517/0.4090 val_score=19.606 val_clean=20.844/0.5385 val_cross=20.918/0.5287 val_hazy_diag=9.707/0.6384 val_z=0.24621 val_cee=0.15642 val_asm=0.06512
+[S1-Dehaze-ASM][0500/1000] lr=5.25e-05 train_loss=1.3478 dehaze=0.3134 hazy=0.5006 clean=0.2470 cross=0.2482 z=0.20878 cee=0.14389 asm=0.09274 train_psnr=18.410 train_ssim=0.5333 | val_dehaze=15.921/0.4162 val_score=20.082 val_clean=21.015/0.5393 val_cross=21.007/0.5287 val_hazy_diag=8.688/0.5940 val_z=0.24087 val_cee=0.15597 val_asm=0.07413
+[S1-Dehaze-ASM][0525/1000] lr=4.88e-05 train_loss=1.3235 dehaze=0.3067 hazy=0.5239 clean=0.2449 cross=0.2450 z=0.22513 cee=0.14901 asm=0.09620 train_psnr=18.720 train_ssim=0.5358 | val_dehaze=15.714/0.4180 val_score=19.893 val_clean=21.210/0.5417 val_cross=21.143/0.5306 val_hazy_diag=9.694/0.6740 val_z=0.24736 val_cee=0.15590 val_asm=0.06235
+[S1-Dehaze-ASM][0550/1000] lr=4.51e-05 train_loss=1.2961 dehaze=0.3013 hazy=0.5249 clean=0.2383 cross=0.2381 z=0.21403 cee=0.14685 asm=0.09346 train_psnr=18.983 train_ssim=0.5373 | val_dehaze=15.604/0.4164 val_score=19.769 val_clean=20.793/0.5410 val_cross=20.830/0.5328 val_hazy_diag=7.568/0.5334 val_z=0.23768 val_cee=0.15639 val_asm=0.08928
+[S1-Dehaze-ASM][0575/1000] lr=4.14e-05 train_loss=1.3626 dehaze=0.3155 hazy=0.4734 clean=0.2532 cross=0.2537 z=0.21074 cee=0.14442 asm=0.08291 train_psnr=18.407 train_ssim=0.5252 | val_dehaze=15.410/0.4125 val_score=19.535 val_clean=20.707/0.5404 val_cross=20.857/0.5326 val_hazy_diag=9.241/0.6134 val_z=0.25123 val_cee=0.15458 val_asm=0.07054
+[S1-Dehaze-ASM][0600/1000] lr=3.78e-05 train_loss=1.3542 dehaze=0.3147 hazy=0.5498 clean=0.2495 cross=0.2491 z=0.21752 cee=0.14813 asm=0.09895 train_psnr=18.492 train_ssim=0.5219 | val_dehaze=15.566/0.4154 val_score=19.720 val_clean=21.348/0.5464 val_cross=21.396/0.5358 val_hazy_diag=7.914/0.5754 val_z=0.24022 val_cee=0.15471 val_asm=0.08513
+[S1-Dehaze-ASM][0625/1000] lr=3.43e-05 train_loss=1.3628 dehaze=0.3170 hazy=0.5426 clean=0.2511 cross=0.2504 z=0.21196 cee=0.14395 asm=0.09050 train_psnr=18.474 train_ssim=0.5190 | val_dehaze=15.688/0.4161 val_score=19.849 val_clean=21.211/0.5487 val_cross=21.220/0.5385 val_hazy_diag=8.554/0.6046 val_z=0.24449 val_cee=0.15405 val_asm=0.07572
+[S1-Dehaze-ASM][0650/1000] lr=3.09e-05 train_loss=1.3057 dehaze=0.3035 hazy=0.4854 clean=0.2400 cross=0.2404 z=0.20949 cee=0.14135 asm=0.08922 train_psnr=18.589 train_ssim=0.5458 | val_dehaze=15.348/0.4137 val_score=19.485 val_clean=21.020/0.5468 val_cross=21.118/0.5383 val_hazy_diag=9.721/0.6468 val_z=0.24364 val_cee=0.15333 val_asm=0.06287
+[S1-Dehaze-ASM][0675/1000] lr=2.77e-05 train_loss=1.3420 dehaze=0.3107 hazy=0.5132 clean=0.2494 cross=0.2499 z=0.20382 cee=0.14491 asm=0.08610 train_psnr=18.902 train_ssim=0.5191 | val_dehaze=15.573/0.4162 val_score=19.735 val_clean=21.195/0.5493 val_cross=21.253/0.5400 val_hazy_diag=8.978/0.6113 val_z=0.24231 val_cee=0.15270 val_asm=0.07185
+[S1-Dehaze-ASM][0700/1000] lr=2.46e-05 train_loss=1.3215 dehaze=0.3059 hazy=0.5146 clean=0.2447 cross=0.2461 z=0.20225 cee=0.14463 asm=0.08886 train_psnr=19.079 train_ssim=0.5260 | val_dehaze=15.823/0.4209 val_score=20.031 val_clean=21.316/0.5523 val_cross=21.388/0.5439 val_hazy_diag=8.343/0.5939 val_z=0.23678 val_cee=0.15247 val_asm=0.07872
+[S1-Dehaze-ASM][0725/1000] lr=2.17e-05 train_loss=1.2428 dehaze=0.2876 hazy=0.5154 clean=0.2312 cross=0.2308 z=0.20345 cee=0.14223 asm=0.08993 train_psnr=19.383 train_ssim=0.5588 | val_dehaze=15.638/0.4178 val_score=19.817 val_clean=21.525/0.5545 val_cross=21.452/0.5440 val_hazy_diag=8.258/0.5989 val_z=0.23198 val_cee=0.15224 val_asm=0.08055
+[S1-Dehaze-ASM][0750/1000] lr=1.89e-05 train_loss=1.2655 dehaze=0.2932 hazy=0.5130 clean=0.2340 cross=0.2347 z=0.20417 cee=0.14119 asm=0.09058 train_psnr=19.543 train_ssim=0.5377 | val_dehaze=15.827/0.4221 val_score=20.048 val_clean=21.436/0.5555 val_cross=21.360/0.5446 val_hazy_diag=8.646/0.6110 val_z=0.23103 val_cee=0.15174 val_asm=0.07429
+[S1-Dehaze-ASM][0775/1000] lr=1.64e-05 train_loss=1.2886 dehaze=0.2976 hazy=0.5335 clean=0.2405 cross=0.2409 z=0.19847 cee=0.14266 asm=0.09140 train_psnr=19.261 train_ssim=0.5390 | val_dehaze=15.694/0.4211 val_score=19.905 val_clean=21.613/0.5560 val_cross=21.620/0.5456 val_hazy_diag=8.632/0.6202 val_z=0.22801 val_cee=0.15135 val_asm=0.07429
+[S1-Dehaze-ASM][0800/1000] lr=1.41e-05 train_loss=1.2358 dehaze=0.2841 hazy=0.5208 clean=0.2331 cross=0.2331 z=0.20115 cee=0.14033 asm=0.09007 train_psnr=20.024 train_ssim=0.5501 | val_dehaze=15.475/0.4171 val_score=19.645 val_clean=21.450/0.5556 val_cross=21.444/0.5461 val_hazy_diag=7.999/0.5749 val_z=0.23662 val_cee=0.15080 val_asm=0.08330
+[S1-Dehaze-ASM][0825/1000] lr=1.20e-05 train_loss=1.2440 dehaze=0.2873 hazy=0.5055 clean=0.2326 cross=0.2319 z=0.20666 cee=0.14028 asm=0.09097 train_psnr=19.700 train_ssim=0.5505 | val_dehaze=15.456/0.4143 val_score=19.599 val_clean=21.579/0.5577 val_cross=21.583/0.5475 val_hazy_diag=8.360/0.5798 val_z=0.23851 val_cee=0.14971 val_asm=0.08022
+[S1-Dehaze-ASM][0850/1000] lr=1.02e-05 train_loss=1.2314 dehaze=0.2835 hazy=0.4945 clean=0.2320 cross=0.2313 z=0.19908 cee=0.13793 asm=0.08893 train_psnr=19.384 train_ssim=0.5633 | val_dehaze=15.375/0.4137 val_score=19.512 val_clean=21.441/0.5568 val_cross=21.448/0.5472 val_hazy_diag=8.209/0.5818 val_z=0.23174 val_cee=0.14970 val_asm=0.08097
+[S1-Dehaze-ASM][0875/1000] lr=8.62e-06 train_loss=1.2717 dehaze=0.2917 hazy=0.5134 clean=0.2414 cross=0.2411 z=0.19958 cee=0.13657 asm=0.09404 train_psnr=19.865 train_ssim=0.5361 | val_dehaze=15.507/0.4171 val_score=19.678 val_clean=21.627/0.5576 val_cross=21.625/0.5475 val_hazy_diag=8.406/0.6012 val_z=0.23361 val_cee=0.14884 val_asm=0.07825
+[S1-Dehaze-ASM][0900/1000] lr=7.32e-06 train_loss=1.2349 dehaze=0.2853 hazy=0.4834 clean=0.2317 cross=0.2301 z=0.19256 cee=0.13583 asm=0.08489 train_psnr=19.676 train_ssim=0.5585 | val_dehaze=15.576/0.4178 val_score=19.754 val_clean=21.572/0.5578 val_cross=21.574/0.5478 val_hazy_diag=8.536/0.6019 val_z=0.22909 val_cee=0.14808 val_asm=0.07631
+[S1-Dehaze-ASM][0925/1000] lr=6.31e-06 train_loss=1.2340 dehaze=0.2864 hazy=0.4986 clean=0.2278 cross=0.2276 z=0.20868 cee=0.13827 asm=0.08754 train_psnr=19.267 train_ssim=0.5640 | val_dehaze=15.547/0.4174 val_score=19.721 val_clean=21.615/0.5587 val_cross=21.589/0.5487 val_hazy_diag=8.739/0.6075 val_z=0.23493 val_cee=0.14802 val_asm=0.07524
+[S1-Dehaze-ASM][0950/1000] lr=5.58e-06 train_loss=1.2178 dehaze=0.2810 hazy=0.5201 clean=0.2276 cross=0.2275 z=0.19754 cee=0.13597 asm=0.09532 train_psnr=19.649 train_ssim=0.5633 | val_dehaze=15.508/0.4161 val_score=19.669 val_clean=21.631/0.5594 val_cross=21.598/0.5490 val_hazy_diag=8.719/0.6057 val_z=0.23094 val_cee=0.14757 val_asm=0.07494
+[S1-Dehaze-ASM][0975/1000] lr=5.15e-06 train_loss=1.2698 dehaze=0.2931 hazy=0.5237 clean=0.2373 cross=0.2376 z=0.19843 cee=0.13589 asm=0.08980 train_psnr=19.476 train_ssim=0.5411 | val_dehaze=15.287/0.4144 val_score=19.431 val_clean=21.568/0.5591 val_cross=21.555/0.5489 val_hazy_diag=8.432/0.5938 val_z=0.23209 val_cee=0.14735 val_asm=0.07885
+[S1-Dehaze-ASM][1000/1000] lr=5.00e-06 train_loss=1.2576 dehaze=0.2900 hazy=0.5128 clean=0.2346 cross=0.2362 z=0.19657 cee=0.13705 asm=0.09040 train_psnr=19.491 train_ssim=0.5483 | val_dehaze=15.518/0.4175 val_score=19.693 val_clean=21.500/0.5590 val_cross=21.510/0.5489 val_hazy_diag=8.662/0.6083 val_z=0.22874 val_cee=0.14707 val_asm=0.07505
+Best Stage1-Dehaze-ASM: score=20.242, PSNR=16.005, SSIM=0.4237
+
+[2/4] Running calibrated Stage 2: dense_haze
+[Stage2-Calib] Loaded Stage1 checkpoint: checkpoints/dense_haze/stage1_best.pth
+[Stage2-Calib] Stage1 metrics | selection=dehaze_score dehaze_psnr=16.00519807021998 dehaze_ssim=0.42365161180496214 dehaze_score=20.2417141882696 cross_psnr=19.841409194826646 cross_ssim=0.5160558164119721
+[Dataset] val: 5 matched pairs
+[Stage2-Calib] ETA candidates: [0.0, 0.03, 0.05, 0.08, 0.1, 0.15, 0.2, 0.3, 0.5, 0.75, 1.0]
+[Stage2-Calib] No training. Validation calibration only.
+[ETA=0.000] val=16.005/0.4237 score=20.242 | base=16.005/0.4237 base_score=20.242 improve=0.0000 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.22602 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.030] val=16.007/0.4236 score=20.244 | base=16.005/0.4237 base_score=20.242 improve=0.0019 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.22676 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.050] val=16.009/0.4236 score=20.245 | base=16.005/0.4237 base_score=20.242 improve=0.0031 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.22731 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.080] val=16.011/0.4236 score=20.247 | base=16.005/0.4237 base_score=20.242 improve=0.0049 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.22824 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.100] val=16.012/0.4235 score=20.248 | base=16.005/0.4237 base_score=20.242 improve=0.0060 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.22891 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.150] val=16.016/0.4235 score=20.250 | base=16.005/0.4237 base_score=20.242 improve=0.0087 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.23082 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.200] val=16.019/0.4234 score=20.253 | base=16.005/0.4237 base_score=20.242 improve=0.0112 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.23301 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.300] val=16.024/0.4233 score=20.257 | base=16.005/0.4237 base_score=20.242 improve=0.0156 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.23821 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.500] val=16.034/0.4230 score=20.264 | base=16.005/0.4237 base_score=20.242 improve=0.0226 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.25167 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=0.750] val=16.043/0.4227 score=20.270 | base=16.005/0.4237 base_score=20.242 improve=0.0286 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.27354 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+[ETA=1.000] val=16.051/0.4223 score=20.274 | base=16.005/0.4237 base_score=20.242 improve=0.0324 | raw_fdaa=16.086/0.4232 cross=19.841/0.5161 zgap=0.30007 target_gap=0.22602 fdaa_gap=0.18608 alpha=0.4756
+
+========== Stage2 Calibration Result ==========
+Best eta       : 1.0
+Best val PSNR  : 16.051
+Best val SSIM  : 0.4223
+Best score     : 20.274
+Stage1 score   : 20.242
+Improvement    : 0.0324
+===============================================
+Saved Stage2 calibrated FDAA checkpoint (eta=1.0, improvement=0.0324)
+
+[3/4] Testing Stage 1 full-resolution: dense_haze
+Loaded Stage1 checkpoint: checkpoints/dense_haze/stage1_best.pth
+Checkpoint epoch: 375
+Selection metric: dehaze_score
+Checkpoint dehaze PSNR: 16.00519807021998
+Checkpoint dehaze SSIM: 0.42365161180496214
+Checkpoint clean PSNR: 19.80318256226971
+Checkpoint cross PSNR: 19.841409194826646
+[Dataset] test: 5 matched pairs
+  0%|          | 0/5 [00:00<?, ?it/s][001/005] dh51_hazy.png | dehaze=14.735/0.4588 | clean=20.521/0.6343 | cross_oracle=20.482/0.6169 | fullres=1200x1600
+ 20%|██        | 1/5 [00:02<00:11,  3.00s/it][002/005] dh52_hazy.png | dehaze=14.937/0.2721 | clean=20.875/0.4687 | cross_oracle=20.876/0.4527 | fullres=1200x1600
+ 40%|████      | 2/5 [00:04<00:06,  2.21s/it][003/005] dh53_hazy.png | dehaze=17.991/0.4900 | clean=21.794/0.5649 | cross_oracle=22.029/0.5730 | fullres=1200x1600
+ 60%|██████    | 3/5 [00:06<00:03,  1.98s/it][004/005] dh54_hazy.png | dehaze=12.188/0.5587 | clean=20.151/0.8708 | cross_oracle=19.577/0.8640 | fullres=1200x1600
+ 80%|████████  | 4/5 [00:07<00:01,  1.83s/it][005/005] dh55_hazy.png | dehaze=14.655/0.7331 | clean=22.311/0.8361 | cross_oracle=22.489/0.8480 | fullres=1200x1600
+100%|██████████| 5/5 [00:09<00:00,  1.72s/it]100%|██████████| 5/5 [00:09<00:00,  1.90s/it]
+
+Stage1 Full-Resolution Test Results on dense_haze:
+  Deployable dehaze PSNR / SSIM : 14.901 / 0.5025
+  Clean recon PSNR / SSIM       : 21.130 / 0.6749
+  Cross/oracle PSNR / SSIM      : 21.090 / 0.6709
+  Dehazed images : results_stage1/dense_haze/dehaze_direct/
+  Compare panels : results_stage1/dense_haze/compare/
+
+[4/4] Testing final checkpoint/full-resolution: dense_haze
+[Dataset] test: 5 matched pairs
+Loaded checkpoint: checkpoints/dense_haze/final_best.pth
+Loaded phase: AILD_FREQ_STAGE2_FDAA_CALIBRATED
+Checkpoint metrics: {'psnr': 16.050917745058513, 'ssim': 0.4223242461681366, 'score': 20.27416020673988, 'baseline_psnr': 16.00519807021998, 'baseline_ssim': 0.42365161180496214, 'baseline_score': 20.2417141882696, 'improvement': 0.03244601847027795, 'raw_fdaa_psnr': 16.086322609988137, 'raw_fdaa_ssim': 0.42317748069763184, 'cross_psnr': 19.841409194826646, 'cross_ssim': 0.5160558164119721, 'zgap': 0.30006652474403384, 'target_gap': 0.22602034211158753, 'fdaa_gap': 0.18607523739337922, 'alpha': 0.47563859820365906, 'eta': 1.0, 'mode': 'fdaa_eta_calibration'}
+Using full-resolution inference path: Stage1 direct dehaze z_h + c_h
+  0%|          | 0/5 [00:00<?, ?it/s][001/005] dh51_hazy.png | PSNR=14.735 SSIM=0.4588 Score=19.323 DeltaAbs=0.00000 FullRes=1200x1600
+ 20%|██        | 1/5 [00:02<00:10,  2.54s/it][002/005] dh52_hazy.png | PSNR=14.937 SSIM=0.2721 Score=17.658 DeltaAbs=0.00000 FullRes=1200x1600
+ 40%|████      | 2/5 [00:03<00:04,  1.66s/it][003/005] dh53_hazy.png | PSNR=17.991 SSIM=0.4900 Score=22.892 DeltaAbs=0.00000 FullRes=1200x1600
+ 60%|██████    | 3/5 [00:04<00:02,  1.35s/it][004/005] dh54_hazy.png | PSNR=12.188 SSIM=0.5587 Score=17.775 DeltaAbs=0.00000 FullRes=1200x1600
+ 80%|████████  | 4/5 [00:05<00:01,  1.19s/it][005/005] dh55_hazy.png | PSNR=14.655 SSIM=0.7331 Score=21.985 DeltaAbs=0.00000 FullRes=1200x1600
+100%|██████████| 5/5 [00:06<00:00,  1.14s/it]100%|██████████| 5/5 [00:06<00:00,  1.31s/it]
+
+Full-resolution results on dense_haze:
+  PSNR  : 14.901 dB
+  SSIM  : 0.5025
+  Score : 19.927
+  Dehazed images : results_fullres/dense_haze/dehazed/
+  Compare panels : results_fullres/dense_haze/compare/
+
+Finished dataset: dense_haze
+
+==========================================
+Running dataset: sots_indoor
+Config: configs/sots_indoor.yml
+==========================================
+
+[1/4] Training Stage 1: sots_indoor
+[Dataset] train: 400 matched pairs
+[Dataset] val: 50 matched pairs
+[Stage1-Dehaze-ASM] Training sots_indoor | epochs=1000 | lambda_dehaze=3.0 | lambda_hazy=0.0 | lambda_clean=0.4 | lambda_cross=1.2 | lambda_z=0.03 | lambda_cee=0.0 | lambda_asm=0.02
+[S1-Dehaze-ASM][0001/1000] lr=1.00e-04 train_loss=2.1921 dehaze=0.4770 hazy=0.5311 clean=0.4743 cross=0.4738 z=0.03124 cee=0.03777 asm=0.08841 train_psnr=12.211 train_ssim=0.4181 | val_dehaze=14.507/0.4047 val_score=18.554 val_clean=14.683/0.4068 val_cross=14.604/0.4059 val_hazy_diag=10.531/0.4217 val_z=0.04620 val_cee=0.04110 val_asm=0.06910
+Saved best Stage1-Dehaze-ASM checkpoint (score=18.554, PSNR=14.507, SSIM=0.4047)
+[S1-Dehaze-ASM][0025/1000] lr=9.99e-05 train_loss=0.9061 dehaze=0.1988 hazy=0.4641 clean=0.1915 cross=0.1919 z=0.05502 cee=0.04461 asm=0.06049 train_psnr=20.983 train_ssim=0.7157 | val_dehaze=18.209/0.6457 val_score=24.666 val_clean=19.572/0.6736 val_cross=19.620/0.6723 val_hazy_diag=10.824/0.5407 val_z=0.06051 val_cee=0.04762 val_asm=0.05800
+Saved best Stage1-Dehaze-ASM checkpoint (score=24.666, PSNR=18.209, SSIM=0.6457)
+[S1-Dehaze-ASM][0050/1000] lr=9.94e-05 train_loss=0.7311 dehaze=0.1603 hazy=0.4504 clean=0.1543 cross=0.1550 z=0.04478 cee=0.04587 asm=0.05868 train_psnr=22.634 train_ssim=0.7743 | val_dehaze=19.893/0.7134 val_score=27.027 val_clean=21.135/0.7391 val_cross=21.137/0.7326 val_hazy_diag=11.656/0.5882 val_z=0.05281 val_cee=0.04846 val_asm=0.06339
+Saved best Stage1-Dehaze-ASM checkpoint (score=27.027, PSNR=19.893, SSIM=0.7134)
+[S1-Dehaze-ASM][0075/1000] lr=9.87e-05 train_loss=0.6366 dehaze=0.1398 hazy=0.4547 clean=0.1336 cross=0.1344 z=0.04197 cee=0.04817 asm=0.05674 train_psnr=24.260 train_ssim=0.7966 | val_dehaze=21.647/0.7517 val_score=29.163 val_clean=22.751/0.7733 val_cross=22.838/0.7690 val_hazy_diag=11.801/0.6056 val_z=0.04555 val_cee=0.04991 val_asm=0.06201
+Saved best Stage1-Dehaze-ASM checkpoint (score=29.163, PSNR=21.647, SSIM=0.7517)
+[S1-Dehaze-ASM][0100/1000] lr=9.77e-05 train_loss=0.5833 dehaze=0.1281 hazy=0.4480 clean=0.1224 cross=0.1231 z=0.03900 cee=0.04999 asm=0.05607 train_psnr=25.144 train_ssim=0.8141 | val_dehaze=21.693/0.7656 val_score=29.349 val_clean=22.808/0.7844 val_cross=22.915/0.7815 val_hazy_diag=11.754/0.6152 val_z=0.04320 val_cee=0.05201 val_asm=0.06058
+Saved best Stage1-Dehaze-ASM checkpoint (score=29.349, PSNR=21.693, SSIM=0.7656)
+[S1-Dehaze-ASM][0125/1000] lr=9.64e-05 train_loss=0.5372 dehaze=0.1179 hazy=0.4425 clean=0.1129 cross=0.1135 z=0.03796 cee=0.05085 asm=0.05434 train_psnr=25.673 train_ssim=0.8305 | val_dehaze=22.667/0.7867 val_score=30.533 val_clean=23.855/0.8034 val_cross=23.893/0.8012 val_hazy_diag=12.131/0.6426 val_z=0.04254 val_cee=0.05281 val_asm=0.06375
+Saved best Stage1-Dehaze-ASM checkpoint (score=30.533, PSNR=22.667, SSIM=0.7867)
+[S1-Dehaze-ASM][0150/1000] lr=9.48e-05 train_loss=0.5068 dehaze=0.1112 hazy=0.4380 clean=0.1064 cross=0.1070 z=0.03605 cee=0.05140 asm=0.05448 train_psnr=26.212 train_ssim=0.8403 | val_dehaze=22.494/0.7992 val_score=30.485 val_clean=24.388/0.8201 val_cross=24.378/0.8170 val_hazy_diag=11.251/0.6123 val_z=0.04233 val_cee=0.05325 val_asm=0.05337
+[S1-Dehaze-ASM][0175/1000] lr=9.30e-05 train_loss=0.4921 dehaze=0.1080 hazy=0.4409 clean=0.1032 cross=0.1039 z=0.03610 cee=0.05187 asm=0.05491 train_psnr=26.478 train_ssim=0.8450 | val_dehaze=22.715/0.8087 val_score=30.803 val_clean=24.403/0.8283 val_cross=24.506/0.8254 val_hazy_diag=11.341/0.6134 val_z=0.04204 val_cee=0.05376 val_asm=0.05531
+Saved best Stage1-Dehaze-ASM checkpoint (score=30.803, PSNR=22.715, SSIM=0.8087)
+[S1-Dehaze-ASM][0200/1000] lr=9.09e-05 train_loss=0.4631 dehaze=0.1017 hazy=0.4490 clean=0.0969 cross=0.0976 z=0.03568 cee=0.05292 asm=0.05403 train_psnr=26.995 train_ssim=0.8538 | val_dehaze=22.732/0.8052 val_score=30.783 val_clean=24.465/0.8233 val_cross=24.358/0.8191 val_hazy_diag=11.388/0.6178 val_z=0.04069 val_cee=0.05372 val_asm=0.05507
+[S1-Dehaze-ASM][0225/1000] lr=8.86e-05 train_loss=0.4521 dehaze=0.0992 hazy=0.4334 clean=0.0950 cross=0.0954 z=0.03442 cee=0.05152 asm=0.05471 train_psnr=27.115 train_ssim=0.8580 | val_dehaze=22.790/0.8149 val_score=30.939 val_clean=24.619/0.8344 val_cross=24.367/0.8304 val_hazy_diag=11.692/0.6216 val_z=0.04140 val_cee=0.05411 val_asm=0.05965
+Saved best Stage1-Dehaze-ASM checkpoint (score=30.939, PSNR=22.790, SSIM=0.8149)
+[S1-Dehaze-ASM][0250/1000] lr=8.61e-05 train_loss=0.4379 dehaze=0.0961 hazy=0.4330 clean=0.0918 cross=0.0923 z=0.03378 cee=0.05121 asm=0.05451 train_psnr=27.429 train_ssim=0.8621 | val_dehaze=23.261/0.8186 val_score=31.447 val_clean=25.049/0.8394 val_cross=24.953/0.8355 val_hazy_diag=11.668/0.6414 val_z=0.03963 val_cee=0.05330 val_asm=0.05796
+Saved best Stage1-Dehaze-ASM checkpoint (score=31.447, PSNR=23.261, SSIM=0.8186)
+[S1-Dehaze-ASM][0275/1000] lr=8.33e-05 train_loss=0.4322 dehaze=0.0948 hazy=0.4386 clean=0.0906 cross=0.0912 z=0.03323 cee=0.05157 asm=0.05374 train_psnr=27.534 train_ssim=0.8645 | val_dehaze=23.089/0.8234 val_score=31.323 val_clean=25.036/0.8440 val_cross=24.952/0.8409 val_hazy_diag=12.008/0.6453 val_z=0.03894 val_cee=0.05329 val_asm=0.06219
+[S1-Dehaze-ASM][0300/1000] lr=8.04e-05 train_loss=0.4216 dehaze=0.0925 hazy=0.4350 clean=0.0883 cross=0.0888 z=0.03228 cee=0.05074 asm=0.05426 train_psnr=27.773 train_ssim=0.8675 | val_dehaze=23.209/0.8250 val_score=31.459 val_clean=25.542/0.8468 val_cross=25.425/0.8442 val_hazy_diag=11.825/0.6378 val_z=0.03856 val_cee=0.05267 val_asm=0.05919
+Saved best Stage1-Dehaze-ASM checkpoint (score=31.459, PSNR=23.209, SSIM=0.8250)
+[S1-Dehaze-ASM][0325/1000] lr=7.73e-05 train_loss=0.4106 dehaze=0.0901 hazy=0.4408 clean=0.0861 cross=0.0866 z=0.03209 cee=0.05139 asm=0.05406 train_psnr=28.001 train_ssim=0.8716 | val_dehaze=23.416/0.8369 val_score=31.785 val_clean=25.675/0.8576 val_cross=25.690/0.8553 val_hazy_diag=11.854/0.6447 val_z=0.03778 val_cee=0.05266 val_asm=0.05990
+Saved best Stage1-Dehaze-ASM checkpoint (score=31.785, PSNR=23.416, SSIM=0.8369)
+[S1-Dehaze-ASM][0350/1000] lr=7.41e-05 train_loss=0.4034 dehaze=0.0885 hazy=0.4338 clean=0.0846 cross=0.0851 z=0.03167 cee=0.05050 asm=0.05388 train_psnr=28.211 train_ssim=0.8735 | val_dehaze=23.317/0.8322 val_score=31.639 val_clean=25.098/0.8523 val_cross=24.894/0.8472 val_hazy_diag=12.442/0.6779 val_z=0.03787 val_cee=0.05240 val_asm=0.06658
+[S1-Dehaze-ASM][0375/1000] lr=7.07e-05 train_loss=0.4042 dehaze=0.0887 hazy=0.4360 clean=0.0847 cross=0.0852 z=0.03090 cee=0.05081 asm=0.05525 train_psnr=28.103 train_ssim=0.8745 | val_dehaze=23.207/0.8347 val_score=31.554 val_clean=25.621/0.8568 val_cross=25.347/0.8533 val_hazy_diag=11.916/0.6404 val_z=0.03723 val_cee=0.05260 val_asm=0.06067
+[S1-Dehaze-ASM][0400/1000] lr=6.72e-05 train_loss=0.3886 dehaze=0.0853 hazy=0.4380 clean=0.0814 cross=0.0818 z=0.03047 cee=0.05008 asm=0.05434 train_psnr=28.482 train_ssim=0.8789 | val_dehaze=23.729/0.8432 val_score=32.161 val_clean=25.933/0.8630 val_cross=25.716/0.8589 val_hazy_diag=11.665/0.6362 val_z=0.03675 val_cee=0.05163 val_asm=0.05819
+Saved best Stage1-Dehaze-ASM checkpoint (score=32.161, PSNR=23.729, SSIM=0.8432)
+[S1-Dehaze-ASM][0425/1000] lr=6.36e-05 train_loss=0.3837 dehaze=0.0842 hazy=0.4338 clean=0.0805 cross=0.0809 z=0.02984 cee=0.04987 asm=0.05316 train_psnr=28.627 train_ssim=0.8792 | val_dehaze=23.644/0.8417 val_score=32.061 val_clean=26.125/0.8645 val_cross=25.940/0.8600 val_hazy_diag=11.786/0.6444 val_z=0.03547 val_cee=0.05116 val_asm=0.05879
+[S1-Dehaze-ASM][0450/1000] lr=5.99e-05 train_loss=0.3789 dehaze=0.0831 hazy=0.4331 clean=0.0795 cross=0.0798 z=0.02915 cee=0.04896 asm=0.05432 train_psnr=28.685 train_ssim=0.8815 | val_dehaze=23.749/0.8460 val_score=32.209 val_clean=26.198/0.8672 val_cross=25.943/0.8628 val_hazy_diag=11.956/0.6595 val_z=0.03507 val_cee=0.05059 val_asm=0.06085
+Saved best Stage1-Dehaze-ASM checkpoint (score=32.209, PSNR=23.749, SSIM=0.8460)
+[S1-Dehaze-ASM][0475/1000] lr=5.62e-05 train_loss=0.3681 dehaze=0.0808 hazy=0.4349 clean=0.0771 cross=0.0775 z=0.02886 cee=0.04905 asm=0.05355 train_psnr=28.893 train_ssim=0.8846 | val_dehaze=23.982/0.8501 val_score=32.483 val_clean=26.212/0.8684 val_cross=26.151/0.8657 val_hazy_diag=11.459/0.6375 val_z=0.03459 val_cee=0.05034 val_asm=0.05482
+Saved best Stage1-Dehaze-ASM checkpoint (score=32.483, PSNR=23.982, SSIM=0.8501)
+[S1-Dehaze-ASM][0500/1000] lr=5.25e-05 train_loss=0.3630 dehaze=0.0795 hazy=0.4277 clean=0.0763 cross=0.0766 z=0.02802 cee=0.04810 asm=0.05349 train_psnr=29.087 train_ssim=0.8864 | val_dehaze=23.993/0.8509 val_score=32.501 val_clean=26.332/0.8700 val_cross=26.287/0.8673 val_hazy_diag=11.496/0.6336 val_z=0.03325 val_cee=0.05023 val_asm=0.05526
+Saved best Stage1-Dehaze-ASM checkpoint (score=32.501, PSNR=23.993, SSIM=0.8509)
+[S1-Dehaze-ASM][0525/1000] lr=4.88e-05 train_loss=0.3606 dehaze=0.0791 hazy=0.4343 clean=0.0755 cross=0.0759 z=0.02811 cee=0.04844 asm=0.05342 train_psnr=29.079 train_ssim=0.8871 | val_dehaze=24.135/0.8537 val_score=32.672 val_clean=26.408/0.8724 val_cross=26.274/0.8696 val_hazy_diag=11.678/0.6509 val_z=0.03348 val_cee=0.04988 val_asm=0.05691
+Saved best Stage1-Dehaze-ASM checkpoint (score=32.672, PSNR=24.135, SSIM=0.8537)
+[S1-Dehaze-ASM][0550/1000] lr=4.51e-05 train_loss=0.3538 dehaze=0.0776 hazy=0.4310 clean=0.0742 cross=0.0746 z=0.02747 cee=0.04715 asm=0.05372 train_psnr=29.236 train_ssim=0.8893 | val_dehaze=24.219/0.8525 val_score=32.744 val_clean=26.412/0.8708 val_cross=26.362/0.8676 val_hazy_diag=11.985/0.6587 val_z=0.03315 val_cee=0.04902 val_asm=0.06088
+Saved best Stage1-Dehaze-ASM checkpoint (score=32.744, PSNR=24.219, SSIM=0.8525)
+[S1-Dehaze-ASM][0575/1000] lr=4.14e-05 train_loss=0.3505 dehaze=0.0768 hazy=0.4327 clean=0.0736 cross=0.0739 z=0.02722 cee=0.04770 asm=0.05325 train_psnr=29.315 train_ssim=0.8905 | val_dehaze=24.010/0.8525 val_score=32.535 val_clean=26.539/0.8717 val_cross=26.350/0.8682 val_hazy_diag=11.924/0.6532 val_z=0.03197 val_cee=0.04889 val_asm=0.06040
+[S1-Dehaze-ASM][0600/1000] lr=3.78e-05 train_loss=0.3512 dehaze=0.0770 hazy=0.4319 clean=0.0736 cross=0.0740 z=0.02659 cee=0.04667 asm=0.05434 train_psnr=29.315 train_ssim=0.8902 | val_dehaze=24.171/0.8553 val_score=32.723 val_clean=26.723/0.8740 val_cross=26.613/0.8710 val_hazy_diag=11.785/0.6497 val_z=0.03223 val_cee=0.04824 val_asm=0.05857
+[S1-Dehaze-ASM][0625/1000] lr=3.43e-05 train_loss=0.3511 dehaze=0.0769 hazy=0.4302 clean=0.0738 cross=0.0741 z=0.02602 cee=0.04595 asm=0.05376 train_psnr=29.339 train_ssim=0.8899 | val_dehaze=24.067/0.8519 val_score=32.586 val_clean=26.567/0.8721 val_cross=26.428/0.8685 val_hazy_diag=11.685/0.6495 val_z=0.03102 val_cee=0.04798 val_asm=0.05695
+[S1-Dehaze-ASM][0650/1000] lr=3.09e-05 train_loss=0.3457 dehaze=0.0758 hazy=0.4300 clean=0.0726 cross=0.0729 z=0.02543 cee=0.04539 asm=0.05378 train_psnr=29.494 train_ssim=0.8914 | val_dehaze=24.231/0.8558 val_score=32.789 val_clean=26.561/0.8747 val_cross=26.486/0.8721 val_hazy_diag=11.641/0.6446 val_z=0.03050 val_cee=0.04748 val_asm=0.05673
+Saved best Stage1-Dehaze-ASM checkpoint (score=32.789, PSNR=24.231, SSIM=0.8558)
+[S1-Dehaze-ASM][0675/1000] lr=2.77e-05 train_loss=0.3437 dehaze=0.0754 hazy=0.4345 clean=0.0721 cross=0.0724 z=0.02534 cee=0.04524 asm=0.05231 train_psnr=29.624 train_ssim=0.8916 | val_dehaze=24.302/0.8582 val_score=32.884 val_clean=26.806/0.8765 val_cross=26.666/0.8733 val_hazy_diag=11.737/0.6506 val_z=0.03033 val_cee=0.04690 val_asm=0.05790
+Saved best Stage1-Dehaze-ASM checkpoint (score=32.884, PSNR=24.302, SSIM=0.8582)
+[S1-Dehaze-ASM][0700/1000] lr=2.46e-05 train_loss=0.3436 dehaze=0.0753 hazy=0.4309 clean=0.0722 cross=0.0725 z=0.02483 cee=0.04448 asm=0.05367 train_psnr=29.528 train_ssim=0.8922 | val_dehaze=24.315/0.8585 val_score=32.900 val_clean=26.913/0.8776 val_cross=26.790/0.8747 val_hazy_diag=11.699/0.6478 val_z=0.02976 val_cee=0.04654 val_asm=0.05741
+Saved best Stage1-Dehaze-ASM checkpoint (score=32.900, PSNR=24.315, SSIM=0.8585)
+[S1-Dehaze-ASM][0725/1000] lr=2.17e-05 train_loss=0.3318 dehaze=0.0727 hazy=0.4296 clean=0.0697 cross=0.0699 z=0.02468 cee=0.04448 asm=0.05361 train_psnr=29.813 train_ssim=0.8961 | val_dehaze=24.474/0.8603 val_score=33.077 val_clean=26.863/0.8782 val_cross=26.784/0.8756 val_hazy_diag=11.701/0.6499 val_z=0.02934 val_cee=0.04616 val_asm=0.05765
+Saved best Stage1-Dehaze-ASM checkpoint (score=33.077, PSNR=24.474, SSIM=0.8603)
+[S1-Dehaze-ASM][0750/1000] lr=1.89e-05 train_loss=0.3363 dehaze=0.0737 hazy=0.4330 clean=0.0706 cross=0.0709 z=0.02459 cee=0.04452 asm=0.05301 train_psnr=29.696 train_ssim=0.8944 | val_dehaze=24.449/0.8591 val_score=33.040 val_clean=26.995/0.8779 val_cross=26.882/0.8751 val_hazy_diag=11.783/0.6538 val_z=0.02904 val_cee=0.04579 val_asm=0.05815
+[S1-Dehaze-ASM][0775/1000] lr=1.64e-05 train_loss=0.3289 dehaze=0.0721 hazy=0.4348 clean=0.0691 cross=0.0694 z=0.02414 cee=0.04394 asm=0.05376 train_psnr=29.848 train_ssim=0.8966 | val_dehaze=24.425/0.8604 val_score=33.028 val_clean=26.994/0.8797 val_cross=26.824/0.8766 val_hazy_diag=11.842/0.6583 val_z=0.02862 val_cee=0.04543 val_asm=0.05898
+[S1-Dehaze-ASM][0800/1000] lr=1.41e-05 train_loss=0.3361 dehaze=0.0737 hazy=0.4244 clean=0.0706 cross=0.0709 z=0.02383 cee=0.04308 asm=0.05435 train_psnr=29.651 train_ssim=0.8952 | val_dehaze=24.292/0.8599 val_score=32.892 val_clean=26.972/0.8794 val_cross=26.801/0.8764 val_hazy_diag=11.656/0.6479 val_z=0.02827 val_cee=0.04513 val_asm=0.05669
+[S1-Dehaze-ASM][0825/1000] lr=1.20e-05 train_loss=0.3339 dehaze=0.0732 hazy=0.4438 clean=0.0700 cross=0.0704 z=0.02400 cee=0.04392 asm=0.05344 train_psnr=29.814 train_ssim=0.8946 | val_dehaze=24.396/0.8604 val_score=33.001 val_clean=26.979/0.8789 val_cross=26.841/0.8761 val_hazy_diag=11.673/0.6478 val_z=0.02806 val_cee=0.04478 val_asm=0.05705
+[S1-Dehaze-ASM][0850/1000] lr=1.02e-05 train_loss=0.3269 dehaze=0.0716 hazy=0.4328 clean=0.0687 cross=0.0689 z=0.02360 cee=0.04323 asm=0.05394 train_psnr=29.938 train_ssim=0.8976 | val_dehaze=24.491/0.8614 val_score=33.105 val_clean=27.059/0.8799 val_cross=26.932/0.8773 val_hazy_diag=11.675/0.6525 val_z=0.02782 val_cee=0.04452 val_asm=0.05680
+Saved best Stage1-Dehaze-ASM checkpoint (score=33.105, PSNR=24.491, SSIM=0.8614)
+[S1-Dehaze-ASM][0875/1000] lr=8.62e-06 train_loss=0.3311 dehaze=0.0726 hazy=0.4307 clean=0.0696 cross=0.0698 z=0.02339 cee=0.04249 asm=0.05336 train_psnr=29.858 train_ssim=0.8956 | val_dehaze=24.509/0.8622 val_score=33.132 val_clean=27.007/0.8803 val_cross=26.910/0.8781 val_hazy_diag=11.837/0.6537 val_z=0.02762 val_cee=0.04425 val_asm=0.05886
+Saved best Stage1-Dehaze-ASM checkpoint (score=33.132, PSNR=24.509, SSIM=0.8622)
+[S1-Dehaze-ASM][0900/1000] lr=7.32e-06 train_loss=0.3278 dehaze=0.0718 hazy=0.4321 clean=0.0690 cross=0.0692 z=0.02307 cee=0.04233 asm=0.05354 train_psnr=29.993 train_ssim=0.8967 | val_dehaze=24.508/0.8622 val_score=33.130 val_clean=27.081/0.8808 val_cross=26.960/0.8781 val_hazy_diag=11.750/0.6529 val_z=0.02744 val_cee=0.04400 val_asm=0.05782
+[S1-Dehaze-ASM][0925/1000] lr=6.31e-06 train_loss=0.3301 dehaze=0.0723 hazy=0.4279 clean=0.0695 cross=0.0697 z=0.02290 cee=0.04192 asm=0.05398 train_psnr=29.796 train_ssim=0.8963 | val_dehaze=24.482/0.8628 val_score=33.110 val_clean=27.112/0.8813 val_cross=27.004/0.8788 val_hazy_diag=11.697/0.6520 val_z=0.02730 val_cee=0.04389 val_asm=0.05721
+[S1-Dehaze-ASM][0950/1000] lr=5.58e-06 train_loss=0.3291 dehaze=0.0721 hazy=0.4373 clean=0.0691 cross=0.0695 z=0.02307 cee=0.04247 asm=0.05360 train_psnr=29.961 train_ssim=0.8959 | val_dehaze=24.528/0.8630 val_score=33.158 val_clean=27.154/0.8815 val_cross=27.025/0.8789 val_hazy_diag=11.659/0.6519 val_z=0.02715 val_cee=0.04377 val_asm=0.05663
+Saved best Stage1-Dehaze-ASM checkpoint (score=33.158, PSNR=24.528, SSIM=0.8630)
+[S1-Dehaze-ASM][0975/1000] lr=5.15e-06 train_loss=0.3306 dehaze=0.0724 hazy=0.4269 clean=0.0695 cross=0.0698 z=0.02260 cee=0.04154 asm=0.05360 train_psnr=29.829 train_ssim=0.8959 | val_dehaze=24.641/0.8640 val_score=33.281 val_clean=27.176/0.8819 val_cross=27.046/0.8794 val_hazy_diag=11.856/0.6577 val_z=0.02703 val_cee=0.04363 val_asm=0.05888
+Saved best Stage1-Dehaze-ASM checkpoint (score=33.281, PSNR=24.641, SSIM=0.8640)
+[S1-Dehaze-ASM][1000/1000] lr=5.00e-06 train_loss=0.3255 dehaze=0.0713 hazy=0.4330 clean=0.0684 cross=0.0686 z=0.02272 cee=0.04195 asm=0.05465 train_psnr=30.009 train_ssim=0.8973 | val_dehaze=24.604/0.8638 val_score=33.242 val_clean=27.171/0.8820 val_cross=27.051/0.8796 val_hazy_diag=11.714/0.6538 val_z=0.02688 val_cee=0.04347 val_asm=0.05730
+Best Stage1-Dehaze-ASM: score=33.281, PSNR=24.641, SSIM=0.8640
+
+[2/4] Running calibrated Stage 2: sots_indoor
+[Stage2-Calib] Loaded Stage1 checkpoint: checkpoints/sots_indoor/stage1_best.pth
+[Stage2-Calib] Stage1 metrics | selection=dehaze_score dehaze_psnr=24.64132204486303 dehaze_ssim=0.8640071105957031 dehaze_score=33.281393150820065 cross_psnr=27.045939286842955 cross_ssim=0.8793508231639862
+[Dataset] val: 50 matched pairs
+[Stage2-Calib] ETA candidates: [0.0, 0.03, 0.05, 0.08, 0.1, 0.15, 0.2, 0.3, 0.5, 0.75, 1.0]
+[Stage2-Calib] No training. Validation calibration only.
+[ETA=0.000] val=24.641/0.8640 score=33.281 | base=24.641/0.8640 base_score=33.281 improve=0.0000 | raw_fdaa=24.186/0.8589 cross=27.046/0.8794 zgap=0.02703 target_gap=0.02703 fdaa_gap=0.19534 alpha=0.4756
+[ETA=0.030] val=24.634/0.8640 score=33.274 | base=24.641/0.8640 base_score=33.281 improve=-0.0074 | raw_fdaa=24.186/0.8589 cross=27.046/0.8794 zgap=0.02782 target_gap=0.02703 fdaa_gap=0.19534 alpha=0.4756
+[ETA=0.050] val=24.629/0.8639 score=33.269 | base=24.641/0.8640 base_score=33.281 improve=-0.0129 | raw_fdaa=24.186/0.8589 cross=27.046/0.8794 zgap=0.02891 target_gap=0.02703 fdaa_gap=0.19534 alpha=0.4756
+[ETA=0.080] val=24.621/0.8639 score=33.260 | base=24.641/0.8640 base_score=33.281 improve=-0.0219 | raw_fdaa=24.186/0.8589 cross=27.046/0.8794 zgap=0.03127 target_gap=0.02703 fdaa_gap=0.19534 alpha=0.4756
+[ETA=0.100] val=24.615/0.8638 score=33.253 | base=24.641/0.8640 base_score=33.281 improve=-0.0284 | raw_fdaa=24.186/0.8589 cross=27.046/0.8794 zgap=0.03324 target_gap=0.02703 fdaa_gap=0.19534 alpha=0.4756
+[ETA=0.150] val=24.598/0.8637 score=33.235 | base=24.641/0.8640 base_score=33.281 improve=-0.0461 | raw_fdaa=24.186/0.8589 cross=27.046/0.8794 zgap=0.03920 target_gap=0.02703 fdaa_gap=0.19534 alpha=0.4756
+[ETA=0.200] val=24.580/0.8635 score=33.216 | base=24.641/0.8640 base_score=33.281 improve=-0.0659 | raw_fdaa=24.186/0.8589 cross=27.046/0.8794 zgap=0.04622 target_gap=0.02703 fdaa_gap=0.19534 alpha=0.4756
+[ETA=0.300] val=24.540/0.8631 score=33.171 | base=24.641/0.8640 base_score=33.281 improve=-0.1102 | raw_fdaa=24.186/0.8589 cross=27.046/0.8794 zgap=0.06199 target_gap=0.02703 fdaa_gap=0.19534 alpha=0.4756
+[ETA=0.500] val=24.448/0.8622 score=33.069 | base=24.641/0.8640 base_score=33.281 improve=-0.2124 | raw_fdaa=24.186/0.8589 cross=27.046/0.8794 zgap=0.09650 target_gap=0.02703 fdaa_gap=0.19534 alpha=0.4756
+[ETA=0.750] val=24.322/0.8607 score=32.928 | base=24.641/0.8640 base_score=33.281 improve=-0.3531 | raw_fdaa=24.186/0.8589 cross=27.046/0.8794 zgap=0.14139 target_gap=0.02703 fdaa_gap=0.19534 alpha=0.4756
+[ETA=1.000] val=24.193/0.8591 score=32.784 | base=24.641/0.8640 base_score=33.281 improve=-0.4974 | raw_fdaa=24.186/0.8589 cross=27.046/0.8794 zgap=0.18687 target_gap=0.02703 fdaa_gap=0.19534 alpha=0.4756
+
+========== Stage2 Calibration Result ==========
+Best eta       : 0.0
+Best val PSNR  : 24.641
+Best val SSIM  : 0.8640
+Best score     : 33.281
+Stage1 score   : 33.281
+Improvement    : 0.0000
+===============================================
+Saved Stage2 calibrated FDAA checkpoint (eta=0.0, improvement=0.0000)
+
+[3/4] Testing Stage 1 full-resolution: sots_indoor
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loaded Stage1 checkpoint: checkpoints/sots_indoor/stage1_best.pth
+Checkpoint epoch: 975
+Selection metric: dehaze_score
+Checkpoint dehaze PSNR: 24.64132204486303
+Checkpoint dehaze SSIM: 0.8640071105957031
+Checkpoint clean PSNR: 27.176327774733835
+Checkpoint cross PSNR: 27.045939286842955
+[Dataset] test: 50 matched pairs
+  0%|          | 0/50 [00:00<?, ?it/s][001/050] 1401_1.png | dehaze=30.573/0.8930 | clean=31.281/0.8982 | cross_oracle=31.326/0.8973 | fullres=460x620
+  2%|▏         | 1/50 [00:01<01:15,  1.54s/it][002/050] 1401_10.png | dehaze=28.880/0.8825 | clean=31.281/0.8982 | cross_oracle=31.127/0.8942 | fullres=460x620
+  4%|▍         | 2/50 [00:01<00:36,  1.30it/s][003/050] 1401_2.png | dehaze=30.303/0.8919 | clean=31.281/0.8982 | cross_oracle=31.297/0.8970 | fullres=460x620
+  6%|▌         | 3/50 [00:01<00:24,  1.92it/s][004/050] 1401_3.png | dehaze=29.997/0.8905 | clean=31.281/0.8982 | cross_oracle=31.281/0.8965 | fullres=460x620
+  8%|▊         | 4/50 [00:02<00:18,  2.46it/s][005/050] 1401_4.png | dehaze=29.738/0.8893 | clean=31.281/0.8982 | cross_oracle=31.254/0.8962 | fullres=460x620
+ 10%|█         | 5/50 [00:02<00:15,  2.88it/s][006/050] 1401_5.png | dehaze=29.545/0.8881 | clean=31.281/0.8982 | cross_oracle=31.232/0.8959 | fullres=460x620
+ 12%|█▏        | 6/50 [00:02<00:13,  3.21it/s][007/050] 1401_6.png | dehaze=29.442/0.8871 | clean=31.281/0.8982 | cross_oracle=31.213/0.8955 | fullres=460x620
+ 14%|█▍        | 7/50 [00:02<00:12,  3.45it/s][008/050] 1401_7.png | dehaze=29.325/0.8861 | clean=31.281/0.8982 | cross_oracle=31.192/0.8953 | fullres=460x620
+ 16%|█▌        | 8/50 [00:03<00:11,  3.53it/s][009/050] 1401_8.png | dehaze=29.098/0.8846 | clean=31.281/0.8982 | cross_oracle=31.168/0.8948 | fullres=460x620
+ 18%|█▊        | 9/50 [00:03<00:10,  3.78it/s][010/050] 1401_9.png | dehaze=28.977/0.8835 | clean=31.281/0.8982 | cross_oracle=31.161/0.8945 | fullres=460x620
+ 20%|██        | 10/50 [00:03<00:10,  3.99it/s][011/050] 1407_1.png | dehaze=27.563/0.9041 | clean=28.863/0.9095 | cross_oracle=28.842/0.9090 | fullres=460x620
+ 22%|██▏       | 11/50 [00:03<00:09,  4.11it/s][012/050] 1407_10.png | dehaze=26.027/0.8931 | clean=28.863/0.9095 | cross_oracle=28.689/0.9058 | fullres=460x620
+ 24%|██▍       | 12/50 [00:04<00:09,  4.19it/s][013/050] 1407_2.png | dehaze=27.416/0.9031 | clean=28.863/0.9095 | cross_oracle=28.831/0.9086 | fullres=460x620
+ 26%|██▌       | 13/50 [00:04<00:08,  4.27it/s][014/050] 1407_3.png | dehaze=27.270/0.9020 | clean=28.863/0.9095 | cross_oracle=28.814/0.9083 | fullres=460x620
+ 28%|██▊       | 14/50 [00:04<00:08,  4.32it/s][015/050] 1407_4.png | dehaze=27.055/0.9011 | clean=28.863/0.9095 | cross_oracle=28.811/0.9081 | fullres=460x620
+ 30%|███       | 15/50 [00:04<00:08,  4.33it/s][016/050] 1407_5.png | dehaze=26.906/0.8998 | clean=28.863/0.9095 | cross_oracle=28.791/0.9077 | fullres=460x620
+ 32%|███▏      | 16/50 [00:05<00:07,  4.36it/s][017/050] 1407_6.png | dehaze=26.756/0.8984 | clean=28.863/0.9095 | cross_oracle=28.767/0.9072 | fullres=460x620
+ 34%|███▍      | 17/50 [00:05<00:07,  4.37it/s][018/050] 1407_7.png | dehaze=26.525/0.8970 | clean=28.863/0.9095 | cross_oracle=28.748/0.9070 | fullres=460x620
+ 36%|███▌      | 18/50 [00:05<00:07,  4.39it/s][019/050] 1407_8.png | dehaze=26.376/0.8960 | clean=28.863/0.9095 | cross_oracle=28.741/0.9066 | fullres=460x620
+ 38%|███▊      | 19/50 [00:05<00:07,  4.41it/s][020/050] 1407_9.png | dehaze=26.209/0.8944 | clean=28.863/0.9095 | cross_oracle=28.710/0.9061 | fullres=460x620
+ 40%|████      | 20/50 [00:05<00:06,  4.42it/s][021/050] 1415_1.png | dehaze=29.915/0.9409 | clean=30.666/0.9468 | cross_oracle=30.826/0.9478 | fullres=460x620
+ 42%|████▏     | 21/50 [00:06<00:06,  4.48it/s][022/050] 1415_10.png | dehaze=27.966/0.9276 | clean=30.666/0.9468 | cross_oracle=30.905/0.9458 | fullres=460x620
+ 44%|████▍     | 22/50 [00:06<00:06,  4.57it/s][023/050] 1415_2.png | dehaze=29.673/0.9394 | clean=30.666/0.9468 | cross_oracle=30.857/0.9477 | fullres=460x620
+ 46%|████▌     | 23/50 [00:06<00:05,  4.62it/s][024/050] 1415_3.png | dehaze=29.485/0.9381 | clean=30.666/0.9468 | cross_oracle=30.838/0.9474 | fullres=460x620
+ 48%|████▊     | 24/50 [00:06<00:05,  4.64it/s][025/050] 1415_4.png | dehaze=29.306/0.9368 | clean=30.666/0.9468 | cross_oracle=30.851/0.9472 | fullres=460x620
+ 50%|█████     | 25/50 [00:06<00:05,  4.62it/s][026/050] 1415_5.png | dehaze=28.946/0.9350 | clean=30.666/0.9468 | cross_oracle=30.874/0.9470 | fullres=460x620
+ 52%|█████▏    | 26/50 [00:07<00:05,  4.56it/s][027/050] 1415_6.png | dehaze=28.910/0.9341 | clean=30.666/0.9468 | cross_oracle=30.869/0.9468 | fullres=460x620
+ 54%|█████▍    | 27/50 [00:07<00:05,  4.47it/s][028/050] 1415_7.png | dehaze=28.484/0.9319 | clean=30.666/0.9468 | cross_oracle=30.863/0.9465 | fullres=460x620
+ 56%|█████▌    | 28/50 [00:07<00:05,  4.38it/s][029/050] 1415_8.png | dehaze=28.126/0.9305 | clean=30.666/0.9468 | cross_oracle=30.868/0.9462 | fullres=460x620
+ 58%|█████▊    | 29/50 [00:07<00:04,  4.31it/s][030/050] 1415_9.png | dehaze=27.897/0.9291 | clean=30.666/0.9468 | cross_oracle=30.866/0.9460 | fullres=460x620
+ 60%|██████    | 30/50 [00:08<00:04,  4.35it/s][031/050] 1417_1.png | dehaze=26.255/0.8596 | clean=27.339/0.8639 | cross_oracle=27.361/0.8641 | fullres=460x620
+ 62%|██████▏   | 31/50 [00:08<00:04,  4.32it/s][032/050] 1417_10.png | dehaze=25.097/0.8481 | clean=27.339/0.8639 | cross_oracle=27.231/0.8604 | fullres=460x620
+ 64%|██████▍   | 32/50 [00:08<00:04,  4.35it/s][033/050] 1417_2.png | dehaze=26.059/0.8586 | clean=27.339/0.8639 | cross_oracle=27.358/0.8639 | fullres=460x620
+ 66%|██████▌   | 33/50 [00:08<00:03,  4.37it/s][034/050] 1417_3.png | dehaze=25.892/0.8577 | clean=27.339/0.8639 | cross_oracle=27.349/0.8637 | fullres=460x620
+ 68%|██████▊   | 34/50 [00:09<00:03,  4.37it/s][035/050] 1417_4.png | dehaze=25.711/0.8564 | clean=27.339/0.8639 | cross_oracle=27.340/0.8635 | fullres=460x620
+ 70%|███████   | 35/50 [00:09<00:03,  4.37it/s][036/050] 1417_5.png | dehaze=25.539/0.8552 | clean=27.339/0.8639 | cross_oracle=27.331/0.8632 | fullres=460x620
+ 72%|███████▏  | 36/50 [00:09<00:03,  4.38it/s][037/050] 1417_6.png | dehaze=25.462/0.8541 | clean=27.339/0.8639 | cross_oracle=27.310/0.8627 | fullres=460x620
+ 74%|███████▍  | 37/50 [00:09<00:02,  4.39it/s][038/050] 1417_7.png | dehaze=25.343/0.8526 | clean=27.339/0.8639 | cross_oracle=27.296/0.8622 | fullres=460x620
+ 76%|███████▌  | 38/50 [00:09<00:02,  4.39it/s][039/050] 1417_8.png | dehaze=25.167/0.8510 | clean=27.339/0.8639 | cross_oracle=27.278/0.8617 | fullres=460x620
+ 78%|███████▊  | 39/50 [00:10<00:02,  4.32it/s][040/050] 1417_9.png | dehaze=25.110/0.8494 | clean=27.339/0.8639 | cross_oracle=27.253/0.8610 | fullres=460x620
+ 80%|████████  | 40/50 [00:10<00:02,  4.34it/s][041/050] 1440_1.png | dehaze=29.270/0.9401 | clean=30.595/0.9459 | cross_oracle=30.908/0.9461 | fullres=460x620
+ 82%|████████▏ | 41/50 [00:10<00:02,  4.48it/s][042/050] 1440_10.png | dehaze=26.787/0.9226 | clean=30.595/0.9459 | cross_oracle=30.737/0.9419 | fullres=460x620
+ 84%|████████▍ | 42/50 [00:10<00:01,  4.60it/s][043/050] 1440_2.png | dehaze=29.016/0.9389 | clean=30.595/0.9459 | cross_oracle=30.921/0.9460 | fullres=460x620
+ 86%|████████▌ | 43/50 [00:11<00:01,  4.67it/s][044/050] 1440_3.png | dehaze=28.783/0.9371 | clean=30.595/0.9459 | cross_oracle=30.942/0.9457 | fullres=460x620
+ 88%|████████▊ | 44/50 [00:11<00:01,  4.72it/s][045/050] 1440_4.png | dehaze=28.449/0.9354 | clean=30.595/0.9459 | cross_oracle=30.936/0.9454 | fullres=460x620
+ 90%|█████████ | 45/50 [00:11<00:01,  4.75it/s][046/050] 1440_5.png | dehaze=28.004/0.9331 | clean=30.595/0.9459 | cross_oracle=30.905/0.9450 | fullres=460x620
+ 92%|█████████▏| 46/50 [00:11<00:00,  4.78it/s][047/050] 1440_6.png | dehaze=27.827/0.9310 | clean=30.595/0.9459 | cross_oracle=30.891/0.9444 | fullres=460x620
+ 94%|█████████▍| 47/50 [00:11<00:00,  4.81it/s][048/050] 1440_7.png | dehaze=27.693/0.9296 | clean=30.595/0.9459 | cross_oracle=30.859/0.9439 | fullres=460x620
+ 96%|█████████▌| 48/50 [00:12<00:00,  4.82it/s][049/050] 1440_8.png | dehaze=27.369/0.9276 | clean=30.595/0.9459 | cross_oracle=30.838/0.9433 | fullres=460x620
+ 98%|█████████▊| 49/50 [00:12<00:00,  4.66it/s][050/050] 1440_9.png | dehaze=27.106/0.9251 | clean=30.595/0.9459 | cross_oracle=30.797/0.9427 | fullres=460x620
+100%|██████████| 50/50 [00:12<00:00,  4.55it/s]100%|██████████| 50/50 [00:12<00:00,  3.98it/s]
+
+Stage1 Full-Resolution Test Results on sots_indoor:
+  Deployable dehaze PSNR / SSIM : 27.773 / 0.9014
+  Clean recon PSNR / SSIM       : 29.749 / 0.9129
+  Cross/oracle PSNR / SSIM      : 29.809 / 0.9114
+  Dehazed images : results_stage1/sots_indoor/dehaze_direct/
+  Compare panels : results_stage1/sots_indoor/compare/
+
+[4/4] Testing final checkpoint/full-resolution: sots_indoor
+[Dataset] test: 50 matched pairs
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loaded checkpoint: checkpoints/sots_indoor/final_best.pth
+Loaded phase: AILD_FREQ_STAGE2_FDAA_CALIBRATED
+Checkpoint metrics: {'psnr': 24.64132204486303, 'ssim': 0.8640071105957031, 'score': 33.281393150820065, 'baseline_psnr': 24.64132204486303, 'baseline_ssim': 0.8640071105957031, 'baseline_score': 33.281393150820065, 'improvement': 0.0, 'raw_fdaa_psnr': 24.18624235210764, 'raw_fdaa_ssim': 0.8589150106906891, 'cross_psnr': 27.045939286842955, 'cross_ssim': 0.8793508231639862, 'zgap': 0.02702869588509202, 'target_gap': 0.02702869588509202, 'fdaa_gap': 0.19533732801675796, 'alpha': 0.47563859820365906, 'eta': 0.0, 'mode': 'fdaa_eta_calibration'}
+Using full-resolution inference path: Stage1 direct dehaze z_h + c_h
+  0%|          | 0/50 [00:00<?, ?it/s][001/050] 1401_1.png | PSNR=30.573 SSIM=0.8930 Score=39.503 DeltaAbs=0.00000 FullRes=460x620
+  2%|▏         | 1/50 [00:01<01:12,  1.49s/it][002/050] 1401_10.png | PSNR=28.880 SSIM=0.8825 Score=37.705 DeltaAbs=0.00000 FullRes=460x620
+  4%|▍         | 2/50 [00:01<00:33,  1.43it/s][003/050] 1401_2.png | PSNR=30.303 SSIM=0.8919 Score=39.222 DeltaAbs=0.00000 FullRes=460x620
+  6%|▌         | 3/50 [00:01<00:20,  2.27it/s][004/050] 1401_3.png | PSNR=29.997 SSIM=0.8905 Score=38.901 DeltaAbs=0.00000 FullRes=460x620
+  8%|▊         | 4/50 [00:01<00:14,  3.12it/s][005/050] 1401_4.png | PSNR=29.738 SSIM=0.8893 Score=38.631 DeltaAbs=0.00000 FullRes=460x620
+ 10%|█         | 5/50 [00:02<00:11,  3.94it/s][006/050] 1401_5.png | PSNR=29.545 SSIM=0.8881 Score=38.426 DeltaAbs=0.00000 FullRes=460x620
+ 12%|█▏        | 6/50 [00:02<00:09,  4.67it/s][007/050] 1401_6.png | PSNR=29.442 SSIM=0.8871 Score=38.313 DeltaAbs=0.00000 FullRes=460x620
+ 14%|█▍        | 7/50 [00:02<00:08,  5.26it/s][008/050] 1401_7.png | PSNR=29.325 SSIM=0.8861 Score=38.185 DeltaAbs=0.00000 FullRes=460x620
+ 16%|█▌        | 8/50 [00:02<00:07,  5.79it/s][009/050] 1401_8.png | PSNR=29.098 SSIM=0.8846 Score=37.944 DeltaAbs=0.00000 FullRes=460x620
+ 18%|█▊        | 9/50 [00:02<00:06,  6.20it/s][010/050] 1401_9.png | PSNR=28.977 SSIM=0.8835 Score=37.811 DeltaAbs=0.00000 FullRes=460x620
+ 20%|██        | 10/50 [00:02<00:06,  6.52it/s][011/050] 1407_1.png | PSNR=27.563 SSIM=0.9041 Score=36.604 DeltaAbs=0.00000 FullRes=460x620
+ 22%|██▏       | 11/50 [00:02<00:05,  6.70it/s][012/050] 1407_10.png | PSNR=26.027 SSIM=0.8931 Score=34.958 DeltaAbs=0.00000 FullRes=460x620
+ 24%|██▍       | 12/50 [00:03<00:05,  6.83it/s][013/050] 1407_2.png | PSNR=27.416 SSIM=0.9031 Score=36.447 DeltaAbs=0.00000 FullRes=460x620
+ 26%|██▌       | 13/50 [00:03<00:05,  6.92it/s][014/050] 1407_3.png | PSNR=27.270 SSIM=0.9020 Score=36.291 DeltaAbs=0.00000 FullRes=460x620
+ 28%|██▊       | 14/50 [00:03<00:05,  7.00it/s][015/050] 1407_4.png | PSNR=27.055 SSIM=0.9011 Score=36.066 DeltaAbs=0.00000 FullRes=460x620
+ 30%|███       | 15/50 [00:03<00:04,  7.04it/s][016/050] 1407_5.png | PSNR=26.906 SSIM=0.8998 Score=35.904 DeltaAbs=0.00000 FullRes=460x620
+ 32%|███▏      | 16/50 [00:03<00:04,  7.08it/s][017/050] 1407_6.png | PSNR=26.756 SSIM=0.8984 Score=35.740 DeltaAbs=0.00000 FullRes=460x620
+ 34%|███▍      | 17/50 [00:03<00:04,  7.09it/s][018/050] 1407_7.png | PSNR=26.525 SSIM=0.8970 Score=35.495 DeltaAbs=0.00000 FullRes=460x620
+ 36%|███▌      | 18/50 [00:03<00:04,  7.11it/s][019/050] 1407_8.png | PSNR=26.376 SSIM=0.8960 Score=35.337 DeltaAbs=0.00000 FullRes=460x620
+ 38%|███▊      | 19/50 [00:03<00:04,  7.02it/s][020/050] 1407_9.png | PSNR=26.209 SSIM=0.8944 Score=35.153 DeltaAbs=0.00000 FullRes=460x620
+ 40%|████      | 20/50 [00:04<00:04,  6.78it/s][021/050] 1415_1.png | PSNR=29.915 SSIM=0.9409 Score=39.325 DeltaAbs=0.00000 FullRes=460x620
+ 42%|████▏     | 21/50 [00:04<00:04,  6.60it/s][022/050] 1415_10.png | PSNR=27.966 SSIM=0.9276 Score=37.241 DeltaAbs=0.00000 FullRes=460x620
+ 44%|████▍     | 22/50 [00:04<00:04,  6.71it/s][023/050] 1415_2.png | PSNR=29.673 SSIM=0.9394 Score=39.067 DeltaAbs=0.00000 FullRes=460x620
+ 46%|████▌     | 23/50 [00:04<00:04,  6.59it/s][024/050] 1415_3.png | PSNR=29.485 SSIM=0.9381 Score=38.866 DeltaAbs=0.00000 FullRes=460x620
+ 48%|████▊     | 24/50 [00:04<00:03,  6.54it/s][025/050] 1415_4.png | PSNR=29.306 SSIM=0.9368 Score=38.674 DeltaAbs=0.00000 FullRes=460x620
+ 50%|█████     | 25/50 [00:04<00:03,  6.50it/s][026/050] 1415_5.png | PSNR=28.946 SSIM=0.9350 Score=38.296 DeltaAbs=0.00000 FullRes=460x620
+ 52%|█████▏    | 26/50 [00:05<00:03,  6.55it/s][027/050] 1415_6.png | PSNR=28.910 SSIM=0.9341 Score=38.250 DeltaAbs=0.00000 FullRes=460x620
+ 54%|█████▍    | 27/50 [00:05<00:03,  6.34it/s][028/050] 1415_7.png | PSNR=28.484 SSIM=0.9319 Score=37.803 DeltaAbs=0.00000 FullRes=460x620
+ 56%|█████▌    | 28/50 [00:05<00:03,  6.57it/s][029/050] 1415_8.png | PSNR=28.126 SSIM=0.9305 Score=37.431 DeltaAbs=0.00000 FullRes=460x620
+ 58%|█████▊    | 29/50 [00:05<00:03,  6.88it/s][030/050] 1415_9.png | PSNR=27.897 SSIM=0.9291 Score=37.188 DeltaAbs=0.00000 FullRes=460x620
+ 60%|██████    | 30/50 [00:05<00:02,  7.14it/s][031/050] 1417_1.png | PSNR=26.255 SSIM=0.8596 Score=34.852 DeltaAbs=0.00000 FullRes=460x620
+ 62%|██████▏   | 31/50 [00:05<00:02,  7.13it/s][032/050] 1417_10.png | PSNR=25.097 SSIM=0.8481 Score=33.577 DeltaAbs=0.00000 FullRes=460x620
+ 64%|██████▍   | 32/50 [00:05<00:02,  7.15it/s][033/050] 1417_2.png | PSNR=26.059 SSIM=0.8586 Score=34.645 DeltaAbs=0.00000 FullRes=460x620
+ 66%|██████▌   | 33/50 [00:06<00:02,  7.16it/s][034/050] 1417_3.png | PSNR=25.892 SSIM=0.8577 Score=34.469 DeltaAbs=0.00000 FullRes=460x620
+ 68%|██████▊   | 34/50 [00:06<00:02,  7.18it/s][035/050] 1417_4.png | PSNR=25.711 SSIM=0.8564 Score=34.275 DeltaAbs=0.00000 FullRes=460x620
+ 70%|███████   | 35/50 [00:06<00:02,  7.19it/s][036/050] 1417_5.png | PSNR=25.539 SSIM=0.8552 Score=34.091 DeltaAbs=0.00000 FullRes=460x620
+ 72%|███████▏  | 36/50 [00:06<00:01,  7.08it/s][037/050] 1417_6.png | PSNR=25.462 SSIM=0.8541 Score=34.003 DeltaAbs=0.00000 FullRes=460x620
+ 74%|███████▍  | 37/50 [00:06<00:01,  7.10it/s][038/050] 1417_7.png | PSNR=25.343 SSIM=0.8526 Score=33.869 DeltaAbs=0.00000 FullRes=460x620
+ 76%|███████▌  | 38/50 [00:06<00:01,  7.12it/s][039/050] 1417_8.png | PSNR=25.167 SSIM=0.8510 Score=33.677 DeltaAbs=0.00000 FullRes=460x620
+ 78%|███████▊  | 39/50 [00:06<00:01,  7.13it/s][040/050] 1417_9.png | PSNR=25.110 SSIM=0.8494 Score=33.604 DeltaAbs=0.00000 FullRes=460x620
+ 80%|████████  | 40/50 [00:07<00:01,  7.13it/s][041/050] 1440_1.png | PSNR=29.270 SSIM=0.9401 Score=38.671 DeltaAbs=0.00000 FullRes=460x620
+ 82%|████████▏ | 41/50 [00:07<00:01,  7.37it/s][042/050] 1440_10.png | PSNR=26.787 SSIM=0.9226 Score=36.014 DeltaAbs=0.00000 FullRes=460x620
+ 84%|████████▍ | 42/50 [00:07<00:01,  7.58it/s][043/050] 1440_2.png | PSNR=29.016 SSIM=0.9389 Score=38.406 DeltaAbs=0.00000 FullRes=460x620
+ 86%|████████▌ | 43/50 [00:07<00:00,  7.67it/s][044/050] 1440_3.png | PSNR=28.783 SSIM=0.9371 Score=38.154 DeltaAbs=0.00000 FullRes=460x620
+ 88%|████████▊ | 44/50 [00:07<00:00,  7.75it/s][045/050] 1440_4.png | PSNR=28.449 SSIM=0.9354 Score=37.802 DeltaAbs=0.00000 FullRes=460x620
+ 90%|█████████ | 45/50 [00:07<00:00,  7.78it/s][046/050] 1440_5.png | PSNR=28.004 SSIM=0.9331 Score=37.335 DeltaAbs=0.00000 FullRes=460x620
+ 92%|█████████▏| 46/50 [00:07<00:00,  7.83it/s][047/050] 1440_6.png | PSNR=27.827 SSIM=0.9310 Score=37.138 DeltaAbs=0.00000 FullRes=460x620
+ 94%|█████████▍| 47/50 [00:07<00:00,  7.89it/s][048/050] 1440_7.png | PSNR=27.693 SSIM=0.9296 Score=36.989 DeltaAbs=0.00000 FullRes=460x620
+ 96%|█████████▌| 48/50 [00:08<00:00,  7.89it/s][049/050] 1440_8.png | PSNR=27.369 SSIM=0.9276 Score=36.645 DeltaAbs=0.00000 FullRes=460x620
+ 98%|█████████▊| 49/50 [00:08<00:00,  7.95it/s][050/050] 1440_9.png | PSNR=27.106 SSIM=0.9251 Score=36.357 DeltaAbs=0.00000 FullRes=460x620
+100%|██████████| 50/50 [00:08<00:00,  7.97it/s]100%|██████████| 50/50 [00:08<00:00,  6.03it/s]
+
+Full-resolution results on sots_indoor:
+  PSNR  : 27.773 dB
+  SSIM  : 0.9014
+  Score : 36.787
+  Dehazed images : results_fullres/sots_indoor/dehazed/
+  Compare panels : results_fullres/sots_indoor/compare/
+
+Finished dataset: sots_indoor
+
+==========================================
+Running dataset: sots_outdoor
+Config: configs/sots_outdoor.yml
+==========================================
+
+[1/4] Training Stage 1: sots_outdoor
+[Dataset] train: 41 matched pairs
+[Dataset] val: 5 matched pairs
+[Stage1-Dehaze-ASM] Training sots_outdoor | epochs=1000 | lambda_dehaze=3.0 | lambda_hazy=0.0 | lambda_clean=0.4 | lambda_cross=1.2 | lambda_z=0.03 | lambda_cee=0.0 | lambda_asm=0.02
+[S1-Dehaze-ASM][0001/1000] lr=1.00e-04 train_loss=2.6008 dehaze=0.5645 hazy=0.3993 clean=0.5645 cross=0.5645 z=0.03066 cee=0.04068 asm=0.15729 train_psnr=10.598 train_ssim=0.3853 | val_dehaze=11.536/0.3791 val_score=15.327 val_clean=11.536/0.3791 val_cross=11.536/0.3791 val_hazy_diag=13.331/0.5547 val_z=0.02672 val_cee=0.04150 val_asm=0.13649
+Saved best Stage1-Dehaze-ASM checkpoint (score=15.327, PSNR=11.536, SSIM=0.3791)
+[S1-Dehaze-ASM][0025/1000] lr=9.99e-05 train_loss=1.6927 dehaze=0.3682 hazy=0.4130 clean=0.3655 cross=0.3653 z=0.06622 cee=0.04383 asm=0.07967 train_psnr=16.207 train_ssim=0.4775 | val_dehaze=16.095/0.4385 val_score=20.480 val_clean=16.165/0.4405 val_cross=16.201/0.4403 val_hazy_diag=12.264/0.4826 val_z=0.06957 val_cee=0.04463 val_asm=0.07091
+Saved best Stage1-Dehaze-ASM checkpoint (score=20.480, PSNR=16.095, SSIM=0.4385)
+[S1-Dehaze-ASM][0050/1000] lr=9.94e-05 train_loss=1.5480 dehaze=0.3355 hazy=0.4005 clean=0.3364 cross=0.3361 z=0.06516 cee=0.04420 asm=0.07807 train_psnr=17.435 train_ssim=0.5026 | val_dehaze=17.288/0.4767 val_score=22.055 val_clean=17.060/0.4765 val_cross=17.093/0.4768 val_hazy_diag=12.137/0.4936 val_z=0.07333 val_cee=0.04560 val_asm=0.06607
+Saved best Stage1-Dehaze-ASM checkpoint (score=22.055, PSNR=17.288, SSIM=0.4767)
+[S1-Dehaze-ASM][0075/1000] lr=9.87e-05 train_loss=1.4953 dehaze=0.3271 hazy=0.3734 clean=0.3194 cross=0.3188 z=0.06269 cee=0.04458 asm=0.08460 train_psnr=17.631 train_ssim=0.5268 | val_dehaze=18.241/0.5076 val_score=23.317 val_clean=18.673/0.5132 val_cross=18.660/0.5124 val_hazy_diag=14.886/0.5586 val_z=0.07237 val_cee=0.04690 val_asm=0.09000
+Saved best Stage1-Dehaze-ASM checkpoint (score=23.317, PSNR=18.241, SSIM=0.5076)
+[S1-Dehaze-ASM][0100/1000] lr=9.77e-05 train_loss=1.3463 dehaze=0.2936 hazy=0.3624 clean=0.2892 cross=0.2887 z=0.06355 cee=0.04579 asm=0.07613 train_psnr=19.008 train_ssim=0.5579 | val_dehaze=18.887/0.5297 val_score=24.183 val_clean=18.686/0.5267 val_cross=18.737/0.5272 val_hazy_diag=12.729/0.5336 val_z=0.07095 val_cee=0.04795 val_asm=0.06644
+Saved best Stage1-Dehaze-ASM checkpoint (score=24.183, PSNR=18.887, SSIM=0.5297)
+[S1-Dehaze-ASM][0125/1000] lr=9.64e-05 train_loss=1.3243 dehaze=0.2879 hazy=0.3692 clean=0.2866 cross=0.2853 z=0.06590 cee=0.04721 asm=0.07833 train_psnr=19.289 train_ssim=0.5584 | val_dehaze=19.546/0.5457 val_score=25.003 val_clean=19.405/0.5472 val_cross=19.528/0.5483 val_hazy_diag=13.955/0.5652 val_z=0.07421 val_cee=0.04876 val_asm=0.07918
+Saved best Stage1-Dehaze-ASM checkpoint (score=25.003, PSNR=19.546, SSIM=0.5457)
+[S1-Dehaze-ASM][0150/1000] lr=9.48e-05 train_loss=1.3778 dehaze=0.3008 hazy=0.3757 clean=0.2952 cross=0.2948 z=0.06450 cee=0.04681 asm=0.07969 train_psnr=18.544 train_ssim=0.5562 | val_dehaze=18.888/0.5403 val_score=24.292 val_clean=18.903/0.5443 val_cross=18.927/0.5436 val_hazy_diag=13.191/0.5680 val_z=0.07476 val_cee=0.04896 val_asm=0.06940
+[S1-Dehaze-ASM][0175/1000] lr=9.30e-05 train_loss=1.2206 dehaze=0.2658 hazy=0.3538 clean=0.2625 cross=0.2623 z=0.06174 cee=0.04784 asm=0.07519 train_psnr=19.500 train_ssim=0.6020 | val_dehaze=19.605/0.5646 val_score=25.251 val_clean=20.092/0.5714 val_cross=20.058/0.5695 val_hazy_diag=15.064/0.5914 val_z=0.07155 val_cee=0.04953 val_asm=0.08658
+Saved best Stage1-Dehaze-ASM checkpoint (score=25.251, PSNR=19.605, SSIM=0.5646)
+[S1-Dehaze-ASM][0200/1000] lr=9.09e-05 train_loss=1.2040 dehaze=0.2619 hazy=0.3562 clean=0.2602 cross=0.2591 z=0.05796 cee=0.04754 asm=0.07857 train_psnr=20.021 train_ssim=0.6040 | val_dehaze=19.521/0.5913 val_score=25.434 val_clean=19.824/0.5970 val_cross=19.880/0.5956 val_hazy_diag=14.757/0.6096 val_z=0.06838 val_cee=0.04968 val_asm=0.08436
+Saved best Stage1-Dehaze-ASM checkpoint (score=25.434, PSNR=19.521, SSIM=0.5913)
+[S1-Dehaze-ASM][0225/1000] lr=8.86e-05 train_loss=1.1101 dehaze=0.2414 hazy=0.3466 clean=0.2403 cross=0.2388 z=0.05584 cee=0.04774 asm=0.07352 train_psnr=20.774 train_ssim=0.6304 | val_dehaze=19.576/0.6008 val_score=25.584 val_clean=19.904/0.6081 val_cross=19.884/0.6054 val_hazy_diag=14.196/0.6225 val_z=0.06417 val_cee=0.04897 val_asm=0.07629
+Saved best Stage1-Dehaze-ASM checkpoint (score=25.584, PSNR=19.576, SSIM=0.6008)
+[S1-Dehaze-ASM][0250/1000] lr=8.61e-05 train_loss=1.1429 dehaze=0.2492 hazy=0.3762 clean=0.2462 cross=0.2449 z=0.05569 cee=0.04806 asm=0.06842 train_psnr=20.213 train_ssim=0.6232 | val_dehaze=19.733/0.6166 val_score=25.899 val_clean=20.246/0.6197 val_cross=20.239/0.6194 val_hazy_diag=14.684/0.6113 val_z=0.06516 val_cee=0.04924 val_asm=0.08449
+Saved best Stage1-Dehaze-ASM checkpoint (score=25.899, PSNR=19.733, SSIM=0.6166)
+[S1-Dehaze-ASM][0275/1000] lr=8.33e-05 train_loss=1.0710 dehaze=0.2322 hazy=0.3454 clean=0.2332 cross=0.2317 z=0.05223 cee=0.04702 asm=0.07499 train_psnr=21.199 train_ssim=0.6402 | val_dehaze=20.323/0.6265 val_score=26.589 val_clean=20.640/0.6320 val_cross=20.729/0.6309 val_hazy_diag=14.139/0.6217 val_z=0.06298 val_cee=0.04915 val_asm=0.07576
+Saved best Stage1-Dehaze-ASM checkpoint (score=26.589, PSNR=20.323, SSIM=0.6265)
+[S1-Dehaze-ASM][0300/1000] lr=8.04e-05 train_loss=1.0796 dehaze=0.2351 hazy=0.3514 clean=0.2330 cross=0.2317 z=0.05046 cee=0.04624 asm=0.07312 train_psnr=20.951 train_ssim=0.6391 | val_dehaze=20.555/0.6387 val_score=26.942 val_clean=20.953/0.6427 val_cross=20.962/0.6413 val_hazy_diag=14.326/0.6229 val_z=0.06093 val_cee=0.04784 val_asm=0.07774
+Saved best Stage1-Dehaze-ASM checkpoint (score=26.942, PSNR=20.555, SSIM=0.6387)
+[S1-Dehaze-ASM][0325/1000] lr=7.73e-05 train_loss=0.9828 dehaze=0.2141 hazy=0.3342 clean=0.2112 cross=0.2107 z=0.05255 cee=0.04691 asm=0.07859 train_psnr=21.350 train_ssim=0.6787 | val_dehaze=20.483/0.6448 val_score=26.932 val_clean=20.522/0.6460 val_cross=20.617/0.6454 val_hazy_diag=14.453/0.6190 val_z=0.05931 val_cee=0.04777 val_asm=0.08164
+[S1-Dehaze-ASM][0350/1000] lr=7.41e-05 train_loss=1.0393 dehaze=0.2252 hazy=0.3466 clean=0.2268 cross=0.2251 z=0.05112 cee=0.04579 asm=0.07485 train_psnr=21.234 train_ssim=0.6565 | val_dehaze=21.129/0.6485 val_score=27.614 val_clean=21.002/0.6485 val_cross=21.202/0.6493 val_hazy_diag=13.920/0.6235 val_z=0.06343 val_cee=0.04724 val_asm=0.07382
+Saved best Stage1-Dehaze-ASM checkpoint (score=27.614, PSNR=21.129, SSIM=0.6485)
+[S1-Dehaze-ASM][0375/1000] lr=7.07e-05 train_loss=1.0569 dehaze=0.2296 hazy=0.3510 clean=0.2290 cross=0.2278 z=0.04994 cee=0.04595 asm=0.07758 train_psnr=20.874 train_ssim=0.6560 | val_dehaze=20.594/0.6536 val_score=27.130 val_clean=20.821/0.6560 val_cross=20.918/0.6547 val_hazy_diag=14.157/0.6249 val_z=0.06280 val_cee=0.04727 val_asm=0.07719
+[S1-Dehaze-ASM][0400/1000] lr=6.72e-05 train_loss=1.0032 dehaze=0.2182 hazy=0.3327 clean=0.2166 cross=0.2156 z=0.05107 cee=0.04468 asm=0.07945 train_psnr=21.485 train_ssim=0.6672 | val_dehaze=20.508/0.6576 val_score=27.084 val_clean=20.516/0.6569 val_cross=20.680/0.6580 val_hazy_diag=13.383/0.6112 val_z=0.06114 val_cee=0.04662 val_asm=0.07008
+[S1-Dehaze-ASM][0425/1000] lr=6.36e-05 train_loss=1.0090 dehaze=0.2195 hazy=0.3479 clean=0.2180 cross=0.2168 z=0.04918 cee=0.04509 asm=0.07368 train_psnr=21.433 train_ssim=0.6639 | val_dehaze=20.724/0.6585 val_score=27.309 val_clean=21.092/0.6625 val_cross=21.137/0.6607 val_hazy_diag=14.315/0.6340 val_z=0.05857 val_cee=0.04648 val_asm=0.07750
+[S1-Dehaze-ASM][0450/1000] lr=5.99e-05 train_loss=0.9563 dehaze=0.2081 hazy=0.3309 clean=0.2061 cross=0.2056 z=0.04651 cee=0.04512 asm=0.07071 train_psnr=21.659 train_ssim=0.6855 | val_dehaze=20.209/0.6610 val_score=26.819 val_clean=20.309/0.6601 val_cross=20.478/0.6625 val_hazy_diag=13.099/0.5971 val_z=0.05817 val_cee=0.04622 val_asm=0.06824
+[S1-Dehaze-ASM][0475/1000] lr=5.62e-05 train_loss=0.9765 dehaze=0.2123 hazy=0.3360 clean=0.2109 cross=0.2103 z=0.04764 cee=0.04414 asm=0.07570 train_psnr=21.668 train_ssim=0.6775 | val_dehaze=20.519/0.6632 val_score=27.151 val_clean=20.714/0.6655 val_cross=20.930/0.6658 val_hazy_diag=13.384/0.6103 val_z=0.05771 val_cee=0.04589 val_asm=0.07083
+[S1-Dehaze-ASM][0500/1000] lr=5.25e-05 train_loss=0.9591 dehaze=0.2083 hazy=0.3367 clean=0.2072 cross=0.2070 z=0.04642 cee=0.04394 asm=0.07422 train_psnr=21.734 train_ssim=0.6842 | val_dehaze=20.843/0.6662 val_score=27.505 val_clean=21.092/0.6697 val_cross=21.234/0.6694 val_hazy_diag=13.529/0.6151 val_z=0.05857 val_cee=0.04561 val_asm=0.07124
+[S1-Dehaze-ASM][0525/1000] lr=4.88e-05 train_loss=0.9413 dehaze=0.2048 hazy=0.3196 clean=0.2024 cross=0.2024 z=0.04705 cee=0.04346 asm=0.07649 train_psnr=22.097 train_ssim=0.6911 | val_dehaze=20.717/0.6637 val_score=27.354 val_clean=20.716/0.6662 val_cross=20.814/0.6654 val_hazy_diag=13.383/0.6250 val_z=0.05877 val_cee=0.04526 val_asm=0.06835
+[S1-Dehaze-ASM][0550/1000] lr=4.51e-05 train_loss=0.9474 dehaze=0.2061 hazy=0.3427 clean=0.2045 cross=0.2037 z=0.04656 cee=0.04443 asm=0.07523 train_psnr=21.839 train_ssim=0.6858 | val_dehaze=20.507/0.6607 val_score=27.114 val_clean=20.980/0.6677 val_cross=20.912/0.6638 val_hazy_diag=14.979/0.6576 val_z=0.05968 val_cee=0.04518 val_asm=0.08150
+[S1-Dehaze-ASM][0575/1000] lr=4.14e-05 train_loss=0.9470 dehaze=0.2062 hazy=0.3297 clean=0.2039 cross=0.2032 z=0.04559 cee=0.04289 asm=0.07422 train_psnr=22.033 train_ssim=0.6867 | val_dehaze=20.842/0.6699 val_score=27.542 val_clean=21.019/0.6715 val_cross=21.213/0.6719 val_hazy_diag=13.503/0.6158 val_z=0.05892 val_cee=0.04473 val_asm=0.07168
+[S1-Dehaze-ASM][0600/1000] lr=3.78e-05 train_loss=0.9332 dehaze=0.2032 hazy=0.3307 clean=0.2012 cross=0.2002 z=0.04740 cee=0.04243 asm=0.07346 train_psnr=22.226 train_ssim=0.6880 | val_dehaze=21.321/0.6733 val_score=28.054 val_clean=21.539/0.6765 val_cross=21.697/0.6765 val_hazy_diag=14.245/0.6319 val_z=0.05902 val_cee=0.04431 val_asm=0.07851
+Saved best Stage1-Dehaze-ASM checkpoint (score=28.054, PSNR=21.321, SSIM=0.6733)
+[S1-Dehaze-ASM][0625/1000] lr=3.43e-05 train_loss=0.9033 dehaze=0.1961 hazy=0.3347 clean=0.1964 cross=0.1947 z=0.04593 cee=0.04290 asm=0.07508 train_psnr=22.212 train_ssim=0.7010 | val_dehaze=21.081/0.6722 val_score=27.803 val_clean=21.276/0.6767 val_cross=21.400/0.6757 val_hazy_diag=14.148/0.6325 val_z=0.05702 val_cee=0.04414 val_asm=0.07568
+[S1-Dehaze-ASM][0650/1000] lr=3.09e-05 train_loss=0.9395 dehaze=0.2043 hazy=0.3453 clean=0.2034 cross=0.2021 z=0.04566 cee=0.04225 asm=0.07435 train_psnr=21.997 train_ssim=0.6823 | val_dehaze=21.376/0.6757 val_score=28.133 val_clean=21.718/0.6794 val_cross=21.891/0.6787 val_hazy_diag=13.787/0.6286 val_z=0.05746 val_cee=0.04374 val_asm=0.07254
+Saved best Stage1-Dehaze-ASM checkpoint (score=28.133, PSNR=21.376, SSIM=0.6757)
+[S1-Dehaze-ASM][0675/1000] lr=2.77e-05 train_loss=0.8939 dehaze=0.1947 hazy=0.3316 clean=0.1928 cross=0.1916 z=0.04527 cee=0.04171 asm=0.07789 train_psnr=22.421 train_ssim=0.6981 | val_dehaze=21.483/0.6752 val_score=28.236 val_clean=21.755/0.6795 val_cross=21.817/0.6781 val_hazy_diag=14.219/0.6374 val_z=0.05648 val_cee=0.04356 val_asm=0.07619
+Saved best Stage1-Dehaze-ASM checkpoint (score=28.236, PSNR=21.483, SSIM=0.6752)
+[S1-Dehaze-ASM][0700/1000] lr=2.46e-05 train_loss=0.9364 dehaze=0.2036 hazy=0.3429 clean=0.2022 cross=0.2016 z=0.04506 cee=0.04174 asm=0.07061 train_psnr=22.452 train_ssim=0.6824 | val_dehaze=21.442/0.6792 val_score=28.234 val_clean=21.779/0.6824 val_cross=21.972/0.6823 val_hazy_diag=14.181/0.6322 val_z=0.05671 val_cee=0.04316 val_asm=0.07663
+[S1-Dehaze-ASM][0725/1000] lr=2.17e-05 train_loss=0.8851 dehaze=0.1925 hazy=0.3365 clean=0.1916 cross=0.1902 z=0.04502 cee=0.04196 asm=0.07440 train_psnr=22.795 train_ssim=0.6981 | val_dehaze=21.669/0.6775 val_score=28.445 val_clean=21.984/0.6814 val_cross=22.090/0.6802 val_hazy_diag=14.274/0.6402 val_z=0.05648 val_cee=0.04301 val_asm=0.07649
+Saved best Stage1-Dehaze-ASM checkpoint (score=28.445, PSNR=21.669, SSIM=0.6775)
+[S1-Dehaze-ASM][0750/1000] lr=1.89e-05 train_loss=0.8725 dehaze=0.1896 hazy=0.3400 clean=0.1891 cross=0.1878 z=0.04391 cee=0.04174 asm=0.07083 train_psnr=23.037 train_ssim=0.6981 | val_dehaze=21.612/0.6819 val_score=28.431 val_clean=21.816/0.6835 val_cross=22.008/0.6840 val_hazy_diag=13.990/0.6271 val_z=0.05624 val_cee=0.04272 val_asm=0.07459
+[S1-Dehaze-ASM][0775/1000] lr=1.64e-05 train_loss=0.8564 dehaze=0.1862 hazy=0.3243 clean=0.1852 cross=0.1840 z=0.04476 cee=0.04111 asm=0.07413 train_psnr=23.042 train_ssim=0.7063 | val_dehaze=21.622/0.6792 val_score=28.414 val_clean=22.048/0.6833 val_cross=22.153/0.6816 val_hazy_diag=14.169/0.6412 val_z=0.05607 val_cee=0.04249 val_asm=0.07517
+[S1-Dehaze-ASM][0800/1000] lr=1.41e-05 train_loss=0.8845 dehaze=0.1921 hazy=0.3386 clean=0.1919 cross=0.1905 z=0.04424 cee=0.04055 asm=0.07501 train_psnr=22.680 train_ssim=0.6964 | val_dehaze=21.661/0.6801 val_score=28.461 val_clean=22.148/0.6847 val_cross=22.188/0.6830 val_hazy_diag=14.339/0.6448 val_z=0.05569 val_cee=0.04226 val_asm=0.07657
+Saved best Stage1-Dehaze-ASM checkpoint (score=28.461, PSNR=21.661, SSIM=0.6801)
+[S1-Dehaze-ASM][0825/1000] lr=1.20e-05 train_loss=0.8769 dehaze=0.1902 hazy=0.3277 clean=0.1905 cross=0.1894 z=0.04419 cee=0.04033 asm=0.07262 train_psnr=22.824 train_ssim=0.7029 | val_dehaze=21.847/0.6825 val_score=28.672 val_clean=22.035/0.6857 val_cross=22.143/0.6852 val_hazy_diag=13.849/0.6337 val_z=0.05538 val_cee=0.04204 val_asm=0.07217
+Saved best Stage1-Dehaze-ASM checkpoint (score=28.672, PSNR=21.847, SSIM=0.6825)
+[S1-Dehaze-ASM][0850/1000] lr=1.02e-05 train_loss=0.8700 dehaze=0.1888 hazy=0.3281 clean=0.1892 cross=0.1877 z=0.04413 cee=0.04078 asm=0.07305 train_psnr=22.946 train_ssim=0.7038 | val_dehaze=21.860/0.6829 val_score=28.689 val_clean=22.000/0.6859 val_cross=22.065/0.6854 val_hazy_diag=13.962/0.6328 val_z=0.05553 val_cee=0.04186 val_asm=0.07331
+Saved best Stage1-Dehaze-ASM checkpoint (score=28.689, PSNR=21.860, SSIM=0.6829)

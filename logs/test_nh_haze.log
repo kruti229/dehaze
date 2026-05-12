@@ -1,0 +1,19 @@
+[Dataset] test: 5 matched pairs
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loaded checkpoint: checkpoints/nh_haze/final_best.pth
+Loaded phase: AILD_FREQ_STAGE2_FDAA_CALIBRATED
+Checkpoint metrics: {'psnr': 16.189077094719927, 'ssim': 0.39024965167045594, 'score': 20.091573611424487, 'baseline_psnr': 16.189077094719927, 'baseline_ssim': 0.39024965167045594, 'baseline_score': 20.091573611424487, 'improvement': 0.0, 'raw_fdaa_psnr': 16.060273345096505, 'raw_fdaa_ssim': 0.3890213489532471, 'cross_psnr': 18.797430327094844, 'cross_ssim': 0.45945037007331846, 'zgap': 0.12463330030441284, 'target_gap': 0.12463330030441284, 'fdaa_gap': 0.23279162347316742, 'alpha': 0.47563859820365906, 'eta': 0.0, 'mode': 'fdaa_eta_calibration'}
+Using full-resolution inference path: Stage1 direct dehaze z_h + c_h
+  0%|          | 0/5 [00:00<?, ?it/s][001/005] nh51_hazy.png | PSNR=16.630 SSIM=0.4649 Score=21.279 DeltaAbs=0.00000 FullRes=1200x1600
+ 20%|██        | 1/5 [00:02<00:09,  2.34s/it][002/005] nh52_hazy.png | PSNR=18.097 SSIM=0.4558 Score=22.655 DeltaAbs=0.00000 FullRes=1200x1600
+ 40%|████      | 2/5 [00:03<00:04,  1.64s/it][003/005] nh53_hazy.png | PSNR=17.805 SSIM=0.4133 Score=21.938 DeltaAbs=0.00000 FullRes=1200x1600
+ 60%|██████    | 3/5 [00:04<00:02,  1.38s/it][004/005] nh54_hazy.png | PSNR=15.657 SSIM=0.3389 Score=19.047 DeltaAbs=0.00000 FullRes=1200x1600
+ 80%|████████  | 4/5 [00:05<00:01,  1.25s/it][005/005] nh55_hazy.png | PSNR=15.665 SSIM=0.3812 Score=19.478 DeltaAbs=0.00000 FullRes=1200x1600
+100%|██████████| 5/5 [00:06<00:00,  1.17s/it]100%|██████████| 5/5 [00:06<00:00,  1.33s/it]
+
+Full-resolution results on nh_haze:
+  PSNR  : 16.771 dB
+  SSIM  : 0.4108
+  Score : 20.879
+  Dehazed images : results_fullres/nh_haze/dehazed/
+  Compare panels : results_fullres/nh_haze/compare/

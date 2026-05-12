@@ -1,0 +1,339 @@
+[33mcommit 67d92b5cb36777cc663b1a252c11dc6ed20991d0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: kruti patel <kruti229@gmail.com>
+Date:   Tue May 5 15:39:05 2026 +0530
+
+    0505
+
+ .gitignore | 7 [32m++++++[m[31m-[m
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+[33mcommit 779b2a2deebdac2f6e9029a97f2ebcb707b29d18[m
+Author: kruti patel <kruti229@gmail.com>
+Date:   Tue May 5 15:14:49 2026 +0530
+
+    0505
+
+ .gitattributes | 1 [32m+[m
+ 1 file changed, 1 insertion(+)
+
+[33mcommit 5024801f43699cf153e37b013e6bec536a283a5c[m
+Author: kruti patel <kruti229@gmail.com>
+Date:   Tue May 5 12:11:53 2026 +0530
+
+    remove large files
+
+ .gitignore | 4 [32m++++[m
+ 1 file changed, 4 insertions(+)
+
+[33mcommit a818471271104b716600f48f0562f00b89abd87c[m
+Author: kruti patel <kruti229@gmail.com>
+Date:   Tue May 5 10:14:53 2026 +0530
+
+    update 05-05
+
+ .gitattributes                                     |   1 [32m+[m
+ __pycache__/oracle_test.cpython-312.pyc            | Bin [31m0[m -> [32m9852[m bytes
+ __pycache__/test.cpython-312.pyc                   | Bin [31m0[m -> [32m9197[m bytes
+ __pycache__/train_stage2.cpython-312.pyc           | Bin [31m0[m -> [32m14000[m bytes
+ configs/dense_haze.yml                             |  35 [32m+[m[31m--[m
+ configs/nh_haze.yml                                |  35 [32m+[m[31m--[m
+ configs/sots_indoor.yml                            |  35 [32m+[m[31m--[m
+ configs/sots_outdoor.yml                           |  58 [32m+++[m[31m--[m
+ models/__pycache__/__init__.cpython-312.pyc        | Bin [31m210[m -> [32m210[m bytes
+ .../__pycache__/aild_freq_v2_model.cpython-312.pyc | Bin [31m2201[m -> [32m2201[m bytes
+ .../modules/__pycache__/__init__.cpython-312.pyc   | Bin [31m596[m -> [32m596[m bytes
+ .../__pycache__/convnext_encoder.cpython-312.pyc   | Bin [31m1434[m -> [32m1434[m bytes
+ models/modules/__pycache__/dcu_cee.cpython-312.pyc | Bin [31m5365[m -> [32m5365[m bytes
+ models/modules/__pycache__/ddu.cpython-312.pyc     | Bin [31m4695[m -> [32m4695[m bytes
+ models/modules/__pycache__/fdaa.cpython-312.pyc    | Bin [31m7753[m -> [32m7753[m bytes
+ models/modules/__pycache__/hag.cpython-312.pyc     | Bin [31m2071[m -> [32m2071[m bytes
+ models/modules/__pycache__/loss.cpython-312.pyc    | Bin [31m6582[m -> [32m9068[m bytes
+ models/modules/__pycache__/nafnet.cpython-312.pyc  | Bin [31m9214[m -> [32m12422[m bytes
+ .../pixel_shuffle_decoder.cpython-312.pyc          | Bin [31m2835[m -> [32m2835[m bytes
+ .../modules/__pycache__/predehazer.cpython-312.pyc | Bin [31m3669[m -> [32m3669[m bytes
+ models/modules/loss.py                             |  67 [32m++++[m[31m-[m
+ models/modules/nafnet.py                           | 137 [32m+++++++[m[31m---[m
+ oracle_test.py                                     | 164 [32m++++++++++++[m
+ results/nh_haze_hazy_only/dehazed_000.png          | Bin [31m0[m -> [32m397499[m bytes
+ results/nh_haze_hazy_only/dehazed_001.png          | Bin [31m0[m -> [32m387107[m bytes
+ results/nh_haze_hazy_only/dehazed_002.png          | Bin [31m0[m -> [32m453892[m bytes
+ results/nh_haze_hazy_only/dehazed_003.png          | Bin [31m0[m -> [32m380712[m bytes
+ results/nh_haze_hazy_only/dehazed_004.png          | Bin [31m0[m -> [32m395814[m bytes
+ results/sots_indoor/dehazed_000.png                | Bin [31m0[m -> [32m337714[m bytes
+ results/sots_indoor/dehazed_001.png                | Bin [31m0[m -> [32m337993[m bytes
+ results/sots_indoor/dehazed_002.png                | Bin [31m0[m -> [32m337887[m bytes
+ results/sots_indoor/dehazed_003.png                | Bin [31m0[m -> [32m337972[m bytes
+ results/sots_indoor/dehazed_004.png                | Bin [31m0[m -> [32m338214[m bytes
+ results/sots_indoor/dehazed_005.png                | Bin [31m0[m -> [32m338094[m bytes
+ results/sots_indoor/dehazed_006.png                | Bin [31m0[m -> [32m338136[m bytes
+ results/sots_indoor/dehazed_007.png                | Bin [31m0[m -> [32m338243[m bytes
+ results/sots_indoor/dehazed_008.png                | Bin [31m0[m -> [32m338181[m bytes
+ results/sots_indoor/dehazed_009.png                | Bin [31m0[m -> [32m337936[m bytes
+ results/sots_indoor/dehazed_010.png                | Bin [31m0[m -> [32m419624[m bytes
+ results/sots_indoor/dehazed_011.png                | Bin [31m0[m -> [32m418294[m bytes
+ results/sots_indoor/dehazed_012.png                | Bin [31m0[m -> [32m419961[m bytes
+ results/sots_indoor/dehazed_013.png                | Bin [31m0[m -> [32m419894[m bytes
+ results/sots_indoor/dehazed_014.png                | Bin [31m0[m -> [32m419366[m bytes
+ results/sots_indoor/dehazed_015.png                | Bin [31m0[m -> [32m419207[m bytes
+ results/sots_indoor/dehazed_016.png                | Bin [31m0[m -> [32m419259[m bytes
+ results/sots_indoor/dehazed_017.png                | Bin [31m0[m -> [32m418909[m bytes
+ results/sots_indoor/dehazed_018.png                | Bin [31m0[m -> [32m418871[m bytes
+ results/sots_indoor/dehazed_019.png                | Bin [31m0[m -> [32m418715[m bytes
+ results/sots_indoor/dehazed_020.png                | Bin [31m0[m -> [32m324680[m bytes
+ results/sots_indoor/dehazed_021.png                | Bin [31m0[m -> [32m323394[m bytes
+ results/sots_indoor/dehazed_022.png                | Bin [31m0[m -> [32m324564[m bytes
+ results/sots_indoor/dehazed_023.png                | Bin [31m0[m -> [32m323919[m bytes
+ results/sots_indoor/dehazed_024.png                | Bin [31m0[m -> [32m324283[m bytes
+ results/sots_indoor/dehazed_025.png                | Bin [31m0[m -> [32m323871[m bytes
+ results/sots_indoor/dehazed_026.png                | Bin [31m0[m -> [32m323918[m bytes
+ results/sots_indoor/dehazed_027.png                | Bin [31m0[m -> [32m324159[m bytes
+ results/sots_indoor/dehazed_028.png                | Bin [31m0[m -> [32m323781[m bytes
+ results/sots_indoor/dehazed_029.png                | Bin [31m0[m -> [32m323373[m bytes
+ results/sots_indoor/dehazed_030.png                | Bin [31m0[m -> [32m459748[m bytes
+ results/sots_indoor/dehazed_031.png                | Bin [31m0[m -> [32m458541[m bytes
+ results/sots_indoor/dehazed_032.png                | Bin [31m0[m -> [32m459650[m bytes
+ results/sots_indoor/dehazed_033.png                | Bin [31m0[m -> [32m459548[m bytes
+ results/sots_indoor/dehazed_034.png                | Bin [31m0[m -> [32m459484[m bytes
+ results/sots_indoor/dehazed_035.png                | Bin [31m0[m -> [32m459485[m bytes
+ results/sots_indoor/dehazed_036.png                | Bin [31m0[m -> [32m459347[m bytes
+ results/sots_indoor/dehazed_037.png                | Bin [31m0[m -> [32m458908[m bytes
+ results/sots_indoor/dehazed_038.png                | Bin [31m0[m -> [32m459068[m bytes
+ results/sots_indoor/dehazed_039.png                | Bin [31m0[m -> [32m458708[m bytes
+ results/sots_indoor/dehazed_040.png                | Bin [31m0[m -> [32m320174[m bytes
+ results/sots_indoor/dehazed_041.png                | Bin [31m0[m -> [32m317771[m bytes
+ results/sots_indoor/dehazed_042.png                | Bin [31m0[m -> [32m319513[m bytes
+ results/sots_indoor/dehazed_043.png                | Bin [31m0[m -> [32m319217[m bytes
+ results/sots_indoor/dehazed_044.png                | Bin [31m0[m -> [32m319242[m bytes
+ results/sots_indoor/dehazed_045.png                | Bin [31m0[m -> [32m318564[m bytes
+ results/sots_indoor/dehazed_046.png                | Bin [31m0[m -> [32m318149[m bytes
+ results/sots_indoor/dehazed_047.png                | Bin [31m0[m -> [32m318139[m bytes
+ results/sots_indoor/dehazed_048.png                | Bin [31m0[m -> [32m317749[m bytes
+ results/sots_indoor/dehazed_049.png                | Bin [31m0[m -> [32m317662[m bytes
+ .../compare_000_psnr_23.49_ssim_0.7298.png         | Bin [31m0[m -> [32m1096835[m bytes
+ .../compare_001_psnr_23.44_ssim_0.7301.png         | Bin [31m0[m -> [32m1066307[m bytes
+ .../compare_002_psnr_23.49_ssim_0.7300.png         | Bin [31m0[m -> [32m1093353[m bytes
+ .../compare_003_psnr_23.50_ssim_0.7302.png         | Bin [31m0[m -> [32m1089847[m bytes
+ .../compare_004_psnr_23.48_ssim_0.7303.png         | Bin [31m0[m -> [32m1086577[m bytes
+ .../compare_005_psnr_23.48_ssim_0.7302.png         | Bin [31m0[m -> [32m1082911[m bytes
+ .../compare_006_psnr_23.47_ssim_0.7301.png         | Bin [31m0[m -> [32m1079230[m bytes
+ .../compare_007_psnr_23.46_ssim_0.7301.png         | Bin [31m0[m -> [32m1076293[m bytes
+ .../compare_008_psnr_23.45_ssim_0.7300.png         | Bin [31m0[m -> [32m1073183[m bytes
+ .../compare_009_psnr_23.45_ssim_0.7301.png         | Bin [31m0[m -> [32m1069624[m bytes
+ .../compare_010_psnr_19.84_ssim_0.5729.png         | Bin [31m0[m -> [32m1300399[m bytes
+ .../compare_011_psnr_19.88_ssim_0.5752.png         | Bin [31m0[m -> [32m1256362[m bytes
+ .../compare_012_psnr_19.84_ssim_0.5732.png         | Bin [31m0[m -> [32m1295619[m bytes
+ .../compare_013_psnr_19.84_ssim_0.5733.png         | Bin [31m0[m -> [32m1290912[m bytes
+ .../compare_014_psnr_19.84_ssim_0.5737.png         | Bin [31m0[m -> [32m1285366[m bytes
+ .../compare_015_psnr_19.85_ssim_0.5739.png         | Bin [31m0[m -> [32m1280765[m bytes
+ .../compare_016_psnr_19.86_ssim_0.5745.png         | Bin [31m0[m -> [32m1276059[m bytes
+ .../compare_017_psnr_19.86_ssim_0.5744.png         | Bin [31m0[m -> [32m1270820[m bytes
+ .../compare_018_psnr_19.86_ssim_0.5747.png         | Bin [31m0[m -> [32m1265656[m bytes
+ .../compare_019_psnr_19.87_ssim_0.5750.png         | Bin [31m0[m -> [32m1260946[m bytes
+ .../compare_020_psnr_23.11_ssim_0.7716.png         | Bin [31m0[m -> [32m959213[m bytes
+ .../compare_021_psnr_23.22_ssim_0.7727.png         | Bin [31m0[m -> [32m919721[m bytes
+ .../compare_022_psnr_23.14_ssim_0.7721.png         | Bin [31m0[m -> [32m955826[m bytes
+ .../compare_023_psnr_23.15_ssim_0.7720.png         | Bin [31m0[m -> [32m951135[m bytes
+ .../compare_024_psnr_23.18_ssim_0.7723.png         | Bin [31m0[m -> [32m946827[m bytes
+ .../compare_025_psnr_23.19_ssim_0.7725.png         | Bin [31m0[m -> [32m942248[m bytes
+ .../compare_026_psnr_23.19_ssim_0.7724.png         | Bin [31m0[m -> [32m937909[m bytes
+ .../compare_027_psnr_23.20_ssim_0.7725.png         | Bin [31m0[m -> [32m933366[m bytes
+ .../compare_028_psnr_23.21_ssim_0.7726.png         | Bin [31m0[m -> [32m928646[m bytes
+ .../compare_029_psnr_23.22_ssim_0.7729.png         | Bin [31m0[m -> [32m923847[m bytes
+ .../compare_030_psnr_17.94_ssim_0.5122.png         | Bin [31m0[m -> [32m1411928[m bytes
+ .../compare_031_psnr_17.90_ssim_0.5113.png         | Bin [31m0[m -> [32m1346556[m bytes
+ .../compare_032_psnr_17.94_ssim_0.5122.png         | Bin [31m0[m -> [32m1404355[m bytes
+ .../compare_033_psnr_17.93_ssim_0.5121.png         | Bin [31m0[m -> [32m1396491[m bytes
+ .../compare_034_psnr_17.93_ssim_0.5120.png         | Bin [31m0[m -> [32m1389533[m bytes
+ .../compare_035_psnr_17.93_ssim_0.5119.png         | Bin [31m0[m -> [32m1382284[m bytes
+ .../compare_036_psnr_17.92_ssim_0.5116.png         | Bin [31m0[m -> [32m1374991[m bytes
+ .../compare_037_psnr_17.92_ssim_0.5121.png         | Bin [31m0[m -> [32m1367534[m bytes
+ .../compare_038_psnr_17.91_ssim_0.5119.png         | Bin [31m0[m -> [32m1360782[m bytes
+ .../compare_039_psnr_17.91_ssim_0.5113.png         | Bin [31m0[m -> [32m1353376[m bytes
+ .../compare_040_psnr_21.63_ssim_0.7826.png         | Bin [31m0[m -> [32m952407[m bytes
+ .../compare_041_psnr_21.68_ssim_0.7845.png         | Bin [31m0[m -> [32m893960[m bytes
+ .../compare_042_psnr_21.64_ssim_0.7832.png         | Bin [31m0[m -> [32m945007[m bytes
+ .../compare_043_psnr_21.65_ssim_0.7838.png         | Bin [31m0[m -> [32m938757[m bytes
+ .../compare_044_psnr_21.66_ssim_0.7838.png         | Bin [31m0[m -> [32m932821[m bytes
+ .../compare_045_psnr_21.67_ssim_0.7840.png         | Bin [31m0[m -> [32m925281[m bytes
+ .../compare_046_psnr_21.67_ssim_0.7842.png         | Bin [31m0[m -> [32m917636[m bytes
+ .../compare_047_psnr_21.68_ssim_0.7846.png         | Bin [31m0[m -> [32m912061[m bytes
+ .../compare_048_psnr_21.69_ssim_0.7842.png         | Bin [31m0[m -> [32m905917[m bytes
+ .../compare_049_psnr_21.69_ssim_0.7847.png         | Bin [31m0[m -> [32m899565[m bytes
+ results/sots_outdoor/dehazed_000.png               | Bin [31m0[m -> [32m275277[m bytes
+ results/sots_outdoor/dehazed_001.png               | Bin [31m0[m -> [32m356316[m bytes
+ results/sots_outdoor/dehazed_002.png               | Bin [31m0[m -> [32m292689[m bytes
+ results/sots_outdoor/dehazed_003.png               | Bin [31m0[m -> [32m228406[m bytes
+ results/sots_outdoor/dehazed_004.png               | Bin [31m0[m -> [32m182280[m bytes
+ results/sots_outdoor/dehazed_005.png               | Bin [31m0[m -> [32m289158[m bytes
+ results/sots_outdoor/dehazed_006.png               | Bin [31m0[m -> [32m305224[m bytes
+ results/sots_outdoor/dehazed_007.png               | Bin [31m0[m -> [32m306356[m bytes
+ results/sots_outdoor/dehazed_008.png               | Bin [31m0[m -> [32m297951[m bytes
+ results/sots_outdoor/dehazed_009.png               | Bin [31m0[m -> [32m300448[m bytes
+ results/sots_outdoor/dehazed_010.png               | Bin [31m0[m -> [32m445514[m bytes
+ results/sots_outdoor/dehazed_011.png               | Bin [31m0[m -> [32m236582[m bytes
+ results/sots_outdoor/dehazed_012.png               | Bin [31m0[m -> [32m203133[m bytes
+ results/sots_outdoor/dehazed_013.png               | Bin [31m0[m -> [32m201721[m bytes
+ results/sots_outdoor/dehazed_014.png               | Bin [31m0[m -> [32m270955[m bytes
+ results/sots_outdoor/dehazed_015.png               | Bin [31m0[m -> [32m309893[m bytes
+ results/sots_outdoor/dehazed_016.png               | Bin [31m0[m -> [32m340750[m bytes
+ results/sots_outdoor/dehazed_017.png               | Bin [31m0[m -> [32m261572[m bytes
+ results/sots_outdoor/dehazed_018.png               | Bin [31m0[m -> [32m199210[m bytes
+ results/sots_outdoor/dehazed_019.png               | Bin [31m0[m -> [32m289340[m bytes
+ results/sots_outdoor/dehazed_020.png               | Bin [31m0[m -> [32m374734[m bytes
+ results/sots_outdoor/dehazed_021.png               | Bin [31m0[m -> [32m281054[m bytes
+ results/sots_outdoor/dehazed_022.png               | Bin [31m0[m -> [32m268949[m bytes
+ results/sots_outdoor/dehazed_023.png               | Bin [31m0[m -> [32m262148[m bytes
+ results/sots_outdoor/dehazed_024.png               | Bin [31m0[m -> [32m260645[m bytes
+ results/sots_outdoor/dehazed_025.png               | Bin [31m0[m -> [32m215967[m bytes
+ results/sots_outdoor/dehazed_026.png               | Bin [31m0[m -> [32m329894[m bytes
+ results/sots_outdoor/dehazed_027.png               | Bin [31m0[m -> [32m224435[m bytes
+ results/sots_outdoor/dehazed_028.png               | Bin [31m0[m -> [32m294099[m bytes
+ results/sots_outdoor/dehazed_029.png               | Bin [31m0[m -> [32m270035[m bytes
+ results/sots_outdoor/dehazed_030.png               | Bin [31m0[m -> [32m305851[m bytes
+ results/sots_outdoor/dehazed_031.png               | Bin [31m0[m -> [32m235601[m bytes
+ results/sots_outdoor/dehazed_032.png               | Bin [31m0[m -> [32m237528[m bytes
+ results/sots_outdoor/dehazed_033.png               | Bin [31m0[m -> [32m183697[m bytes
+ results/sots_outdoor/dehazed_034.png               | Bin [31m0[m -> [32m294297[m bytes
+ results/sots_outdoor/dehazed_035.png               | Bin [31m0[m -> [32m257069[m bytes
+ results/sots_outdoor/dehazed_036.png               | Bin [31m0[m -> [32m439417[m bytes
+ results/sots_outdoor/dehazed_037.png               | Bin [31m0[m -> [32m649474[m bytes
+ results/sots_outdoor/dehazed_038.png               | Bin [31m0[m -> [32m331973[m bytes
+ results/sots_outdoor/dehazed_039.png               | Bin [31m0[m -> [32m458414[m bytes
+ results/sots_outdoor/dehazed_040.png               | Bin [31m0[m -> [32m261111[m bytes
+ results/sots_outdoor/dehazed_041.png               | Bin [31m0[m -> [32m240432[m bytes
+ results/sots_outdoor/dehazed_042.png               | Bin [31m0[m -> [32m549286[m bytes
+ results/sots_outdoor/dehazed_043.png               | Bin [31m0[m -> [32m243112[m bytes
+ results/sots_outdoor/dehazed_044.png               | Bin [31m0[m -> [32m242258[m bytes
+ results/sots_outdoor/dehazed_045.png               | Bin [31m0[m -> [32m238713[m bytes
+ results/sots_outdoor/dehazed_046.png               | Bin [31m0[m -> [32m318607[m bytes
+ results/sots_outdoor/dehazed_047.png               | Bin [31m0[m -> [32m408707[m bytes
+ results/sots_outdoor/dehazed_048.png               | Bin [31m0[m -> [32m192964[m bytes
+ results/sots_outdoor/dehazed_049.png               | Bin [31m0[m -> [32m342883[m bytes
+ results/sots_outdoor/dehazed_050.png               | Bin [31m0[m -> [32m248370[m bytes
+ .../compare_000_psnr_16.78_ssim_0.4881.png         | Bin [31m0[m -> [32m1087309[m bytes
+ .../compare_001_psnr_19.78_ssim_0.5993.png         | Bin [31m0[m -> [32m1350757[m bytes
+ .../compare_002_psnr_19.23_ssim_0.4773.png         | Bin [31m0[m -> [32m1044831[m bytes
+ .../compare_003_psnr_23.17_ssim_0.5994.png         | Bin [31m0[m -> [32m887312[m bytes
+ .../compare_004_psnr_26.97_ssim_0.8321.png         | Bin [31m0[m -> [32m631395[m bytes
+ .../compare_005_psnr_17.34_ssim_0.5071.png         | Bin [31m0[m -> [32m1007026[m bytes
+ .../compare_006_psnr_17.07_ssim_0.3745.png         | Bin [31m0[m -> [32m1127479[m bytes
+ .../compare_007_psnr_18.02_ssim_0.4569.png         | Bin [31m0[m -> [32m1125606[m bytes
+ .../compare_008_psnr_17.71_ssim_0.3657.png         | Bin [31m0[m -> [32m1012087[m bytes
+ .../compare_009_psnr_17.60_ssim_0.3650.png         | Bin [31m0[m -> [32m1025091[m bytes
+ .../compare_010_psnr_16.45_ssim_0.4415.png         | Bin [31m0[m -> [32m1640727[m bytes
+ .../compare_011_psnr_23.60_ssim_0.5888.png         | Bin [31m0[m -> [32m940751[m bytes
+ .../compare_012_psnr_25.91_ssim_0.8365.png         | Bin [31m0[m -> [32m775945[m bytes
+ .../compare_013_psnr_24.14_ssim_0.6708.png         | Bin [31m0[m -> [32m856311[m bytes
+ .../compare_014_psnr_16.86_ssim_0.5884.png         | Bin [31m0[m -> [32m924782[m bytes
+ .../compare_015_psnr_19.53_ssim_0.5728.png         | Bin [31m0[m -> [32m1026503[m bytes
+ .../compare_016_psnr_19.26_ssim_0.4530.png         | Bin [31m0[m -> [32m1130265[m bytes
+ .../compare_017_psnr_20.62_ssim_0.6064.png         | Bin [31m0[m -> [32m942078[m bytes
+ .../compare_018_psnr_26.84_ssim_0.8332.png         | Bin [31m0[m -> [32m662478[m bytes
+ .../compare_019_psnr_20.74_ssim_0.4834.png         | Bin [31m0[m -> [32m1025878[m bytes
+ .../compare_020_psnr_15.29_ssim_0.3383.png         | Bin [31m0[m -> [32m1268766[m bytes
+ .../compare_021_psnr_18.65_ssim_0.4894.png         | Bin [31m0[m -> [32m1051803[m bytes
+ .../compare_022_psnr_19.99_ssim_0.5257.png         | Bin [31m0[m -> [32m975431[m bytes
+ .../compare_023_psnr_17.99_ssim_0.5522.png         | Bin [31m0[m -> [32m978958[m bytes
+ .../compare_024_psnr_21.82_ssim_0.4933.png         | Bin [31m0[m -> [32m1014816[m bytes
+ .../compare_025_psnr_26.68_ssim_0.7120.png         | Bin [31m0[m -> [32m759256[m bytes
+ .../compare_026_psnr_19.46_ssim_0.3249.png         | Bin [31m0[m -> [32m1291578[m bytes
+ .../compare_027_psnr_26.15_ssim_0.7058.png         | Bin [31m0[m -> [32m746828[m bytes
+ .../compare_028_psnr_18.94_ssim_0.4260.png         | Bin [31m0[m -> [32m1082037[m bytes
+ .../compare_029_psnr_21.81_ssim_0.7423.png         | Bin [31m0[m -> [32m1112343[m bytes
+ .../compare_030_psnr_20.96_ssim_0.5862.png         | Bin [31m0[m -> [32m1120891[m bytes
+ .../compare_031_psnr_23.66_ssim_0.5654.png         | Bin [31m0[m -> [32m907151[m bytes
+ .../compare_032_psnr_18.33_ssim_0.5905.png         | Bin [31m0[m -> [32m871589[m bytes
+ .../compare_033_psnr_28.91_ssim_0.7804.png         | Bin [31m0[m -> [32m678953[m bytes
+ .../compare_034_psnr_18.15_ssim_0.4888.png         | Bin [31m0[m -> [32m1032908[m bytes
+ .../compare_035_psnr_20.54_ssim_0.6085.png         | Bin [31m0[m -> [32m894194[m bytes
+ .../compare_036_psnr_18.07_ssim_0.6323.png         | Bin [31m0[m -> [32m1657187[m bytes
+ .../compare_037_psnr_19.08_ssim_0.5787.png         | Bin [31m0[m -> [32m2285943[m bytes
+ .../compare_038_psnr_16.83_ssim_0.4097.png         | Bin [31m0[m -> [32m1204537[m bytes
+ .../compare_039_psnr_20.45_ssim_0.5688.png         | Bin [31m0[m -> [32m1748231[m bytes
+ .../compare_040_psnr_21.74_ssim_0.5142.png         | Bin [31m0[m -> [32m1024088[m bytes
+ .../compare_041_psnr_21.34_ssim_0.6451.png         | Bin [31m0[m -> [32m837030[m bytes
+ .../compare_042_psnr_19.14_ssim_0.5579.png         | Bin [31m0[m -> [32m1874872[m bytes
+ .../compare_043_psnr_21.08_ssim_0.6537.png         | Bin [31m0[m -> [32m865372[m bytes
+ .../compare_044_psnr_22.06_ssim_0.7151.png         | Bin [31m0[m -> [32m1147804[m bytes
+ .../compare_045_psnr_21.74_ssim_0.5700.png         | Bin [31m0[m -> [32m901263[m bytes
+ .../compare_046_psnr_19.72_ssim_0.3620.png         | Bin [31m0[m -> [32m1167210[m bytes
+ .../compare_047_psnr_21.24_ssim_0.6455.png         | Bin [31m0[m -> [32m1575847[m bytes
+ .../compare_048_psnr_20.70_ssim_0.7030.png         | Bin [31m0[m -> [32m795067[m bytes
+ .../compare_049_psnr_19.68_ssim_0.4744.png         | Bin [31m0[m -> [32m1293472[m bytes
+ .../compare_050_psnr_17.83_ssim_0.5206.png         | Bin [31m0[m -> [32m889114[m bytes
+ ...{split_dataset.py => split_dataset_real_raw.py} |   0
+ scripts/split_sots.py                              | 173 [32m+++++++++++++[m
+ scripts/verify_dataset.py                          | 112 [32m++++++++[m
+ test.py                                            | 121 [32m+++++++[m[31m--[m
+ test2.py                                           | 282 [32m+++++++++++++++++++++[m
+ train_stage1.py                                    |   6 [32m+[m[31m-[m
+ train_stage2.py                                    | 159 [32m+++++++++[m[31m---[m
+ utils/__pycache__/__init__.cpython-312.pyc         | Bin [31m437[m -> [32m437[m bytes
+ utils/__pycache__/checkpoint_utils.cpython-312.pyc | Bin [31m930[m -> [32m930[m bytes
+ utils/__pycache__/img_utils.cpython-312.pyc        | Bin [31m1963[m -> [32m1963[m bytes
+ utils/__pycache__/metrics.cpython-312.pyc          | Bin [31m1359[m -> [32m1359[m bytes
+ utils/__pycache__/sde_utils.cpython-312.pyc        | Bin [31m5031[m -> [32m5031[m bytes
+ 242 files changed, 1192 insertions(+), 193 deletions(-)
+
+[33mcommit f8a1af5a15d1c1cadf3c4303d3b16c79836bd442[m
+Author: kruti229 <kruti229@gmail.com>
+Date:   Thu Apr 30 03:35:03 2026 +0000
+
+    initial commit
+
+ configs/dense_haze.yml                             |  89 [32m++++++++[m
+ configs/nh_haze.yml                                |  89 [32m++++++++[m
+ configs/sots_indoor.yml                            |  89 [32m++++++++[m
+ configs/sots_outdoor.yml                           |  84 [32m+++++++[m
+ models/__init__.py                                 |   1 [32m+[m
+ models/__pycache__/__init__.cpython-312.pyc        | Bin [31m0[m -> [32m210[m bytes
+ .../__pycache__/aild_freq_v2_model.cpython-312.pyc | Bin [31m0[m -> [32m2201[m bytes
+ models/aild_freq_v2_model.py                       |  37 [32m++++[m
+ models/modules/__init__.py                         |   9 [32m+[m
+ .../modules/__pycache__/__init__.cpython-312.pyc   | Bin [31m0[m -> [32m596[m bytes
+ .../__pycache__/convnext_encoder.cpython-312.pyc   | Bin [31m0[m -> [32m1434[m bytes
+ models/modules/__pycache__/dcu_cee.cpython-312.pyc | Bin [31m0[m -> [32m5365[m bytes
+ models/modules/__pycache__/ddu.cpython-312.pyc     | Bin [31m0[m -> [32m4695[m bytes
+ models/modules/__pycache__/fdaa.cpython-312.pyc    | Bin [31m0[m -> [32m7753[m bytes
+ models/modules/__pycache__/hag.cpython-312.pyc     | Bin [31m0[m -> [32m2071[m bytes
+ models/modules/__pycache__/loss.cpython-312.pyc    | Bin [31m0[m -> [32m6582[m bytes
+ models/modules/__pycache__/nafnet.cpython-312.pyc  | Bin [31m0[m -> [32m9214[m bytes
+ .../pixel_shuffle_decoder.cpython-312.pyc          | Bin [31m0[m -> [32m2835[m bytes
+ .../modules/__pycache__/predehazer.cpython-312.pyc | Bin [31m0[m -> [32m3669[m bytes
+ models/modules/convnext_encoder.py                 |  23 [32m++[m
+ models/modules/dcu_cee.py                          |  80 [32m+++++++[m
+ models/modules/ddu.py                              |  77 [32m+++++++[m
+ models/modules/fdaa.py                             |  97 [32m+++++++++[m
+ models/modules/hag.py                              |  28 [32m+++[m
+ models/modules/loss.py                             |  89 [32m++++++++[m
+ models/modules/nafnet.py                           | 141 [32m++++++++++++[m
+ models/modules/pixel_shuffle_decoder.py            |  43 [32m++++[m
+ models/modules/predehazer.py                       |  56 [32m+++++[m
+ results/dense_haze/dehazed_000.png                 | Bin [31m0[m -> [32m465814[m bytes
+ results/dense_haze/dehazed_001.png                 | Bin [31m0[m -> [32m592793[m bytes
+ results/dense_haze/dehazed_002.png                 | Bin [31m0[m -> [32m529517[m bytes
+ results/dense_haze/dehazed_003.png                 | Bin [31m0[m -> [32m632941[m bytes
+ results/dense_haze/dehazed_004.png                 | Bin [31m0[m -> [32m581500[m bytes
+ results/nh_haze/dehazed_000.png                    | Bin [31m0[m -> [32m706260[m bytes
+ results/nh_haze/dehazed_001.png                    | Bin [31m0[m -> [32m725780[m bytes
+ results/nh_haze/dehazed_002.png                    | Bin [31m0[m -> [32m739783[m bytes
+ results/nh_haze/dehazed_003.png                    | Bin [31m0[m -> [32m660433[m bytes
+ results/nh_haze/dehazed_004.png                    | Bin [31m0[m -> [32m664727[m bytes
+ scripts/count_flops.py                             |   0
+ scripts/split_dataset.py                           | 196 [32m+++++++++++++++++[m
+ scripts/verify_dataset.py                          |   0
+ test.py                                            | 160 [32m++++++++++++++[m
+ train_predehazer.py                                | 123 [32m+++++++++++[m
+ train_stage1.py                                    | 206 [32m++++++++++++++++++[m
+ train_stage2.py                                    | 242 [32m+++++++++++++++++++++[m
+ utils/__init__.py                                  |   3 [32m+[m
+ utils/__pycache__/__init__.cpython-312.pyc         | Bin [31m0[m -> [32m437[m bytes
+ utils/__pycache__/checkpoint_utils.cpython-312.pyc | Bin [31m0[m -> [32m930[m bytes
+ utils/__pycache__/img_utils.cpython-312.pyc        | Bin [31m0[m -> [32m1963[m bytes
+ utils/__pycache__/metrics.cpython-312.pyc          | Bin [31m0[m -> [32m1359[m bytes
+ utils/__pycache__/sde_utils.cpython-312.pyc        | Bin [31m0[m -> [32m5031[m bytes
+ utils/checkpoint_utils.py                          |  13 [32m++[m
+ utils/img_utils.py                                 |  19 [32m++[m
+ utils/metrics.py                                   |  22 [32m++[m
+ utils/sde_utils.py                                 |  79 [32m+++++++[m
+ 55 files changed, 2095 insertions(+)

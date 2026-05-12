@@ -1,0 +1,24 @@
+[Stage2] Stage1 cross PSNR: 21.912 | cross SSIM: 0.5960
+[Stage2] Loaded Stage1 checkpoint: checkpoints/sots_outdoor/stage1_best.pth
+[Stage2] Stage1 clean PSNR: 21.916896771853875 | hazy PSNR: 25.848658575738842
+[Loss] Ignored external loss keys: ['lambda_cee_align', 'lambda_cross', 'lambda_ctx', 'lambda_edge']
+[Dataset] train: 41 matched pairs
+[Dataset] val: 5 matched pairs
+[S2][0001/300] train_loss=0.4293 train_psnr=13.658 train_fdaa=0.5560 train_hag=0.5334 | hazy_psnr=16.336 hazy_ssim=0.4493 oracle_psnr=16.388 oracle_ssim=0.4510 val_ctx=0.0344 val_fdaa=0.5560 val_hag=0.5322
+Saved best hazy-only checkpoint (PSNR=16.336, SSIM=0.4493)
+[S2][0025/300] train_loss=0.2006 train_psnr=18.795 train_fdaa=0.5545 train_hag=0.5310 | hazy_psnr=19.871 hazy_ssim=0.5521 oracle_psnr=19.919 oracle_ssim=0.5532 val_ctx=0.0344 val_fdaa=0.5544 val_hag=0.5312
+Saved best hazy-only checkpoint (PSNR=19.871, SSIM=0.5521)
+[S2][0050/300] train_loss=0.1812 train_psnr=19.733 train_fdaa=0.5533 train_hag=0.5291 | hazy_psnr=19.760 hazy_ssim=0.5646 oracle_psnr=19.802 oracle_ssim=0.5656 val_ctx=0.0344 val_fdaa=0.5533 val_hag=0.5287
+[S2][0075/300] train_loss=0.1786 train_psnr=19.689 train_fdaa=0.5518 train_hag=0.5237 | hazy_psnr=19.254 hazy_ssim=0.5543 oracle_psnr=19.326 oracle_ssim=0.5553 val_ctx=0.0344 val_fdaa=0.5518 val_hag=0.5241
+[S2][0100/300] train_loss=0.1717 train_psnr=20.012 train_fdaa=0.5508 train_hag=0.5200 | hazy_psnr=19.407 hazy_ssim=0.5585 oracle_psnr=19.477 oracle_ssim=0.5595 val_ctx=0.0344 val_fdaa=0.5508 val_hag=0.5214
+[S2][0125/300] train_loss=0.1727 train_psnr=19.950 train_fdaa=0.5501 train_hag=0.5184 | hazy_psnr=19.458 hazy_ssim=0.5694 oracle_psnr=19.522 oracle_ssim=0.5704 val_ctx=0.0344 val_fdaa=0.5501 val_hag=0.5196
+[S2][0150/300] train_loss=0.1763 train_psnr=19.905 train_fdaa=0.5494 train_hag=0.5194 | hazy_psnr=19.418 hazy_ssim=0.5702 oracle_psnr=19.480 oracle_ssim=0.5713 val_ctx=0.0344 val_fdaa=0.5494 val_hag=0.5175
+[S2][0175/300] train_loss=0.1609 train_psnr=20.693 train_fdaa=0.5488 train_hag=0.5147 | hazy_psnr=19.844 hazy_ssim=0.5732 oracle_psnr=19.891 oracle_ssim=0.5743 val_ctx=0.0344 val_fdaa=0.5488 val_hag=0.5165
+[S2][0200/300] train_loss=0.1670 train_psnr=20.171 train_fdaa=0.5483 train_hag=0.5154 | hazy_psnr=19.413 hazy_ssim=0.5676 oracle_psnr=19.472 oracle_ssim=0.5685 val_ctx=0.0344 val_fdaa=0.5483 val_hag=0.5153
+[S2][0225/300] train_loss=0.1697 train_psnr=20.081 train_fdaa=0.5479 train_hag=0.5123 | hazy_psnr=19.562 hazy_ssim=0.5681 oracle_psnr=19.612 oracle_ssim=0.5690 val_ctx=0.0344 val_fdaa=0.5479 val_hag=0.5133
+[S2][0250/300] train_loss=0.1659 train_psnr=20.196 train_fdaa=0.5473 train_hag=0.5122 | hazy_psnr=19.985 hazy_ssim=0.5684 oracle_psnr=20.059 oracle_ssim=0.5697 val_ctx=0.0344 val_fdaa=0.5474 val_hag=0.5122
+Saved best hazy-only checkpoint (PSNR=19.985, SSIM=0.5684)
+[S2][0275/300] train_loss=0.1633 train_psnr=20.462 train_fdaa=0.5468 train_hag=0.5115 | hazy_psnr=20.038 hazy_ssim=0.5752 oracle_psnr=20.080 oracle_ssim=0.5762 val_ctx=0.0344 val_fdaa=0.5468 val_hag=0.5112
+Saved best hazy-only checkpoint (PSNR=20.038, SSIM=0.5752)
+[S2][0300/300] train_loss=0.1626 train_psnr=20.461 train_fdaa=0.5465 train_hag=0.5081 | hazy_psnr=19.675 hazy_ssim=0.5776 oracle_psnr=19.740 oracle_ssim=0.5788 val_ctx=0.0344 val_fdaa=0.5465 val_hag=0.5091
+Best Stage2 Hazy PSNR: 20.038

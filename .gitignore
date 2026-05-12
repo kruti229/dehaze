@@ -1,13 +1,5 @@
 checkpoints/
 data/
 *.pth
-*.zipdata/
-checkpoints/
-*.path/
-*.pth/
-*.zip
-*.pth
-data/
-checkpoints/
 *.pth
 *.zip

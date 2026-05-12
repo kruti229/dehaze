@@ -1,0 +1,22 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loaded Stage1 checkpoint: checkpoints/nh_haze/stage1_best.pth
+Checkpoint epoch: 425
+Selection metric: dehaze_score
+Checkpoint dehaze PSNR: 16.189077094719927
+Checkpoint dehaze SSIM: 0.39024965167045594
+Checkpoint clean PSNR: 18.624544528525313
+Checkpoint cross PSNR: 18.797430327094844
+[Dataset] test: 5 matched pairs
+  0%|          | 0/5 [00:00<?, ?it/s][001/005] nh51_hazy.png | dehaze=16.630/0.4649 | clean=17.609/0.5648 | cross_oracle=17.806/0.5617 | fullres=1200x1600
+ 20%|██        | 1/5 [00:02<00:11,  2.91s/it][002/005] nh52_hazy.png | dehaze=18.097/0.4558 | clean=19.608/0.5163 | cross_oracle=19.704/0.5107 | fullres=1200x1600
+ 40%|████      | 2/5 [00:04<00:06,  2.27s/it][003/005] nh53_hazy.png | dehaze=17.805/0.4133 | clean=18.433/0.4727 | cross_oracle=18.628/0.4696 | fullres=1200x1600
+ 60%|██████    | 3/5 [00:06<00:03,  1.99s/it][004/005] nh54_hazy.png | dehaze=15.657/0.3389 | clean=17.357/0.4024 | cross_oracle=17.578/0.3972 | fullres=1200x1600
+ 80%|████████  | 4/5 [00:08<00:01,  1.86s/it][005/005] nh55_hazy.png | dehaze=15.665/0.3812 | clean=17.722/0.4628 | cross_oracle=17.743/0.4564 | fullres=1200x1600
+100%|██████████| 5/5 [00:09<00:00,  1.83s/it]100%|██████████| 5/5 [00:09<00:00,  1.97s/it]
+
+Stage1 Full-Resolution Test Results on nh_haze:
+  Deployable dehaze PSNR / SSIM : 16.771 / 0.4108
+  Clean recon PSNR / SSIM       : 18.146 / 0.4838
+  Cross/oracle PSNR / SSIM      : 18.292 / 0.4791
+  Dehazed images : results_stage1/nh_haze/dehaze_direct/
+  Compare panels : results_stage1/nh_haze/compare/
