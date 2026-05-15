@@ -2,9 +2,11 @@ import os
 import random
 
 import torch
+import torch.nn as nn
 import torch.nn.functional as F
 import yaml
 from torch.utils.data import DataLoader
+import numpy as np
 
 from data.lqgt_dataset import LQGTDataset
 
@@ -13,13 +15,30 @@ from models.modules.dcu_cee import DehazeDiffCodec
 from models.modules.ddu import DimensionalDecompressionUnit
 from models.modules.pixel_shuffle_decoder import PixelShuffleDecoder
 
-from utils.checkpoint_utils import save_checkpoint
+from models.modules.physical_guidance import (
+    TransmissionEstimator,
+    PhysicalContextFusion,
+    atmospheric_reconstruction,
+    transmission_smoothness_loss,
+)
+
+from models.modules.color_losses import (
+    RGBHSVColorLoss,
+    ChromaConsistencyLoss,
+    GrayPenaltyLoss,
+)
+
+from utils.checkpoint_utils import save_checkpoint, load_checkpoint
 from utils.img_utils import normalize_for_encoder
 from utils.metrics import compute_psnr, compute_ssim
+
+from torch.optim.lr_scheduler import SequentialLR, LinearLR, CosineAnnealingLR
+
 
 
 def set_seed(seed):
     random.seed(seed)
+    np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
 
@@ -57,7 +76,7 @@ def freeze_module(module):
 
 def build_modules(opt, device):
     encoder = ConvNextEncoder(
-        pretrained=bool(opt["network_encoder"]["pretrained"]),
+        pretrained=bool(opt["network_encoder"].get("pretrained", True)),
         backbone=opt["network_encoder"].get("backbone", "convnext_small"),
     ).to(device)
 
@@ -82,21 +101,42 @@ def build_modules(opt, device):
         upscale_factor=8,
     ).to(device)
 
-    return encoder, codec, ddu, decoder
+    physical_opt = opt.get("physical", {})
+
+    phys_t = TransmissionEstimator(
+        base_ch=int(physical_opt.get("base_ch", 32)),
+        t_min=float(physical_opt.get("t_min", 0.05)),
+    ).to(device)
+
+    phys_fusion = PhysicalContextFusion(
+        cee_ch=cee_ch,
+    ).to(device)
+
+    return encoder, codec, ddu, decoder, phys_t, phys_fusion
 
 
 def reconstruct_from_latent(z, c, ddu, decoder):
-    return decoder(ddu(z, c)).clamp(0, 1)
+    return decoder(ddu(z, c)).clamp(0.0, 1.0)
 
 
-def color_loss(pred, target):
-    pred_mean = pred.mean(dim=(2, 3))
-    target_mean = target.mean(dim=(2, 3))
+def charbonnier_loss(pred, target, eps=1.0e-3):
+    return torch.sqrt((pred - target) * (pred - target) + eps * eps).mean()
 
-    pred_std = pred.std(dim=(2, 3), unbiased=False)
-    target_std = target.std(dim=(2, 3), unbiased=False)
 
-    return F.l1_loss(pred_mean, target_mean) + 0.5 * F.l1_loss(pred_std, target_std)
+def tv_loss(img):
+    dh = torch.abs(img[:, :, 1:, :] - img[:, :, :-1, :]).mean()
+    dw = torch.abs(img[:, :, :, 1:] - img[:, :, :, :-1]).mean()
+    return dh + dw
+
+
+def frequency_loss(pred, target):
+    pred_fft = torch.fft.fft2(pred.float(), norm="ortho")
+    target_fft = torch.fft.fft2(target.float(), norm="ortho")
+
+    pred_mag = torch.log1p(torch.abs(pred_fft))
+    target_mag = torch.log1p(torch.abs(target_fft))
+
+    return F.l1_loss(pred_mag, target_mag)
 
 
 def sobel_edges(x):
@@ -130,22 +170,32 @@ def edge_loss(pred, target):
     )
 
 
-def tv_loss(img):
-    dh = torch.abs(img[:, :, 1:, :] - img[:, :, :-1, :]).mean()
-    dw = torch.abs(img[:, :, :, 1:] - img[:, :, :, :-1]).mean()
-    return dh + dw
+def structural_loss(pred, target):
+    pred = pred.float().clamp(0.0, 1.0)
+    target = target.float().clamp(0.0, 1.0)
 
+    h, w = pred.shape[-2:]
 
-def ssim_loss(pred, target):
     try:
-        from pytorch_msssim import ssim
+        from pytorch_msssim import ms_ssim, ssim
+
+        if h >= 160 and w >= 160:
+            return 1.0 - ms_ssim(
+                pred,
+                target,
+                data_range=1.0,
+                size_average=True,
+                win_size=7,
+            )
 
         return 1.0 - ssim(
-            pred.float(),
-            target.float(),
+            pred,
+            target,
             data_range=1.0,
             size_average=True,
+            win_size=7,
         )
+
     except Exception:
         return torch.tensor(
             0.0,
@@ -154,212 +204,242 @@ def ssim_loss(pred, target):
         )
 
 
-def frequency_loss(pred, target):
-    pred_fft = torch.fft.fft2(pred.float(), norm="ortho")
-    target_fft = torch.fft.fft2(target.float(), norm="ortho")
+class Stage1Loss(nn.Module):
+    def __init__(self, opt):
+        super().__init__()
 
-    pred_amp = torch.log1p(torch.abs(pred_fft))
-    target_amp = torch.log1p(torch.abs(target_fft))
+        loss_opt = opt.get("loss", {})
 
-    return F.l1_loss(pred_amp, target_amp)
+        self.lambda_dehaze = float(loss_opt.get("lambda_dehaze_recon", 2.0))
+        self.lambda_hazy = float(loss_opt.get("lambda_hazy_recon", 0.0))
+        self.lambda_clean = float(loss_opt.get("lambda_clean_recon", 0.25))
+        self.lambda_cross = float(loss_opt.get("lambda_cross", 0.6))
 
+        self.lambda_z = float(loss_opt.get("lambda_z_align", 0.8))
+        self.lambda_cee = float(loss_opt.get("lambda_cee_align", 0.0))
 
-def estimate_atmospheric_light(hazy, top_percent=0.001):
-    b, c, _, _ = hazy.shape
+        self.lambda_ssim = float(loss_opt.get("lambda_ssim", 0.35))
+        self.lambda_edge = float(loss_opt.get("lambda_edge", 0.03))
+        self.lambda_hsv = float(loss_opt.get("lambda_hsv", 0.30))
+        self.lambda_chroma = float(loss_opt.get("lambda_chroma", 0.40))
+        self.lambda_gray = float(loss_opt.get("lambda_gray_penalty", 0.15))
+        self.lambda_freq = float(loss_opt.get("lambda_freq", 0.02))
+        self.lambda_tv = float(loss_opt.get("lambda_tv", 0.0003))
 
-    flat = hazy.view(b, c, -1)
-    intensity = flat.mean(dim=1)
+        self.lambda_phy = float(loss_opt.get("lambda_phy", 0.02))
+        self.lambda_t_smooth = float(loss_opt.get("lambda_t_smooth", 0.001))
 
-    k = max(1, int(intensity.shape[1] * top_percent))
-    idx = torch.topk(intensity, k=k, dim=1).indices
+        self.hsv_color = RGBHSVColorLoss()
+        self.chroma_loss = ChromaConsistencyLoss()
+        self.gray_loss = GrayPenaltyLoss()
 
-    a_list = []
-    for i in range(b):
-        pixels = flat[i, :, idx[i]]
-        a = pixels.mean(dim=1)
-        a_list.append(a)
+    def image_loss(self, pred, target):
+        pred, target = match_spatial(pred, target)
 
-    A = torch.stack(a_list, dim=0).view(b, c, 1, 1)
-    return A.clamp(0.05, 1.0)
+        l_rec = charbonnier_loss(pred, target)
+        l_ssim = structural_loss(pred, target)
+        l_edge = edge_loss(pred, target)
+        l_hsv = self.hsv_color(pred, target)
+        l_chroma = self.chroma_loss(pred, target)
+        l_gray = self.gray_loss(pred, target)
+        l_freq = frequency_loss(pred, target)
+        l_tv = tv_loss(pred)
 
+        total = (
+            l_rec
+            + self.lambda_ssim * l_ssim
+            + self.lambda_edge * l_edge
+            + self.lambda_hsv * l_hsv
+            + self.lambda_chroma * l_chroma
+            + self.lambda_gray * l_gray
+            + self.lambda_freq * l_freq
+            + self.lambda_tv * l_tv
+        )
 
-def estimate_transmission_pseudo(hazy, omega=0.95, min_t=0.10):
-    dark = hazy.min(dim=1, keepdim=True)[0]
-    t = 1.0 - omega * dark
-    return t.clamp(min_t, 1.0)
+        parts = {
+            "rec": l_rec,
+            "ssim": l_ssim,
+            "edge": l_edge,
+            "hsv": l_hsv,
+            "chroma": l_chroma,
+            "gray": l_gray,
+            "freq": l_freq,
+            "tv": l_tv,
+        }
 
+        return total, parts
 
-def asm_reconstruction_loss(pred_clean, hazy):
-    pred_clean, hazy = match_spatial(pred_clean, hazy)
+    def forward(
+        self,
+        img_dehaze,
+        img_hazy_rec,
+        img_clean_rec,
+        img_cross,
+        hazy,
+        clean,
+        z_h,
+        z_c,
+        c_h,
+        c_c,
+        t_h=None,
+        phy_recon=None,
+    ):
+        dehaze_loss, dehaze_parts = self.image_loss(img_dehaze, clean)
+        clean_loss, _ = self.image_loss(img_clean_rec, clean)
+        cross_loss, _ = self.image_loss(img_cross, clean)
 
-    with torch.no_grad():
-        A = estimate_atmospheric_light(hazy)
-        t = estimate_transmission_pseudo(hazy)
+        if self.lambda_hazy > 0:
+            hazy_loss, _ = self.image_loss(img_hazy_rec, hazy)
+        else:
+            hazy_loss = torch.tensor(0.0, device=clean.device, dtype=clean.dtype)
 
-    hazy_recon = pred_clean * t + A * (1.0 - t)
+        z_loss = F.l1_loss(z_h, z_c.detach())
 
-    return F.l1_loss(hazy_recon.float(), hazy.float())
+        if self.lambda_cee > 0:
+            cee_loss = F.l1_loss(c_h, c_c.detach())
+        else:
+            cee_loss = torch.tensor(0.0, device=clean.device, dtype=clean.dtype)
 
+        if self.lambda_phy > 0 and phy_recon is not None:
+            phy_recon, hazy_phy = match_spatial(phy_recon, hazy)
+            phy_loss = charbonnier_loss(phy_recon, hazy_phy)
+        else:
+            phy_loss = torch.tensor(0.0, device=clean.device, dtype=clean.dtype)
 
-def recon_loss(pred, target, opt):
-    pred, target = match_spatial(pred, target)
+        if self.lambda_t_smooth > 0 and t_h is not None:
+            t_smooth = transmission_smoothness_loss(t_h)
+        else:
+            t_smooth = torch.tensor(0.0, device=clean.device, dtype=clean.dtype)
 
-    lambda_ssim = float(opt["loss"].get("lambda_ssim", 0.35))
-    lambda_edge = float(opt["loss"].get("lambda_edge", 0.12))
-    lambda_color = float(opt["loss"].get("lambda_color", 0.08))
-    lambda_tv = float(opt["loss"].get("lambda_tv", 0.0005))
-    lambda_freq = float(opt["loss"].get("lambda_freq", 0.10))
+        total = (
+            self.lambda_dehaze * dehaze_loss
+            + self.lambda_hazy * hazy_loss
+            + self.lambda_clean * clean_loss
+            + self.lambda_cross * cross_loss
+            + self.lambda_z * z_loss
+            + self.lambda_cee * cee_loss
+            + self.lambda_phy * phy_loss
+            + self.lambda_t_smooth * t_smooth
+        )
 
-    l1 = F.l1_loss(pred.float(), target.float())
-    ssim_l = ssim_loss(pred, target)
-    edge_l = edge_loss(pred, target)
-    color_l = color_loss(pred, target)
-    tv_l = tv_loss(pred)
-    freq_l = frequency_loss(pred, target)
+        losses = {
+            "total": total,
+            "dehaze": dehaze_loss,
+            "hazy": hazy_loss,
+            "clean": clean_loss,
+            "cross": cross_loss,
+            "z": z_loss,
+            "cee": cee_loss,
+            "phy": phy_loss,
+            "t_smooth": t_smooth,
+            "ssim": dehaze_parts["ssim"],
+            "edge": dehaze_parts["edge"],
+            "hsv": dehaze_parts["hsv"],
+            "chroma": dehaze_parts["chroma"],
+            "gray": dehaze_parts["gray"],
+            "freq": dehaze_parts["freq"],
+        }
 
-    total = (
-        l1
-        + lambda_ssim * ssim_l
-        + lambda_edge * edge_l
-        + lambda_color * color_l
-        + lambda_tv * tv_l
-        + lambda_freq * freq_l
-    )
-
-    return total, {
-        "l1": l1.detach(),
-        "ssim_loss": ssim_l.detach(),
-        "edge": edge_l.detach(),
-        "color": color_l.detach(),
-        "tv": tv_l.detach(),
-        "freq": freq_l.detach(),
-    }
-
-
-def latent_alignment_loss(z_h, z_c):
-    return F.l1_loss(z_h, z_c.detach())
-
-
-def context_alignment_loss(c_h, c_c):
-    return F.l1_loss(c_h, c_c.detach())
+        return total, losses
 
 
 @torch.no_grad()
-def validate_stage1(
+def validate(
     encoder,
     codec,
     ddu,
     decoder,
+    phys_t,
+    phys_fusion,
     val_loader,
-    opt,
     device,
 ):
-    for m in [encoder, codec, ddu, decoder]:
-        m.eval()
-
-    lambda_dehaze = float(opt["loss"].get("lambda_dehaze_recon", 2.0))
-    lambda_hazy = float(opt["loss"].get("lambda_hazy_recon", 0.0))
-    lambda_clean = float(opt["loss"].get("lambda_clean_recon", 0.5))
-    lambda_cross = float(opt["loss"].get("lambda_cross", 0.5))
-    lambda_z = float(opt["loss"].get("lambda_z_align", 0.05))
-    lambda_cee = float(opt["loss"].get("lambda_cee_align", 0.0))
-    lambda_asm = float(opt["loss"].get("lambda_asm", 0.03))
+    encoder.eval()
+    codec.eval()
+    ddu.eval()
+    decoder.eval()
+    phys_t.eval()
+    phys_fusion.eval()
 
     sums = {
-        "loss": 0.0,
-
         "dehaze_psnr": 0.0,
         "dehaze_ssim": 0.0,
         "dehaze_score": 0.0,
-
-        "clean_psnr": 0.0,
-        "clean_ssim": 0.0,
-
-        "cross_psnr": 0.0,
-        "cross_ssim": 0.0,
-
         "hazy_recon_psnr": 0.0,
         "hazy_recon_ssim": 0.0,
-
+        "clean_psnr": 0.0,
+        "clean_ssim": 0.0,
+        "cross_psnr": 0.0,
+        "cross_ssim": 0.0,
         "z_align": 0.0,
         "cee_align": 0.0,
-        "asm_loss": 0.0,
+        "t_mean": 0.0,
+        "A_mean": 0.0,
     }
 
     count = 0
 
     for batch in val_loader:
-        lq = batch["LQ"].to(device)
-        gt = batch["GT"].to(device)
+        hazy = batch["LQ"].to(device)
+        clean = batch["GT"].to(device)
 
-        bs = lq.size(0)
+        bs = hazy.size(0)
 
-        impl_h = encoder(normalize_for_encoder(lq))
-        impl_c = encoder(normalize_for_encoder(gt))
+        f_h = encoder(normalize_for_encoder(hazy))
+        f_c = encoder(normalize_for_encoder(clean))
 
-        z_h, c_h = codec.encode(impl_h)
-        z_c, c_c = codec.encode(impl_c)
+        z_h, c_h = codec.encode(f_h)
+        z_c, c_c = codec.encode(f_c)
 
-        pred_dehaze = reconstruct_from_latent(z_h, c_h, ddu, decoder)
-        pred_clean = reconstruct_from_latent(z_c, c_c, ddu, decoder)
-        pred_cross = reconstruct_from_latent(z_c, c_h, ddu, decoder)
+        t_h, A_h = phys_t(hazy)
+        c_h_guided = phys_fusion(c_h, t_h)
 
-        pred_dehaze_gt, gt_eval = match_spatial(pred_dehaze, gt)
-        pred_dehaze_lq, lq_eval = match_spatial(pred_dehaze, lq)
+        if count == 0:
+            print(
+                "[LatentStats] "
+                f"z_h mean/std/abs={z_h.mean().item():.5f}/{z_h.std().item():.5f}/{z_h.abs().mean().item():.5f} | "
+                f"z_c mean/std/abs={z_c.mean().item():.5f}/{z_c.std().item():.5f}/{z_c.abs().mean().item():.5f} | "
+                f"c_h mean/std/abs={c_h.mean().item():.5f}/{c_h.std().item():.5f}/{c_h.abs().mean().item():.5f} | "
+                f"c_guided mean/std/abs={c_h_guided.mean().item():.5f}/{c_h_guided.std().item():.5f}/{c_h_guided.abs().mean().item():.5f} | "
+                f"t mean/std={t_h.mean().item():.5f}/{t_h.std().item():.5f}"
+            )
 
-        pred_clean, gt_clean = match_spatial(pred_clean, gt)
-        pred_cross, gt_cross = match_spatial(pred_cross, gt)
+        img_dehaze = reconstruct_from_latent(z_h, c_h_guided, ddu, decoder)
+        img_hazy = reconstruct_from_latent(z_h, c_h, ddu, decoder)
+        img_clean = reconstruct_from_latent(z_c, c_c, ddu, decoder)
+        img_cross = reconstruct_from_latent(z_c, c_h_guided, ddu, decoder)
 
-        loss_dehaze, _ = recon_loss(pred_dehaze_gt, gt_eval, opt)
-        loss_hazy, _ = recon_loss(pred_dehaze_lq, lq_eval, opt)
-        loss_clean, _ = recon_loss(pred_clean, gt_clean, opt)
-        loss_cross, _ = recon_loss(pred_cross, gt_cross, opt)
+        img_dehaze, clean_eval = match_spatial(img_dehaze, clean)
+        img_hazy, hazy_eval = match_spatial(img_hazy, hazy)
+        img_clean, clean_eval2 = match_spatial(img_clean, clean)
+        img_cross, clean_eval3 = match_spatial(img_cross, clean)
 
-        z_align = latent_alignment_loss(z_h, z_c)
-        cee_align = context_alignment_loss(c_h, c_c)
-        loss_asm = asm_reconstruction_loss(pred_dehaze_gt, lq_eval)
-
-        loss = (
-            lambda_dehaze * loss_dehaze
-            + lambda_hazy * loss_hazy
-            + lambda_clean * loss_clean
-            + lambda_cross * loss_cross
-            + lambda_z * z_align
-            + lambda_cee * cee_align
-            + lambda_asm * loss_asm
-        )
-
-        dehaze_psnr = compute_psnr(pred_dehaze_gt.float(), gt_eval.float())
-        dehaze_ssim = compute_ssim(pred_dehaze_gt.float(), gt_eval.float())
+        dehaze_psnr = compute_psnr(img_dehaze.float(), clean_eval.float())
+        dehaze_ssim = compute_ssim(img_dehaze.float(), clean_eval.float())
         dehaze_score = dehaze_psnr + 10.0 * dehaze_ssim
 
-        clean_psnr = compute_psnr(pred_clean.float(), gt_clean.float())
-        clean_ssim = compute_ssim(pred_clean.float(), gt_clean.float())
+        hazy_psnr = compute_psnr(img_hazy.float(), hazy_eval.float())
+        hazy_ssim = compute_ssim(img_hazy.float(), hazy_eval.float())
 
-        cross_psnr = compute_psnr(pred_cross.float(), gt_cross.float())
-        cross_ssim = compute_ssim(pred_cross.float(), gt_cross.float())
+        clean_psnr = compute_psnr(img_clean.float(), clean_eval2.float())
+        clean_ssim = compute_ssim(img_clean.float(), clean_eval2.float())
 
-        hazy_psnr = compute_psnr(pred_dehaze_lq.float(), lq_eval.float())
-        hazy_ssim = compute_ssim(pred_dehaze_lq.float(), lq_eval.float())
-
-        sums["loss"] += float(loss.item()) * bs
+        cross_psnr = compute_psnr(img_cross.float(), clean_eval3.float())
+        cross_ssim = compute_ssim(img_cross.float(), clean_eval3.float())
 
         sums["dehaze_psnr"] += dehaze_psnr * bs
         sums["dehaze_ssim"] += dehaze_ssim * bs
         sums["dehaze_score"] += dehaze_score * bs
-
-        sums["clean_psnr"] += clean_psnr * bs
-        sums["clean_ssim"] += clean_ssim * bs
-
-        sums["cross_psnr"] += cross_psnr * bs
-        sums["cross_ssim"] += cross_ssim * bs
-
         sums["hazy_recon_psnr"] += hazy_psnr * bs
         sums["hazy_recon_ssim"] += hazy_ssim * bs
-
-        sums["z_align"] += float(z_align.item()) * bs
-        sums["cee_align"] += float(cee_align.item()) * bs
-        sums["asm_loss"] += float(loss_asm.item()) * bs
+        sums["clean_psnr"] += clean_psnr * bs
+        sums["clean_ssim"] += clean_ssim * bs
+        sums["cross_psnr"] += cross_psnr * bs
+        sums["cross_ssim"] += cross_ssim * bs
+        sums["z_align"] += float(F.l1_loss(z_h, z_c).item()) * bs
+        sums["cee_align"] += float(F.l1_loss(c_h, c_c).item()) * bs
+        sums["t_mean"] += float(t_h.mean().item()) * bs
+        sums["A_mean"] += float(A_h.mean().item()) * bs
 
         count += bs
 
@@ -372,37 +452,90 @@ def save_stage1_checkpoint(
     codec,
     ddu,
     decoder,
+    phys_t,
+    phys_fusion,
     metrics,
+    selection_metric,
+    optimizer=None,
+    scheduler=None,
+    best_score=None,
 ):
     state = {
         "epoch": epoch,
-
         "codec": codec.state_dict(),
         "ddu": ddu.state_dict(),
         "decoder": decoder.state_dict(),
-
-        "phase": "AILD_FREQ_STAGE1_DEHAZE_ALIGNED_ASM",
-        "selection_metric": "dehaze_score",
-
+        "phys_t": phys_t.state_dict(),
+        "phys_fusion": phys_fusion.state_dict(),
+        "uses_physical_guidance": True,
+        "phase": "AILD_FREQ_STAGE1_ZALIGN_CHROMA_PHYSICAL",
+        "selection_metric": selection_metric,
         "metrics": metrics,
-
+        "best_score": best_score,
         "dehaze_psnr": metrics["dehaze_psnr"],
         "dehaze_ssim": metrics["dehaze_ssim"],
         "dehaze_score": metrics["dehaze_score"],
-
         "clean_psnr": metrics["clean_psnr"],
         "clean_ssim": metrics["clean_ssim"],
-
         "cross_psnr": metrics["cross_psnr"],
         "cross_ssim": metrics["cross_ssim"],
-
-        "hazy_psnr": metrics["hazy_recon_psnr"],
-        "hazy_ssim": metrics["hazy_recon_ssim"],
-
-        "asm_loss": metrics.get("asm_loss", None),
+        "hazy_recon_psnr": metrics["hazy_recon_psnr"],
+        "hazy_recon_ssim": metrics["hazy_recon_ssim"],
+        "z_align": metrics["z_align"],
+        "cee_align": metrics["cee_align"],
     }
 
+    if optimizer is not None:
+        state["optimizer"] = optimizer.state_dict()
+
+    if scheduler is not None:
+        state["scheduler"] = scheduler.state_dict()
+
     save_checkpoint(path, state)
+
+
+def try_resume(
+    ckpt_dir,
+    device,
+    codec,
+    ddu,
+    decoder,
+    phys_t,
+    phys_fusion,
+    optimizer,
+    scheduler,
+):
+    resume_path = os.path.join(ckpt_dir, "stage1_last.pth")
+
+    if not os.path.exists(resume_path):
+        return 1, -1.0
+
+    ckpt = load_checkpoint(resume_path, device)
+
+    codec.load_state_dict(ckpt["codec"])
+    ddu.load_state_dict(ckpt["ddu"])
+    decoder.load_state_dict(ckpt["decoder"])
+
+    if "phys_t" in ckpt:
+        phys_t.load_state_dict(ckpt["phys_t"])
+
+    if "phys_fusion" in ckpt:
+        phys_fusion.load_state_dict(ckpt["phys_fusion"])
+
+    if "optimizer" in ckpt:
+        optimizer.load_state_dict(ckpt["optimizer"])
+
+    if "scheduler" in ckpt:
+        scheduler.load_state_dict(ckpt["scheduler"])
+
+    start_epoch = int(ckpt.get("epoch", 0)) + 1
+    best_score = float(ckpt.get("best_score", ckpt.get("dehaze_score", -1.0)))
+
+    print(f"[Resume] Loaded {resume_path}")
+    print(f"[Resume] Continuing from epoch {start_epoch}")
+    print(f"[Resume] Best score so far: {best_score:.4f}")
+
+    return start_epoch, best_score
 
 
 def train_stage1(config_path):
@@ -415,15 +548,24 @@ def train_stage1(config_path):
 
     ckpt_dir = os.path.join("checkpoints", opt["name"])
     os.makedirs(ckpt_dir, exist_ok=True)
+    os.makedirs("logs", exist_ok=True)
 
-    encoder, codec, ddu, decoder = build_modules(opt, device)
+    encoder, codec, ddu, decoder, phys_t, phys_fusion = build_modules(opt, device)
 
     freeze_module(encoder)
 
-    _, train_dl = build_dataloader(opt, "train")
-    _, val_dl = build_dataloader(opt, "val")
+    _, train_loader = build_dataloader(opt, "train")
+    _, val_loader = build_dataloader(opt, "val")
 
-    params = list(codec.parameters()) + list(ddu.parameters()) + list(decoder.parameters())
+    criterion = Stage1Loss(opt).to(device)
+
+    params = (
+        list(codec.parameters())
+        + list(ddu.parameters())
+        + list(decoder.parameters())
+        + list(phys_t.parameters())
+        + list(phys_fusion.parameters())
+    )
 
     optimizer = torch.optim.AdamW(
         params,
@@ -435,44 +577,82 @@ def train_stage1(config_path):
         weight_decay=float(opt["train"].get("weight_decay", 1.0e-4)),
     )
 
-    total_epochs = int(opt["train"].get("stage1_epochs", 500))
+    epochs = int(opt["train"].get("stage1_epochs", 700))
     val_freq = int(opt["train"].get("val_freq", 25))
+    save_freq = int(opt["train"].get("save_freq", 50))
+    grad_clip = float(opt["train"].get("grad_clip", 1.0))
 
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+    # scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+    #     optimizer,
+    #     T_max=epochs,
+    #     eta_min=float(opt["train"].get("min_lr_stage1", 1.0e-6)),
+    # )
+
+
+    warmup_epochs = int(opt["train"].get("warmup_epochs_stage1", 50))
+
+    warmup = LinearLR(
         optimizer,
-        T_max=total_epochs,
-        eta_min=float(opt["train"].get("min_lr_stage1", 5.0e-6)),
+        start_factor=0.1,
+        end_factor=1.0,
+        total_iters=warmup_epochs,
     )
 
-    lambda_dehaze = float(opt["loss"].get("lambda_dehaze_recon", 2.0))
-    lambda_hazy = float(opt["loss"].get("lambda_hazy_recon", 0.0))
-    lambda_clean = float(opt["loss"].get("lambda_clean_recon", 0.5))
-    lambda_cross = float(opt["loss"].get("lambda_cross", 0.5))
-    lambda_z = float(opt["loss"].get("lambda_z_align", 0.05))
-    lambda_cee = float(opt["loss"].get("lambda_cee_align", 0.0))
-    lambda_asm = float(opt["loss"].get("lambda_asm", 0.03))
-
-    print(
-        f"[Stage1-Dehaze-ASM] Training {opt['name']} | "
-        f"epochs={total_epochs} | "
-        f"lambda_dehaze={lambda_dehaze} | "
-        f"lambda_hazy={lambda_hazy} | "
-        f"lambda_clean={lambda_clean} | "
-        f"lambda_cross={lambda_cross} | "
-        f"lambda_z={lambda_z} | "
-        f"lambda_cee={lambda_cee} | "
-        f"lambda_asm={lambda_asm}"
+    cosine = CosineAnnealingLR(
+        optimizer,
+        T_max=max(1, epochs - warmup_epochs),
+        eta_min=float(opt["train"].get("min_lr_stage1", 5.0e-7)),
     )
 
-    best_score = -1.0
+    scheduler = SequentialLR(
+        optimizer,
+        schedulers=[warmup, cosine],
+        milestones=[warmup_epochs],
+    )
+    resume_enabled = bool(opt["train"].get("resume_stage1", True))
+
+    if resume_enabled:
+        start_epoch, best_score = try_resume(
+            ckpt_dir=ckpt_dir,
+            device=device,
+            codec=codec,
+            ddu=ddu,
+            decoder=decoder,
+            phys_t=phys_t,
+            phys_fusion=phys_fusion,
+            optimizer=optimizer,
+            scheduler=scheduler,
+        )
+    else:
+        start_epoch = 1
+        best_score = -1.0
+
     best_psnr = -1.0
     best_ssim = -1.0
 
-    for epoch in range(1, total_epochs + 1):
+    loss_opt = opt.get("loss", {})
+
+    print(
+        f"[Stage1-ZAlign-Chroma] Training {opt['name']} | "
+        f"epochs={epochs} | "
+        f"start_epoch={start_epoch} | "
+        f"lambda_dehaze={loss_opt.get('lambda_dehaze_recon')} | "
+        f"lambda_cross={loss_opt.get('lambda_cross')} | "
+        f"lambda_z={loss_opt.get('lambda_z_align')} | "
+        f"lambda_hsv={loss_opt.get('lambda_hsv')} | "
+        f"lambda_chroma={loss_opt.get('lambda_chroma')} | "
+        f"lambda_gray={loss_opt.get('lambda_gray_penalty')} | "
+        f"lambda_phy={loss_opt.get('lambda_phy')}"
+    )
+
+    for epoch in range(start_epoch, epochs + 1):
         encoder.eval()
         codec.train()
         ddu.train()
         decoder.train()
+        phys_t.train()
+        phys_fusion.train()
+        criterion.train()
 
         sums = {
             "loss": 0.0,
@@ -481,126 +661,131 @@ def train_stage1(config_path):
             "clean": 0.0,
             "cross": 0.0,
             "z": 0.0,
-            "cee": 0.0,
-            "asm": 0.0,
-            "psnr": 0.0,
+            "phy": 0.0,
+            "t_smooth": 0.0,
             "ssim": 0.0,
-            "score": 0.0,
+            "edge": 0.0,
+            "hsv": 0.0,
+            "chroma": 0.0,
+            "gray": 0.0,
+            "freq": 0.0,
+            "psnr": 0.0,
+            "ssim_metric": 0.0,
+            "t_mean": 0.0,
+            "A_mean": 0.0,
         }
 
         count = 0
 
-        for batch in train_dl:
-            lq = batch["LQ"].to(device)
-            gt = batch["GT"].to(device)
+        for batch in train_loader:
+            hazy = batch["LQ"].to(device)
+            clean = batch["GT"].to(device)
 
-            bs = lq.size(0)
+            bs = hazy.size(0)
 
             with torch.no_grad():
-                impl_h = encoder(normalize_for_encoder(lq))
-                impl_c = encoder(normalize_for_encoder(gt))
+                f_h = encoder(normalize_for_encoder(hazy))
+                f_c = encoder(normalize_for_encoder(clean))
 
-            z_h, c_h = codec.encode(impl_h)
-            z_c, c_c = codec.encode(impl_c)
+            z_h, c_h = codec.encode(f_h)
+            z_c, c_c = codec.encode(f_c)
 
-            pred_dehaze = reconstruct_from_latent(z_h, c_h, ddu, decoder)
-            pred_clean = reconstruct_from_latent(z_c, c_c, ddu, decoder)
-            pred_cross = reconstruct_from_latent(z_c, c_h, ddu, decoder)
+            t_h, A_h = phys_t(hazy)
+            c_h_guided = phys_fusion(c_h, t_h)
 
-            pred_dehaze_gt, gt_eval = match_spatial(pred_dehaze, gt)
-            pred_dehaze_lq, lq_eval = match_spatial(pred_dehaze, lq)
+            img_dehaze = reconstruct_from_latent(z_h, c_h_guided, ddu, decoder)
+            img_hazy = reconstruct_from_latent(z_h, c_h, ddu, decoder)
+            img_clean = reconstruct_from_latent(z_c, c_c, ddu, decoder)
+            img_cross = reconstruct_from_latent(z_c, c_h_guided, ddu, decoder)
 
-            pred_clean, gt_clean = match_spatial(pred_clean, gt)
-            pred_cross, gt_cross = match_spatial(pred_cross, gt)
+            phy_recon = atmospheric_reconstruction(img_dehaze, t_h, A_h)
 
-            loss_dehaze, _ = recon_loss(pred_dehaze_gt, gt_eval, opt)
-            loss_hazy, _ = recon_loss(pred_dehaze_lq, lq_eval, opt)
-            loss_clean, _ = recon_loss(pred_clean, gt_clean, opt)
-            loss_cross, _ = recon_loss(pred_cross, gt_cross, opt)
-
-            z_align = latent_alignment_loss(z_h, z_c)
-            cee_align = context_alignment_loss(c_h, c_c)
-            loss_asm = asm_reconstruction_loss(pred_dehaze_gt, lq_eval)
-
-            loss = (
-                lambda_dehaze * loss_dehaze
-                + lambda_hazy * loss_hazy
-                + lambda_clean * loss_clean
-                + lambda_cross * loss_cross
-                + lambda_z * z_align
-                + lambda_cee * cee_align
-                + lambda_asm * loss_asm
+            loss, loss_dict = criterion(
+                img_dehaze=img_dehaze,
+                img_hazy_rec=img_hazy,
+                img_clean_rec=img_clean,
+                img_cross=img_cross,
+                hazy=hazy,
+                clean=clean,
+                z_h=z_h,
+                z_c=z_c,
+                c_h=c_h,
+                c_c=c_c,
+                t_h=t_h,
+                phy_recon=phy_recon,
             )
 
             optimizer.zero_grad(set_to_none=True)
             loss.backward()
 
-            torch.nn.utils.clip_grad_norm_(
-                params,
-                float(opt["train"].get("grad_clip", 1.0)),
-            )
+            torch.nn.utils.clip_grad_norm_(params, grad_clip)
 
             optimizer.step()
 
-            psnr = compute_psnr(pred_dehaze_gt.detach().float(), gt_eval.float())
-            ssim = compute_ssim(pred_dehaze_gt.detach().float(), gt_eval.float())
-            score = psnr + 10.0 * ssim
+            img_eval, clean_eval = match_spatial(img_dehaze.detach(), clean)
+
+            train_psnr = compute_psnr(img_eval.float(), clean_eval.float())
+            train_ssim = compute_ssim(img_eval.float(), clean_eval.float())
 
             sums["loss"] += float(loss.item()) * bs
-            sums["dehaze"] += float(loss_dehaze.item()) * bs
-            sums["hazy"] += float(loss_hazy.item()) * bs
-            sums["clean"] += float(loss_clean.item()) * bs
-            sums["cross"] += float(loss_cross.item()) * bs
-            sums["z"] += float(z_align.item()) * bs
-            sums["cee"] += float(cee_align.item()) * bs
-            sums["asm"] += float(loss_asm.item()) * bs
-
-            sums["psnr"] += psnr * bs
-            sums["ssim"] += ssim * bs
-            sums["score"] += score * bs
+            sums["dehaze"] += float(loss_dict["dehaze"].item()) * bs
+            sums["hazy"] += float(loss_dict["hazy"].item()) * bs
+            sums["clean"] += float(loss_dict["clean"].item()) * bs
+            sums["cross"] += float(loss_dict["cross"].item()) * bs
+            sums["z"] += float(loss_dict["z"].item()) * bs
+            sums["phy"] += float(loss_dict["phy"].item()) * bs
+            sums["t_smooth"] += float(loss_dict["t_smooth"].item()) * bs
+            sums["ssim"] += float(loss_dict["ssim"].item()) * bs
+            sums["edge"] += float(loss_dict["edge"].item()) * bs
+            sums["hsv"] += float(loss_dict["hsv"].item()) * bs
+            sums["chroma"] += float(loss_dict["chroma"].item()) * bs
+            sums["gray"] += float(loss_dict["gray"].item()) * bs
+            sums["freq"] += float(loss_dict["freq"].item()) * bs
+            sums["psnr"] += train_psnr * bs
+            sums["ssim_metric"] += train_ssim * bs
+            sums["t_mean"] += float(t_h.detach().mean().item()) * bs
+            sums["A_mean"] += float(A_h.detach().mean().item()) * bs
 
             count += bs
 
         scheduler.step()
 
         if epoch % val_freq == 0 or epoch == 1:
-            val_stats = validate_stage1(
+            train_stats = {k: v / count for k, v in sums.items()}
+
+            val_stats = validate(
                 encoder=encoder,
                 codec=codec,
                 ddu=ddu,
                 decoder=decoder,
-                val_loader=val_dl,
-                opt=opt,
+                phys_t=phys_t,
+                phys_fusion=phys_fusion,
+                val_loader=val_loader,
                 device=device,
             )
 
-            lr_now = optimizer.param_groups[0]["lr"]
+            lr = optimizer.param_groups[0]["lr"]
 
             print(
-                f"[S1-Dehaze-ASM][{epoch:04d}/{total_epochs}] "
-                f"lr={lr_now:.2e} "
-                f"train_loss={sums['loss'] / count:.4f} "
-                f"dehaze={sums['dehaze'] / count:.4f} "
-                f"hazy={sums['hazy'] / count:.4f} "
-                f"clean={sums['clean'] / count:.4f} "
-                f"cross={sums['cross'] / count:.4f} "
-                f"z={sums['z'] / count:.5f} "
-                f"cee={sums['cee'] / count:.5f} "
-                f"asm={sums['asm'] / count:.5f} "
-                f"train_psnr={sums['psnr'] / count:.3f} "
-                f"train_ssim={sums['ssim'] / count:.4f} | "
-                f"val_dehaze={val_stats['dehaze_psnr']:.3f}/"
-                f"{val_stats['dehaze_ssim']:.4f} "
-                f"val_score={val_stats['dehaze_score']:.3f} "
-                f"val_clean={val_stats['clean_psnr']:.3f}/"
-                f"{val_stats['clean_ssim']:.4f} "
-                f"val_cross={val_stats['cross_psnr']:.3f}/"
-                f"{val_stats['cross_ssim']:.4f} "
-                f"val_hazy_diag={val_stats['hazy_recon_psnr']:.3f}/"
-                f"{val_stats['hazy_recon_ssim']:.4f} "
+                f"[S1-ZAlign-Chroma][{epoch:04d}/{epochs}] "
+                f"lr={lr:.2e} "
+                f"loss={train_stats['loss']:.4f} "
+                f"dehaze={train_stats['dehaze']:.4f} "
+                f"z={train_stats['z']:.5f} "
+                f"phy={train_stats['phy']:.4f} "
+                f"hsv={train_stats['hsv']:.4f} "
+                f"chroma={train_stats['chroma']:.4f} "
+                f"gray={train_stats['gray']:.4f} "
+                f"ssim_loss={train_stats['ssim']:.4f} "
+                f"train={train_stats['psnr']:.3f}/{train_stats['ssim_metric']:.4f} "
+                f"t={train_stats['t_mean']:.4f} A={train_stats['A_mean']:.4f} | "
+                f"val_dehaze={val_stats['dehaze_psnr']:.3f}/{val_stats['dehaze_ssim']:.4f} "
+                f"score={val_stats['dehaze_score']:.3f} "
+                f"val_clean={val_stats['clean_psnr']:.3f}/{val_stats['clean_ssim']:.4f} "
+                f"val_cross={val_stats['cross_psnr']:.3f}/{val_stats['cross_ssim']:.4f} "
+                f"val_hazy={val_stats['hazy_recon_psnr']:.3f}/{val_stats['hazy_recon_ssim']:.4f} "
                 f"val_z={val_stats['z_align']:.5f} "
-                f"val_cee={val_stats['cee_align']:.5f} "
-                f"val_asm={val_stats['asm_loss']:.5f}"
+                f"val_t={val_stats['t_mean']:.4f}"
             )
 
             if val_stats["dehaze_score"] > best_score:
@@ -609,35 +794,57 @@ def train_stage1(config_path):
                 best_ssim = val_stats["dehaze_ssim"]
 
                 save_stage1_checkpoint(
-                    os.path.join(ckpt_dir, "stage1_best.pth"),
-                    epoch,
-                    codec,
-                    ddu,
-                    decoder,
-                    val_stats,
+                    path=os.path.join(ckpt_dir, "stage1_best.pth"),
+                    epoch=epoch,
+                    codec=codec,
+                    ddu=ddu,
+                    decoder=decoder,
+                    phys_t=phys_t,
+                    phys_fusion=phys_fusion,
+                    metrics=val_stats,
+                    selection_metric="dehaze_score",
+                    optimizer=None,
+                    scheduler=None,
+                    best_score=best_score,
                 )
 
                 print(
-                    f"Saved best Stage1-Dehaze-ASM checkpoint "
-                    f"(score={best_score:.3f}, "
-                    f"PSNR={best_psnr:.3f}, "
-                    f"SSIM={best_ssim:.4f})"
+                    f"Saved best Stage1-ZAlign-Chroma checkpoint "
+                    f"(score={best_score:.3f}, PSNR={best_psnr:.3f}, SSIM={best_ssim:.4f})"
                 )
 
-            save_stage1_checkpoint(
-                os.path.join(ckpt_dir, "stage1_last.pth"),
-                epoch,
-                codec,
-                ddu,
-                decoder,
-                val_stats,
+        if epoch % save_freq == 0 or epoch == epochs:
+            last_stats = validate(
+                encoder=encoder,
+                codec=codec,
+                ddu=ddu,
+                decoder=decoder,
+                phys_t=phys_t,
+                phys_fusion=phys_fusion,
+                val_loader=val_loader,
+                device=device,
             )
 
+            save_stage1_checkpoint(
+                path=os.path.join(ckpt_dir, "stage1_last.pth"),
+                epoch=epoch,
+                codec=codec,
+                ddu=ddu,
+                decoder=decoder,
+                phys_t=phys_t,
+                phys_fusion=phys_fusion,
+                metrics=last_stats,
+                selection_metric="last",
+                optimizer=optimizer,
+                scheduler=scheduler,
+                best_score=best_score,
+            )
+
+            print(f"Saved last checkpoint at epoch {epoch}: {os.path.join(ckpt_dir, 'stage1_last.pth')}")
+
     print(
-        f"Best Stage1-Dehaze-ASM: "
-        f"score={best_score:.3f}, "
-        f"PSNR={best_psnr:.3f}, "
-        f"SSIM={best_ssim:.4f}"
+        f"Best Stage1-ZAlign-Chroma: score={best_score:.3f}, "
+        f"PSNR={best_psnr:.3f}, SSIM={best_ssim:.4f}"
     )
 
 
