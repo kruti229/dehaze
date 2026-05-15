@@ -80,6 +80,7 @@ class FDAA(nn.Module):
     def __init__(self, channels, num_heads=4, low_freq_ratio=0.25):
         super().__init__()
         self.ratio = low_freq_ratio
+        self.gamma = nn.Parameter(torch.tensor(0.1))
         self.haze_loc_prior = HazeLocationPrior(channels)
         self.cfab = CrossFrequencyAttentionBlock(channels, num_heads)
         self.fuse = nn.Sequential(
@@ -93,5 +94,5 @@ class FDAA(nn.Module):
         f_low, f_high = fft_decompose(z0, self.ratio)
         attn, alpha = self.cfab(f_low, f_high)
         fused = self.fuse(torch.cat([attn, f_low, f_high], dim=1))
-        z_fdaa = z0 + fused
+        z_fdaa = z0 + self.gamma * fused
         return z_fdaa, f_low, f_high, alpha

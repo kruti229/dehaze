@@ -1,5 +1,5 @@
 from .convnext_encoder import ConvNextEncoder
-from .predehazer import SimplePreDehazer
+# from .predehazer import SimplePreDehazer
 from .dcu_cee import DehazeDiffCodec
 from .ddu import DimensionalDecompressionUnit
 from .fdaa import FDAA

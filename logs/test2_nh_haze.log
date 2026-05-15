@@ -1,0 +1,35 @@
+[Dataset] test: 5 matched pairs
+
+===============================================
+Dataset              : nh_haze
+Checkpoint           : checkpoints/nh_haze/stage1_best.pth
+Loaded phase         : AILD_FREQ_STAGE1_ZALIGN_CHROMA_PHYSICAL
+Mode                 : stage1_direct_dehaze
+Uses physical        : True
+Uses Stage2 mapper   : False
+Color fix            : False
+Output folder        : results_test2_fullres/nh_haze
+===============================================
+
+  0%|          | 0/5 [00:00<?, ?it/s][001/005] nh51_hazy.png | PSNR=17.121 SSIM=0.4656 Score=21.777 Input=9.982/0.3722 DeltaAbs=0.00000 RGBdiff=(0.0334,0.0355,0.0270) Chroma=0.0320 GrayLike=False ColorFix=False Applied=False FullRes=1200x1600
+ 20%|██        | 1/5 [00:02<00:09,  2.33s/it][002/005] nh52_hazy.png | PSNR=16.904 SSIM=0.4008 Score=20.912 Input=11.703/0.4852 DeltaAbs=0.00000 RGBdiff=(0.0223,0.0284,0.0309) Chroma=0.0272 GrayLike=False ColorFix=False Applied=False FullRes=1200x1600
+ 40%|████      | 2/5 [00:03<00:04,  1.57s/it][003/005] nh53_hazy.png | PSNR=17.608 SSIM=0.3755 Score=21.364 Input=9.339/0.4275 DeltaAbs=0.00000 RGBdiff=(0.0215,0.0423,0.0400) Chroma=0.0346 GrayLike=False ColorFix=False Applied=False FullRes=1200x1600
+ 60%|██████    | 3/5 [00:04<00:02,  1.39s/it][004/005] nh54_hazy.png | PSNR=13.901 SSIM=0.2730 Score=16.631 Input=12.762/0.4122 DeltaAbs=0.00000 RGBdiff=(0.0301,0.0348,0.0261) Chroma=0.0303 GrayLike=False ColorFix=False Applied=False FullRes=1200x1600
+ 80%|████████  | 4/5 [00:05<00:01,  1.26s/it][005/005] nh55_hazy.png | PSNR=14.861 SSIM=0.3104 Score=17.965 Input=12.901/0.4164 DeltaAbs=0.00000 RGBdiff=(0.0337,0.0414,0.0243) Chroma=0.0332 GrayLike=False ColorFix=False Applied=False FullRes=1200x1600
+100%|██████████| 5/5 [00:06<00:00,  1.19s/it]100%|██████████| 5/5 [00:06<00:00,  1.33s/it]
+
+Full-resolution Test2 results on nh_haze:
+  Average PSNR       : 16.079 dB
+  Average SSIM       : 0.3651
+  Average Score      : 19.730
+  Average Input PSNR : 11.337 dB
+  Average Input SSIM : 0.4227
+  Average DeltaAbs   : 0.00000
+  Average RGBdiff    : RG=0.0282, RB=0.0365, GB=0.0297
+  Average Chroma     : 0.0315
+  GrayLike Count     : 0/5
+  ColorFix Applied   : 0/5
+  Dehazed images     : results_test2_fullres/nh_haze/dehazed
+  Compare panels     : results_test2_fullres/nh_haze/compare
+  Metrics CSV        : results_test2_fullres/nh_haze/metrics.csv
+  Summary TXT        : results_test2_fullres/nh_haze/summary.txt

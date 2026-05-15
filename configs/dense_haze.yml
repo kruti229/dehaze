@@ -25,9 +25,6 @@ datasets:
     use_shuffle: false
     n_workers: 0
 
-network_pre:
-  channels: 32
-
 network_encoder:
   backbone: convnext_small
   pretrained: true
@@ -37,14 +34,20 @@ network_L:
   latent_channels: 16
   cee_channels: 64
 
+network_mapper:
+  width: 96
+  num_blocks: 10
+  expansion: 2
+  use_se: true
+
 network_G:
   which_model: ConditionalNAFNet
   setting:
     img_channel: 16
-    width: 96
-    middle_blk_num: 12
-    enc_blk_nums: [2, 2, 4]
-    dec_blk_nums: [2, 2, 2]
+    width: 64
+    middle_blk_num: 8
+    enc_blk_nums: [1, 1, 1]
+    dec_blk_nums: [1, 1, 1]
 
 fdaa:
   channels: 16
@@ -56,35 +59,69 @@ hag:
   min_steps: 4
   use_hag: true
 
-sde:
-  max_sigma: 20
-  T: 16
-  schedule: cosine
-
 train:
-  stage1_epochs: 500
-  stage2_warmup_epochs: 800
+  seed: 42
+
+  stage1_epochs: 1000
+  stage2_warmup_epochs: 300
+
+  stage2_residual_scale: 1.0
+
+  stage2_eta_candidates: [0.0, 0.03, 0.05, 0.08, 0.10, 0.15, 0.20, 0.30, 0.50, 0.75, 1.0]
+  stage2_save_margin: 0.0
+
   lr_stage1: 1.0e-4
   lr_stage2: 3.0e-5
+  stage2_mapper_lr: 1.0e-5
+  fdaa_lr: 5.0e-6
+  hag_lr: 1.0e-5
+
   beta1: 0.9
   beta2: 0.99
+  weight_decay: 1.0e-4
+
+  min_lr_stage1: 5.0e-6
+  min_lr_stage2: 1.0e-6
+
   latent_clip: 3.0
-  val_freq: 50
-  save_freq: 100
+  grad_clip: 1.0
+
+  val_freq: 25
+  save_freq: 200
+
   merged_checkpoint_name: final_best.pth
-  alpha_schedule:
-    boundaries: [500, 700]
-    values: [1.0, 0.75, 0.5]
-  scheduler:
-    type: cosine
-    min_lr: 5.0e-6
 
 loss:
   lambda_img: 1.0
   lambda_lat: 0.5
-  lambda_freq: 0.2
+  lambda_freq: 0.10
   lambda_freq_prior: 0.01
   lambda_perc: 0.0
-  lambda_ssim: 0.15
-  lambda_edge: 0.05
-  lambda_ctx: 0.05
+
+  lambda_ssim: 0.40
+  lambda_edge: 0.12
+  lambda_color: 0.08
+  lambda_focal: 0.2
+  lambda_tv: 0.0005
+  lambda_atm: 0.0
+
+  lambda_dehaze_recon: 3.0
+  lambda_hazy_recon: 0.0
+  lambda_clean_recon: 0.4
+  lambda_cross: 1.2
+  lambda_z_align: 0.03
+  lambda_cee_align: 0.0
+  lambda_asm: 0.05
+
+  lambda_stage2_img: 1.0
+  lambda_stage2_ssim: 0.35
+  lambda_stage2_edge: 0.10
+  lambda_stage2_color: 0.05
+  lambda_stage2_tv: 0.001
+  lambda_stage2_freq: 0.05
+  lambda_stage2_z: 0.05
+  lambda_stage2_identity: 0.10
+
+test:
+  use_color_fix: true
+  chroma_strength: 0.85
